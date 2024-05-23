@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -6,7 +7,7 @@ import java.util.NoSuchElementException;
  * La classe Equipe représente une équipe de sport composée d'athlètes
  * Elle implémente l'interface Participant
  */
-public class Equipe implements Participant {
+public class Equipe implements Participant, Comparable<Equipe> {
     private String nom; // Le nom de l'équipe
     private List<Athlete> athletes; // La liste des athlètes de l'équipe
 
@@ -16,7 +17,7 @@ public class Equipe implements Participant {
      * @throws IllegalArgumentException si le nom est vide ou null
      */
     public Equipe(String nom) throws IllegalArgumentException {
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'équipe ne peut pas être vide ou null.");
         }
         this.nom = nom;
@@ -43,16 +44,20 @@ public class Equipe implements Participant {
     /**
      * Méthode pour obtenir le sexe de l'équipe
      * @return Le sexe de l'équipe (Masculine ou Féminine)
+     * @throws IllegalArgumentException si la liste des athlètes est vide
      */
     @Override
-    public String obtenirSexe() {
+    public String obtenirSexe() throws IllegalArgumentException{
+        if (this.athletes.isEmpty()) {
+            throw new NoSuchElementException("Erreur : Il n'y a pas d'athlètes dans l'équipe.");
+        }
         String sexe = this.athletes.get(0).obtenirSexe();
         for (int i = 0; i < this.athletes.size(); ++i) {
-            if (this.athletes.get(i).obtenirSexe().equals("Homme")) {
-                sexe = "Masculine";
+            if (this.athletes.get(i).obtenirSexe().equals("H")) {
+                sexe = "M";
             }
             else {
-                sexe = "Féminine";
+                sexe = "F";
             }
         }
         return sexe;
@@ -64,7 +69,7 @@ public class Equipe implements Participant {
      * @throws IllegalArgumentException si le nouveau nom est vide ou null
      */
     public void setNom(String nouveauNom) throws IllegalArgumentException {
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nouveauNom == null || nouveauNom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'équipe ne peut pas être vide ou null.");
         }
         this.nom = nouveauNom;
@@ -156,6 +161,26 @@ public class Equipe implements Participant {
     }
 
     /**
+     * Trie la liste d'équipes en fonction de leur nom de manière alphabétique croissante
+     * @param listeEquipe La liste d'équipes à trier
+     */
+    public void triNomEquipe(List<Equipe> listeEquipe) {
+        Collections.sort(listeEquipe);
+    }
+
+    /**
+     * Compare cette équipe à une autre en fonction de leur nom
+     * @param equipe L'équipe à comparer à cette équipe
+     * @return Un entier négatif si le nom de cette équipe est avant celui de l'équipe fournie
+     *         un entier positif si le nom de cette équipe est après celui de l'équipe fournie
+     *         et zéro si les deux équipes ont le même nom
+     */
+    @Override
+    public int compareTo(Equipe equipe) {
+        return this.obtenirNom().compareTo(equipe.obtenirNom());
+    }
+
+    /**
      * Méthode pour vérifier l'égalité entre deux équipes
      * @param objet L'objet à comparer avec l'équipe
      * @return true si les deux équipes sont égales, false sinon
@@ -172,7 +197,7 @@ public class Equipe implements Participant {
             return false;
         }
         Equipe e = (Equipe) objet;
-        return this.nom.equals(e.nom) && this.athletes == e.athletes;
+        return this.nom.equals(e.nom) && this.athletes.equals(e.athletes);
     }
 
 }
