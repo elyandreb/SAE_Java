@@ -1,13 +1,14 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * La classe Epreuve représente une épreuve sportive dans le cadre des Jeux Olympiques
  */
-public class Epreuve {
+public class Epreuve implements Comparable<Epreuve> {
     private String nom; // Le nom de l'épreuve
-    private String genre; // Le genre de l'épreuve (Masculine/Féminine)
+    private String genre; // Le genre de l'épreuve (M/F)
     private Sport sport; // Le sport associé à l'épreuve
     private List<Participant> participants; // La liste des participants à l'épreuve
 
@@ -22,11 +23,8 @@ public class Epreuve {
         if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'épreuve ne peut pas être vide ou null.");
         }
-        if (!(genre.equals("Masculine") || genre.equals("Féminine"))) {
+        if (!(genre.equals("M") || genre.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format de genre n'est pas respecté.");
-        }
-        if (genre.equals(null) || genre.isEmpty()) {
-            throw new IllegalArgumentException("Erreur : Le genre ne peut pas être vide ou null");
         }
         if (sport == null) {
             throw new IllegalArgumentException("Erreur : Le sport ne peut pas être null.");
@@ -74,11 +72,11 @@ public class Epreuve {
      * @param nom Le nouveau nom de l'épreuve
      * @throws IllegalArgumentException Si le nouveau nom est vide ou null
      */
-    public void setNom(String nom) throws IllegalArgumentException {
-        if (nom == null || nom.isEmpty()) {
+    public void setNom(String nouveauNom) throws IllegalArgumentException {
+        if (nouveauNom == null || nouveauNom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'épreuve ne peut pas être vide ou null.");
         }
-        this.nom = nom;
+        this.nom = nouveauNom;
     }
 
     /**
@@ -86,14 +84,11 @@ public class Epreuve {
      * @param genre Le nouveau genre de l'épreuve (Masculine/Féminine)
      * @throws IllegalArgumentException Si le nouveau genre n'est pas valide
      */
-    public void setGenre(String genre) throws IllegalArgumentException {
-        if (!(genre.equals("Masculine") || genre.equals("Féminine"))) {
+    public void setGenre(String nouveauGenre) throws IllegalArgumentException {
+        if (!(nouveauGenre.equals("M") || nouveauGenre.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format de genre n'est pas respecté.");
         }
-        if (genre.equals(null) || genre.isEmpty()) {
-            throw new IllegalArgumentException("Erreur : Le genre ne peut pas être vide ou null");
-        }
-        this.genre = genre;
+        this.genre = nouveauGenre;
     }
 
     /**
@@ -148,6 +143,42 @@ public class Epreuve {
     }
 
     /**
+     * Trie la liste d'épreuves en fonction du genre d'épreuve en plaçant les hommes avant les femmes
+     * @param listeEpreuve La liste d'épreuves à trier
+     */
+    public static void triGenreEpreuveHomme(List<Epreuve> listeEpreuve) {
+        Collections.sort(listeEpreuve, new TriGenreEpreuveHomme());
+    }
+
+    /**
+     * Trie la liste d'épreuves en fonction du genre d'épreuve en plaçant les femmes avant les hommes
+     * @param listeEpreuve La liste d'épreuves à trier
+     */
+    public static void triGenreEpreuveFemme(List<Epreuve> listeEpreuve) {
+        Collections.sort(listeEpreuve, new TriGenreEpreuveFemme());
+    }
+
+    /**
+     * Trie la liste d'épreuves en fonction de leur nom de manière alphabétique croissante
+     * @param listeEpreuve La liste d'épreuves à trier
+     */
+    public static void triNomEpreuve(List<Epreuve> listeEpreuve) {
+        Collections.sort(listeEpreuve);
+    }
+
+    /**
+     * Compare cette épreuve à une autre en fonction de leur nom
+     * @param epreuve L'épreuve à comparer à cette épreuve
+     * @return Un entier négatif si le nom de cette épreuve est avant celui de l'épreuve fournie
+     *         un entier positif si le nom de cette épreuve est après celui de l'épreuve fournie
+     *         et zéro si les deux épreuves ont le même nom
+     */
+    @Override
+    public int compareTo(Epreuve epreuve) {
+        return this.getNom().compareTo(epreuve.getNom());
+    }
+
+    /**
      * Méthode pour obtenir une représentation textuelle de l'épreuve
      * @return Une chaîne de caractères représentant l'épreuve
      */
@@ -173,7 +204,7 @@ public class Epreuve {
             return false;
         }
         Epreuve epreuve = (Epreuve) objet;
-        return epreuve.nom.equals(this.nom) && epreuve.genre.equals(this.genre) && epreuve.sport == this.sport && epreuve.participants == this.participants;
+        return epreuve.nom.equals(this.nom) && epreuve.genre.equals(this.genre) && epreuve.sport == this.sport && epreuve.participants.equals(this.participants);
     }
     
 }
