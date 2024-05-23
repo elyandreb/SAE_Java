@@ -3,8 +3,8 @@
  */
 public abstract class Sport {
     protected String nom; // Le nom du sport
-    protected String categorie; // La catégorie du sport (M pour masculin, F pour féminin)
-    protected int nbjoueur; // Le nombre du joueurs du sport
+    protected String categorie; // La catégorie du sport (Individuelles, Collectives)
+    protected int nbjoueur; // Le nombre de joueurs du sport
 
     /**
      * Constructeur de la classe Sport
@@ -12,18 +12,15 @@ public abstract class Sport {
      * @param categorie La catégorie du sport (M pour masculin, F pour féminin)
      * @param nbjoueur Le nombre de joueurs du sport.
      * @throws IllegalArgumentException si le nom est vide ou null
-     *                                  si la catégorie n'est pas "M" ou "F"
-     *                                  ou si le nombre de joueurs est négatif ou null
+     *                                  si la catégorie n'est pas "Individuelles" ou "Collectives"
+     *                                  ou si le nombre de joueurs est négatif
      */
     public Sport(String nom, String categorie, int nbjoueur) throws IllegalArgumentException {
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom du sport ne doit pas être vide ou null.");
         }
-        if (!(categorie.equals("M") || categorie.equals("F"))) {
+        if (!(categorie.equals("Individuelles") || categorie.equals("Collectives"))) {
             throw new IllegalArgumentException("Erreur : Le format de catégorie n'est pas respecté.");
-        }
-        if (categorie.equals(null) || categorie.isEmpty()) {
-            throw new IllegalArgumentException("Erreur : La catégorie ne peut pas être vide ou null");
         }
         if (nbjoueur < 1) {
             throw new IllegalArgumentException("Erreur : Le nombre de joueurs ne peut pas être négatif ou null.");
@@ -63,7 +60,7 @@ public abstract class Sport {
      * @throws IllegalArgumentException si le nouveau nom est vide ou null
      */
     public void setNom(String nouveauNom) throws IllegalArgumentException {
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nouveauNom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom du sport ne doit pas être vide ou null.");
         }
         this.nom = nouveauNom;
@@ -72,15 +69,12 @@ public abstract class Sport {
     /**
      * Modifie la catégorie du sport
      * @param nouvelleCategorie La nouvelle catégorie du sport
-     * @throws IllegalArgumentException si la nouvelle catégorie n'est pas "M" ou "F"
+     * @throws IllegalArgumentException si la nouvelle catégorie n'est pas "Individuelles" ou "Collectives"
      *                                  ou si elle est vide ou null
      */
     public void setCategorie(String nouvelleCategorie) throws IllegalArgumentException {
-        if (!(categorie.equals("M") || categorie.equals("F"))) {
+        if (!(nouvelleCategorie.equals("Individuelles") || nouvelleCategorie.equals("Collectives"))) {
             throw new IllegalArgumentException("Erreur : Le format de catégorie n'est pas respecté.");
-        }
-        if (categorie.equals(null) || categorie.isEmpty()) {
-            throw new IllegalArgumentException("Erreur : La catégorie ne peut pas être vide ou null");
         }
         this.categorie = nouvelleCategorie;
     }
@@ -91,7 +85,7 @@ public abstract class Sport {
      * @throws IllegalArgumentException si le nouveau nombre de joueurs est négatif ou null
      */
     public void setNbJoueur(int nouveauNbjoueur) {
-        if (nbjoueur < 1) {
+        if (nouveauNbjoueur < 1) {
             throw new IllegalArgumentException("Erreur : Le nombre de joueurs ne peut pas être négatif ou null.");
         }
         this.nbjoueur = nouveauNbjoueur;
