@@ -24,10 +24,10 @@ public class JeuxOlympique {
         if (annee % 4 != 0) {
             throw new IllegalArgumentException("Erreur : Les Jeux Olympiques doivent avoir lieu tous les quatre ans et à des années spécifique.");
         }
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'événement olympique ne peut pas être vide.");
         }
-        if (ville.equals(null) || ville.isEmpty()) {
+        if (ville == null || ville.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de la ville hôte ne peut pas être vide.");
         }
         this.nom = nom;
@@ -315,7 +315,7 @@ public class JeuxOlympique {
             return false;
         }
         JeuxOlympique jo = (JeuxOlympique) objet;
-        return jo.nom.equals(this.nom) && jo.annee == this.annee && jo.ville.equals(this.ville) && this.participants == jo.participants && this.pays == jo.pays && this.epreuves == jo.epreuves;
+        return jo.nom.equals(this.nom) && jo.annee == this.annee && jo.ville.equals(this.ville) && this.participants.equals(jo.participants) && this.pays.equals(jo.pays) && this.epreuves.equals(jo.epreuves);
     } 
     
 }
