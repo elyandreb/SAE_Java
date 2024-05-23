@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * La classe Pays représente un pays participant aux Jeux Olympiques
  */
-public class Pays {
+public class Pays implements Comparable<Pays> {
     private String nom; // Le nom du pays
     private int nbMedaillesOr; // Le nombre de médailles d'or remportées par le pays
     private int nbMedaillesArgent; // Le nombre de médailles d'argent remportées par le pays
@@ -19,11 +20,14 @@ public class Pays {
      * @param nbMedaillesOr Le nombre de médailles d'or
      * @param nbMedaillesArgent Le nombre de médailles d'argent
      * @param nbMedaillesBronze Le nombre de médailles de bronze
-     * @throws IllegalArgumentException si le nom du pays est vide ou null
+     * @throws IllegalArgumentException si le nom du pays est vide ou null ou si le nombre de médaille est une valeur négatif
      */
     public Pays(String nom, int nbMedaillesOr, int nbMedaillesArgent, int nbMedaillesBronze) throws IllegalArgumentException {
-        if (nom.equals(null) || nom.isEmpty()) {
+        if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom du pays ne peut pas être vide ou null.");
+        }
+        if (nbMedaillesOr < 0 || nbMedaillesArgent < 0 || nbMedaillesBronze < 0) {
+            throw new IllegalArgumentException("Erreur: Le nombre de médailles ne peut pas être une valeur négatif.");
         }
         this.nom = nom;
         this.nbMedaillesOr = nbMedaillesOr;
@@ -87,7 +91,7 @@ public class Pays {
      * @throws IllegalArgumentException si le nouveau nom est vide ou null
      */
     public void setNom(String nouveauNom) throws IllegalArgumentException {
-        if (nouveauNom.equals(null) || nouveauNom.isEmpty()) {
+        if (nouveauNom == null || nouveauNom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom du pays ne peut pas être vide ou null.");
         }
         else {
@@ -98,24 +102,36 @@ public class Pays {
     /**
      * Définit le nombre de médailles d'or du pays
      * @param nouvellesMedaillesOr Le nouveau nombre de médailles d'or
+     * @throws IllegalArgumentException si le nouveau de médailles d'or est négative
      */
-    public void setNbMedaillesOr(int nouvellesMedaillesOr) {
+    public void setNbMedaillesOr(int nouvellesMedaillesOr) throws IllegalArgumentException {
+        if (nouvellesMedaillesOr < 0) {
+            throw new IllegalArgumentException("Erreur : Le nombre de médailles d'or ne peut pas être une valeur négatif.");
+        }
         this.nbMedaillesOr = nouvellesMedaillesOr;
     }
 
     /**
      * Définit le nombre de médailles d'argent du pays
      * @param nouvellesMedaillesArgent Le nouveau nombre de médailles d'argent
+     * @throws IllegalArgumentException si le nouveau de médailles d'argent est négative
      */
     public void setNbMedaillesArgent(int nouvellesMedaillesArgent) {
+        if (nouvellesMedaillesArgent < 0) {
+            throw new IllegalArgumentException("Erreur : Le nombre de médailles d'argent ne peut pas être une valeur négatif.");
+        }
         this.nbMedaillesArgent = nouvellesMedaillesArgent;
     }
 
     /**
      * Définit le nombre de médailles de bronze du pays
      * @param nouvellesMedaillesBronze Le nouveau nombre de médailles de bronze
+     * @throws IllegalArgumentException si le nouveau de médailles de bronze est négative
      */
     public void setNbMedaillesBronze(int nouvellesMedaillesBronze) {
+        if (nouvellesMedaillesBronze < 0) {
+            throw new IllegalArgumentException("Erreur : Le nombre de médailles de bronze ne peut pas être une valeur négatif.");
+        }
         this.nbMedaillesBronze = nouvellesMedaillesBronze;
     }
 
@@ -236,8 +252,80 @@ public class Pays {
     }
 
     /**
+     * Trie une liste de pays par nombre total de médailles de manière décroissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesTotalDecroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesTotalDecroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles de manière croissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesTotalCroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesTotalCroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles d'or de manière décroissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesOrDecroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesOrDecroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles d'or de manière croissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesOrCroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesOrCroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles d'argent de manière décroissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesArgentDecroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesArgentDecroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles d'argent de manière croissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesArgentCroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesArgentCroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles de bronze de manière décroissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesBronzeDecroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesBronzeDecroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par nombre total de médailles de bronze de manière croissante
+     * @param listePays La liste de pays à trier
+     */
+    public static void triMedaillesBronzeCroissant(List<Pays> listePays) {
+        Collections.sort(listePays, new TriMedaillesBronzeCroissantPays());
+    }
+
+    /**
+     * Trie une liste de pays par ordre alphabétique (a-z)
+     * @param listePays La liste de pays à trier
+     */
+    public static void triNomPays(List<Pays> listePays) {
+        Collections.sort(listePays);
+    }
+
+    /**
      * Compare ce pays à un autre pays pour déterminer leur ordre relatif basé sur le nom
-     * @param pays Le pays à comparer avec
+     * @param pays Le pays à comparer
      * @return Un entier négatif si le nom de ce pays est avant le nom de l'autre pays dans l'ordre alphabétique, un entier positif si le nom de ce pays est après le nom de l'autre pays, et zéro si les deux pays ont le même nom
      */
     @Override
@@ -271,7 +359,7 @@ public class Pays {
             return false;
         }
         Pays pays = (Pays) objet;
-        return pays.nom.equals(this.nom) && pays.nbMedaillesOr == this.nbMedaillesOr && pays.nbMedaillesArgent == this.nbMedaillesArgent && pays.nbMedaillesBronze == this.nbMedaillesBronze && pays.equipes == this.equipes && pays.athletes == this.athletes;
+        return pays.nom.equals(this.nom) && pays.nbMedaillesOr == this.nbMedaillesOr && pays.nbMedaillesArgent == this.nbMedaillesArgent && pays.nbMedaillesBronze == this.nbMedaillesBronze && pays.equipes.equals(this.equipes) && pays.athletes.equals(this.athletes);
     }
     
 }
