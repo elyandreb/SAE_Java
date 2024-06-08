@@ -207,7 +207,7 @@ public class Epreuve implements Comparable<Epreuve> {
             return false;
         }
         Epreuve epreuve = (Epreuve) objet;
-        return this.nom.equals(epreuve.nom) && this.genre.equals(epreuve.genre) && this.sport == epreuve.sport && this.participants.equals(epreuve.participants);
+        return this.nom.equals(epreuve.nom) && this.genre.equals(epreuve.genre) && this.sport.equals(epreuve.sport) && this.participants.equals(epreuve.participants);
     }
     
 }
