@@ -339,7 +339,12 @@ public class Pays implements Comparable<Pays> {
      */
     @Override
     public String toString() {
-        return "Le nom du pays : " + this.getNom() + ", Le nombre de médailles d'or : " + this.getNbMedaillesOr() + ", Le nombre de médailles d'argent : " + this.getNbMedaillesArgent() + ", Le nombre de médailles de bronze : " + this.getNbMedaillesBronze() + ", La liste des équipes : " + this.getEquipes() + ", La liste des athlètes : " + this.getAthletes();
+        return "Nom du pays : " + this.getNom() + 
+            ", Médailles d'or : " + this.getNbMedaillesOr() + 
+            ", Médailles d'argent : " + this.getNbMedaillesArgent() + 
+            ", Médailles de bronze : " + this.getNbMedaillesBronze() + 
+            ", Liste des équipes : " + this.getEquipes() + 
+            ", Liste des athlètes : " + this.getAthletes();
     }
 
     /**
@@ -359,7 +364,7 @@ public class Pays implements Comparable<Pays> {
             return false;
         }
         Pays pays = (Pays) objet;
-        return pays.nom.equals(this.nom) && pays.nbMedaillesOr == this.nbMedaillesOr && pays.nbMedaillesArgent == this.nbMedaillesArgent && pays.nbMedaillesBronze == this.nbMedaillesBronze && pays.equipes.equals(this.equipes) && pays.athletes.equals(this.athletes);
+        return this.nom.equals(pays.nom) && this.nbMedaillesOr == pays.nbMedaillesOr && this.nbMedaillesArgent == pays.nbMedaillesArgent && this.nbMedaillesBronze == pays.nbMedaillesBronze && this.equipes.equals(pays.equipes) && this.athletes.equals(pays.athletes);
     }
     
 }
