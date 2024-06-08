@@ -306,12 +306,14 @@ public class Athlete implements Participant, Comparable<Athlete> {
     }
 
     /**
-     * Méthode pour obtenir une représentation textuelle de l'athlète
+     * Obtient une représentation textuelle de l'athlète
      * @return Une chaîne de caractères représentant l'athlète
      */
     @Override
     public String toString() {
-        return "Le nom de l'athlète : " + this.obtenirNom() + ", Le prénom de l'athlète : " + this.getPrenom() + ", Le sexe de l'athlète : " + this.obtenirSexe() + ", La force de l'athlète : " + this.getForce() + ", L'agilité de l'athlète : " + this.getAgilite() + ", L'endurance de l'athlète : " + this.getEndurance();
+        return "Nom : " + this.obtenirNom() + ", Prénom : " + this.getPrenom() + 
+            ", Sexe : " + this.obtenirSexe() + ", Force : " + this.getForce() + 
+            ", Agilité : " + this.getAgilite() + ", Endurance : " + this.getEndurance();
     }
 
     /**
