@@ -2,6 +2,8 @@ package test.java.com.cdal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import main.java.com.cdal.Athlete;
+import main.java.com.cdal.Epreuve;
+import main.java.com.cdal.Natation;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -143,6 +145,21 @@ public class AthleteTest {
     public void testPerfAthlete() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         assertEquals(80.0, athlete.perfAthlete(), 0.01);
+    }
+
+    @Test
+    public void testParticiper() {
+        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", new Natation("Natation", "Individuel", 1));
+        athlete.participer(epreuve);
+    }
+
+    @Test
+    public void testResultat() {
+        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", new Natation("Natation", "Individuel", 1));
+        double expected = (10 + 12 + 5) / 3.0; 
+        assertEquals(expected, athlete.resultat(epreuve), 0.01); 
     }
 
     @Test

@@ -1,4 +1,5 @@
 package test.java.com.cdal;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import main.java.com.cdal.Volleyball;
@@ -47,6 +48,21 @@ public class SportTest {
         assertEquals("Athlétisme", athletisme.getNom());
         assertEquals("Individuel", athletisme.getCategorie());
         assertEquals(1, athletisme.getNbJoueur());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNomInvalide() {
+        new Athletisme(null, "Individuel", 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCategorieInvalide() {
+        new Athletisme("Athlétisme", "Aucun", 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSportInvalide() {
+        new Athletisme("Athlétisme", "Individuel", -1);
     }
 
     @Test
