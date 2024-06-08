@@ -152,15 +152,6 @@ public class Equipe implements Participant, Comparable<Equipe> {
     }
 
     /**
-     * Méthode pour obtenir une représentation textuelle de l'équipe
-     * @return Une chaîne de caractères représentant l'équipe
-     */
-    @Override 
-    public String toString() {
-        return "Le nom de l'équipe : " + this.obtenirNom() + ", Les athlètes de l'équipe : " + this.getAthletes();
-    }
-
-    /**
      * Trie la liste d'équipes en fonction de leur nom de manière alphabétique croissante
      * @param listeEquipe La liste d'équipes à trier
      */
@@ -178,6 +169,15 @@ public class Equipe implements Participant, Comparable<Equipe> {
     @Override
     public int compareTo(Equipe equipe) {
         return this.obtenirNom().compareTo(equipe.obtenirNom());
+    }
+
+    /**
+     * Obtient une représentation textuelle de l'équipe
+     * @return Une chaîne de caractères représentant l'équipe
+     */
+    @Override
+    public String toString() {
+        return "Nom de l'équipe : " + this.obtenirNom() + ", Athlètes de l'équipe : " + this.getAthletes();
     }
 
     /**
