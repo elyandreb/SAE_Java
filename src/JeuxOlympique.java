@@ -295,7 +295,12 @@ public class JeuxOlympique {
      */
     @Override
     public String toString() {
-        return "Nom des Jeux Olympiques : " + this.getNom() + ", Année des Jeux Olympiques : " + this.getAnnee() + ", Ville hôte des Jeux Olympiques : " + this.getVille() + ", Participants aux Jeux Olympiques : " + this.getParticipants() + this.getVille() + ", Pays représentés aux Jeux Olympiques : " + this.getPays() + this.getVille() + ", Epreuves présentes aux Jeux Olympiques : " + this.getEpreuves();
+        return "Nom des Jeux Olympiques : " + this.getNom() + 
+            ", Année des Jeux Olympiques : " + this.getAnnee() + 
+            ", Ville hôte des Jeux Olympiques : " + this.getVille() + 
+            ", Participants aux Jeux Olympiques : " + this.getParticipants() + 
+            ", Pays représentés aux Jeux Olympiques : " + this.getPays() + 
+            ", Epreuves présentes aux Jeux Olympiques : " + this.getEpreuves();
     }
 
     /**
@@ -315,7 +320,7 @@ public class JeuxOlympique {
             return false;
         }
         JeuxOlympique jo = (JeuxOlympique) objet;
-        return jo.nom.equals(this.nom) && jo.annee == this.annee && jo.ville.equals(this.ville) && this.participants.equals(jo.participants) && this.pays.equals(jo.pays) && this.epreuves.equals(jo.epreuves);
+        return this.nom.equals(jo.nom) && this.annee == jo.annee && this.ville.equals(jo.ville) && this.participants.equals(jo.participants) && this.pays.equals(jo.pays) && this.epreuves.equals(jo.epreuves);
     } 
     
 }
