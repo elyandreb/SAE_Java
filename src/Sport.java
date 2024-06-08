@@ -96,8 +96,10 @@ public abstract class Sport {
      * @return Une chaîne représentant les informations du sport
      */
     @Override
-    public String toString(){
-        return "Le nom du sport : " + this.getNom() + ", La catégorie du sport : " + this.getCategorie() + ", Le nombre de joueur du sport : " + this.getNbJoueur();        
+    public String toString() {
+        return "Nom du sport : " + this.getNom() + 
+            ", Catégorie du sport : " + this.getCategorie() + 
+            ", Nombre de joueurs : " + this.getNbJoueur();        
     }
 
     /**
@@ -117,7 +119,7 @@ public abstract class Sport {
             return false;
         }
         Sport sport = (Sport) objet;
-        return sport.nom.equals(this.nom) && sport.categorie.equals(this.categorie) && sport.nbjoueur == this.nbjoueur;
+        return this.nom.equals(sport.nom) && this.categorie.equals(sport.categorie) && this.nbjoueur == sport.nbjoueur;
     }
     
 }
