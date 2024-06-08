@@ -179,12 +179,13 @@ public class Epreuve implements Comparable<Epreuve> {
     }
 
     /**
-     * Méthode pour obtenir une représentation textuelle de l'épreuve
+     * Obtient une représentation textuelle de l'épreuve
      * @return Une chaîne de caractères représentant l'épreuve
      */
     @Override
     public String toString() {
-        return "Le nom de l'épreuve : " + this.getNom() + ", Le genre de l'épreuve : " + this.getGenre() + ", Le sport de l'épreuve : " + this.getSport() + ", Les participants à l'épreuve : " + this.getParticipants();
+        return "Nom : " + this.getNom() + ", Genre : " + this.getGenre() + 
+            ", Sport : " + this.getSport() + ", Participants : " + this.getParticipants();
     }
 
     /**
@@ -204,7 +205,7 @@ public class Epreuve implements Comparable<Epreuve> {
             return false;
         }
         Epreuve epreuve = (Epreuve) objet;
-        return epreuve.nom.equals(this.nom) && epreuve.genre.equals(this.genre) && epreuve.sport == this.sport && epreuve.participants.equals(this.participants);
+        return this.nom.equals(epreuve.nom) && this.genre.equals(epreuve.genre) && this.sport == epreuve.sport && this.participants.equals(epreuve.participants);
     }
     
 }
