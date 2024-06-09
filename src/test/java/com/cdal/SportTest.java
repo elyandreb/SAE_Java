@@ -50,6 +50,52 @@ public class SportTest {
         assertEquals(1, athletisme.getNbJoueur());
     }
 
+    @Test
+    public void testScoresVolleyball() {
+        Volleyball volleyball = new Volleyball("Volleyball", "Collectif", 6);
+        volleyball.enregistrerScoreEquipe1(25);
+        volleyball.enregistrerScoreEquipe2(20);
+        assertEquals(25, volleyball.getScoreEquipe1());
+        assertEquals(20, volleyball.getScoreEquipe2());
+        assertEquals("Scores - Équipe 1 : 25, Équipe 2 : 20", volleyball.score());
+    }
+
+    @Test
+    public void testScoresHandball() {
+        Handball handball = new Handball("Handball", "Collectif", 7);
+        handball.enregistrerScoreEquipe1(30);
+        handball.enregistrerScoreEquipe2(28);
+        assertEquals(30, handball.getScoreEquipe1());
+        assertEquals(28, handball.getScoreEquipe2());
+        assertEquals("Scores - Équipe 1 : 30, Équipe 2 : 28", handball.score());
+    }
+
+    @Test
+    public void testScoresEscrime() {
+        Escrime escrime = new Escrime("Escrime", "Individuel", 1);
+        escrime.enregistrerScoreJoueur1(15);
+        escrime.enregistrerScoreJoueur2(12);
+        assertEquals(15, escrime.getScoreJoueur1());
+        assertEquals(12, escrime.getScoreJoueur2());
+        assertEquals("Scores - Joueur 1 : 15, Joueur 2 : 12", escrime.score());
+    }
+
+    @Test
+    public void testScoresNatation() {
+        Natation natation = new Natation("Natation", "Individuel", 1);
+        natation.enregistrerTemps(1, 30);
+        assertEquals("1 minutes et 30 secondes", natation.getTemps());
+        assertEquals("Temps actuel : 1 minutes 30 secondes", natation.temps());
+    }
+
+    @Test
+    public void testTempsAthletisme() {
+        Athletisme athletisme = new Athletisme("Athlétisme", "Individuel", 1);
+        athletisme.enregistrerTemps(1, 40); 
+        assertEquals("1 minutes et 40 secondes", athletisme.getTemps()); 
+        assertEquals("Temps actuel : 1 minutes 40 secondes", athletisme.temps());
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testNomInvalide() {
         new Athletisme(null, "Individuel", 1);

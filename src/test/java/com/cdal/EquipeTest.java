@@ -54,6 +54,16 @@ public class EquipeTest {
     }
 
     @Test
+    public void testNbAthletes() {
+        Equipe equipe = new Equipe("Équipe 1");
+        Athlete athlete1 = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete2 = new Athlete("Marie", "Dupont", "Femme", 8, 10, 6);
+        equipe.ajouteAthlete(athlete1);
+        equipe.ajouteAthlete(athlete2);
+        assertEquals(2, equipe.nbAthletes());
+    }
+
+    @Test
     public void testParticiperEquipe() {
         Equipe equipe = new Equipe("Équipe 1");
         equipe.participer(new Epreuve("Natation : 100m brasse femmes", "F", new Natation("Natation", "Individuel", 1)));
