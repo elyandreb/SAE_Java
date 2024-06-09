@@ -78,6 +78,14 @@ public class Equipe implements Participant, Comparable<Equipe> {
     }
 
     /**
+     * Méthode pour savoir le nombre d'athlètes par équipe
+     * @@return Le nombre d'athlètes par équipe
+     */
+    public int nbAthletes() {
+        return this.athletes.size();
+    }
+
+    /**
      * Méthode pour que l'équipe participe à une épreuve
      * @param epreuve L'épreuve à laquelle l'équipe participe
      */
