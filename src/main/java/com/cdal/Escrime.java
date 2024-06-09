@@ -23,17 +23,25 @@ public class Escrime extends Sport {
     /**
      * Enregistre le score du joueur 1
      * @param score Le score à enregistrer pour le joueur 1
+     * @throws IllegalArgumentException si le score est négatif
      */
-    public void enregistrerScoreJoueur1(int score) {
-        this.scoreJoueur1 = score;
+    public void enregistrerScoreJoueur1(int score1) throws IllegalArgumentException {
+        if (score1 < 0) {
+            throw new IllegalArgumentException("Erreur : Le score est invalide.");
+        }
+        this.scoreJoueur1 = score1;
     }
 
     /**
-     * Enregistre le score du joueur 2
-     * @param score Le score à enregistrer pour le joueur 2
+     * Enregistre le score du joueur 1
+     * @param score Le score à enregistrer pour le joueur 1
+     * @throws IllegalArgumentException si le score est négatif
      */
-    public void enregistrerScoreJoueur2(int score) {
-        this.scoreJoueur2 = score;
+    public void enregistrerScoreJoueur2(int score2) throws IllegalArgumentException {
+        if (score2 < 0) {
+            throw new IllegalArgumentException("Erreur : Le score est invalide.");
+        }
+        this.scoreJoueur2 = score2;
     }
 
     /**

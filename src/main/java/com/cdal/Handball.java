@@ -21,19 +21,27 @@ public class Handball extends Sport {
     }
 
     /**
-     * Enregistre le score de l'équipe 1
-     * @param score Le score à enregistrer pour l'équipe 1
+     * Enregistre le score du joueur 1
+     * @param score Le score à enregistrer pour le joueur 1
+     * @throws IllegalArgumentException si le score est négatif
      */
-    public void enregistrerScoreEquipe1(int score) {
-        this.scoreEquipe1 = score;
+    public void enregistrerScoreEquipe1(int score1) throws IllegalArgumentException {
+        if (score1 < 0) {
+            throw new IllegalArgumentException("Erreur : Le score est invalide.");
+        }
+        this.scoreEquipe1 = score1;
     }
 
     /**
-     * Enregistre le score de l'équipe 2
-     * @param score Le score à enregistrer pour l'équipe 2
+     * Enregistre le score du joueur 1
+     * @param score Le score à enregistrer pour le joueur 1
+     * @throws IllegalArgumentException si le score est négatif
      */
-    public void enregistrerScoreEquipe2(int score) {
-        this.scoreEquipe2 = score;
+    public void enregistrerScoreEquipe2(int score2) throws IllegalArgumentException {
+        if (score2 < 0) {
+            throw new IllegalArgumentException("Erreur : Le score est invalide.");
+        }
+        this.scoreEquipe2 = score2;
     }
 
     /**

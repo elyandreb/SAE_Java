@@ -24,12 +24,12 @@ public class Athletisme extends Sport {
      * Enregistre le temps de la course de l'athlète
      * @param minutes Les minutes de la durée
      * @param secondes Les secondes de la durée
-     * @throws IllegalArgumentException si les minutes ou les secondes sont négatives,
+     * @throws IllegalArgumentException si les minutes ou les secondes sont négatives
      *         ou si les secondes dépassent 59
      */
     public void enregistrerTemps(int minutes, int secondes) throws IllegalArgumentException {
         if (minutes < 0 || secondes < 0 || secondes >= 60) {
-            throw new IllegalArgumentException("Erreur : Le temps est invalide");
+            throw new IllegalArgumentException("Erreur : Le temps est invalide.");
         }
         this.minutes = minutes;
         this.secondes = secondes;

@@ -24,12 +24,12 @@ public class Natation extends Sport {
      * Enregistre le temps de nage du nageur
      * @param minutes Les minutes du temps
      * @param secondes Les secondes du temps
-     * @throws IllegalArgumentException si les minutes ou les secondes sont négatives,
+     * @throws IllegalArgumentException si les minutes ou les secondes sont négatives
      *         ou si les secondes dépassent 59
      */
     public void enregistrerTemps(int minutes, int secondes) throws IllegalArgumentException {
         if (minutes < 0 || secondes < 0 || secondes >= 60) {
-            throw new IllegalArgumentException("Erreur : Le temps est invalide");
+            throw new IllegalArgumentException("Erreur : Le temps est invalide.");
         }
         this.minutes = minutes;
         this.secondes = secondes;
