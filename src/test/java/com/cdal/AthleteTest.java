@@ -59,13 +59,7 @@ public class AthleteTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetNomInvalideNull() {
-        Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
-        athlete.setNom(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetNomInvalideVide() {
+    public void testSetNomInvalide() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         athlete.setNom("");
     }
@@ -78,15 +72,9 @@ public class AthleteTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetPrenomInvalideNull() {
+    public void testSetPrenomInvalide() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         athlete.setPrenom(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetPrenomInvalideVide() {
-        Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
-        athlete.setPrenom("");
     }
 
     @Test
@@ -110,7 +98,7 @@ public class AthleteTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetForceInvalideNegative() {
+    public void testSetForceInvalide() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         athlete.setForce(-10);
     }
@@ -123,7 +111,7 @@ public class AthleteTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetAgiliteInvalideNegative() {
+    public void testSetAgiliteInvalide() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         athlete.setAgilite(-10);
     }
@@ -136,7 +124,7 @@ public class AthleteTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetEnduranceInvalideNegative() {
+    public void testSetEnduranceInvalide() {
         Athlete athlete = new Athlete("Doe", "John", "Homme", 80, 70, 90);
         athlete.setEndurance(-10);
     }

@@ -115,7 +115,7 @@ public class EquipeTest {
     }
 
     @Test
-    public void testRechercheAthletePresent() {
+    public void testRechercheAthleteValide() {
         Equipe equipe = new Equipe("Équipe 1");
         Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
         equipe.ajouteAthlete(athlete);
@@ -123,7 +123,7 @@ public class EquipeTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testRechercheAthleteAbsent() {
+    public void testRechercheAthleteInvalide() {
         Equipe equipe = new Equipe("Équipe 1");
         Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
         equipe.rechercheAthlete(athlete);

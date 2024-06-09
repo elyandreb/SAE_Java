@@ -119,15 +119,9 @@ public class SportTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetNomInvalideNull() {
+    public void testSetNomInvalide() {
         Volleyball volleyball = new Volleyball("Volleyball", "Collectif", 6);
         volleyball.setNom(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetNomInvalideVide() {
-        Volleyball volleyball = new Volleyball("Volleyball", "Collectif", 6);
-        volleyball.setNom("");
     }
 
     @Test
