@@ -369,4 +369,12 @@ public class Pays implements Comparable<Pays> {
         return this.nom.equals(pays.nom) && this.nbMedaillesOr == pays.nbMedaillesOr && this.nbMedaillesArgent == pays.nbMedaillesArgent && this.nbMedaillesBronze == pays.nbMedaillesBronze && this.equipes.equals(pays.equipes) && this.athletes.equals(pays.athletes);
     }
     
+    /**
+     * Retourne le code de hachage de l'objet Pays
+     * @return Le code de hachage de l'objet Pays
+     */
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.nbMedaillesOr + this.nbMedaillesArgent + this.nbMedaillesBronze + this.equipes.hashCode() + this.athletes.hashCode();
+    }
 }

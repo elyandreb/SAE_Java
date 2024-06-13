@@ -325,4 +325,12 @@ public class JeuxOlympique {
         return this.nom.equals(jo.nom) && this.annee == jo.annee && this.ville.equals(jo.ville) && this.participants.equals(jo.participants) && this.pays.equals(jo.pays) && this.epreuves.equals(jo.epreuves);
     } 
     
+    /**
+     * Retourne un code de hachage pour l'objet courant
+     * @return Un code de hachage pour l'objet courant
+     */
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.annee + this.ville.hashCode() + this.participants.hashCode() + this.pays.hashCode() + this.epreuves.hashCode();
+    }
 }

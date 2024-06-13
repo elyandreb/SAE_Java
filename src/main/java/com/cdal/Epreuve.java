@@ -209,5 +209,14 @@ public class Epreuve implements Comparable<Epreuve> {
         Epreuve epreuve = (Epreuve) objet;
         return this.nom.equals(epreuve.nom) && this.genre.equals(epreuve.genre) && this.sport.equals(epreuve.sport) && this.participants.equals(epreuve.participants);
     }
+
+    /**
+     * Méthode pour obtenir le code de hachage de l'épreuve
+     * @return Le code de hachage de l'épreuve
+     */
+    @Override
+    public int hashCode(){
+        return this.nom.hashCode() + this.genre.hashCode() + this.sport.hashCode() + this.participants.hashCode();
+    }
     
 }

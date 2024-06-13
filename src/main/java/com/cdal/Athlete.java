@@ -331,5 +331,14 @@ public class Athlete implements Participant, Comparable<Athlete> {
         Athlete athlete = (Athlete) objet;
         return this.nom.equals(athlete.nom) && this.prenom.equals(athlete.prenom) && this.sexe.equals(athlete.sexe) && this.force == athlete.force && this.agilite == athlete.agilite && this.endurance == athlete.endurance;
     }
+    /**
+     * Méthode pour obtenir le code de hachage de l'athlète
+     * @return Le code de hachage de l'athlète
+     */
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.prenom.hashCode() + this.sexe.hashCode() + this.force + this.agilite + this.endurance;
+    }
+
 
 }

@@ -210,4 +210,13 @@ public class Equipe implements Participant, Comparable<Equipe> {
         return this.nom.equals(e.nom) && this.athletes.equals(e.athletes);
     }
 
+    /**
+     * Méthode pour obtenir le code de hachage de l'équipe
+     * @return Le code de hachage de l'équipe
+     */
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.athletes.hashCode();
+    }
+
 }

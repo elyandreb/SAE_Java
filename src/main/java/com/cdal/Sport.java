@@ -123,5 +123,14 @@ public abstract class Sport {
         Sport sport = (Sport) objet;
         return this.nom.equals(sport.nom) && this.categorie.equals(sport.categorie) && this.nbjoueur == sport.nbjoueur;
     }
+
+    /**
+     * Redéfinition de la méthode hashCode pour générer un code de hachage pour le sport
+     * @return Le code de hachage du sport
+     */
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.categorie.hashCode() + this.nbjoueur;
+    }
     
 }
