@@ -11,7 +11,7 @@ creer_repertoire() {
     fi
 }
 
-# Vérifie et créée les répertoires doc et img s'ils n'existent pas
+# Vérifie et crée les répertoires doc et img s'ils n'existent pas
 repertoires=("doc" "img")
 for repertoire in "${repertoires[@]}"
 do
