@@ -1,5 +1,6 @@
 package main.java.com.cdal;
 
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+import javax.swing.text.html.ImageView;
 
 
 public class IUTOAppli extends Application {
@@ -27,6 +28,7 @@ public class IUTOAppli extends Application {
     private Button connexion;
     private ImageView logoIUT;
     private ImageView logoIUTO;
+    private ImageView logoJO;
     private TextField login;
     private PasswordField password;
     private BorderPane borderP;
@@ -36,7 +38,7 @@ public class IUTOAppli extends Application {
     }
 
     public void init() {
-        // Initialisation si nécessaire
+        // 
     }
 
     @Override
@@ -50,44 +52,48 @@ public class IUTOAppli extends Application {
     }
 
     public Pane titre() {
-        HBox titre = new HBox(10); 
+        HBox titre = new HBox();
         titre.setBackground(new Background(new BackgroundFill(Color.GREY, null, null)));
-        
-        titre.setPadding(new Insets(10)); 
-
         this.logoIUT = new ImageView(new Image("file:img/logoIUT.png"));
         this.logoIUTO = new ImageView(new Image("file:img/logoIUTO.png"));
         this.connexion = new Button("Connexion");
-        
         titre.getChildren().addAll(this.logoIUT, this.logoIUTO, this.connexion);
         return titre;
     }
 
     public Pane connexion() {
-        VBox VBConnexion = new VBox(10); 
-        VBConnexion.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-         
-        VBConnexion.setPadding(new Insets(20)); 
-
+        HBox titre = new HBox();
+        this.logoJO = new ImageView(new Image("file:img/logoJO.png"));
+        this.logoJO.setFitHeight(30); 
+        this.logoJO.setFitWidth(30); 
         Label titre1 = new Label("Jeux IUT'Olympiques");
         titre1.setFont(new Font("Arial", 30));
+        titre.getChildren().addAll(this.logoJO, titre1);
         
         
+        VBox VBConnexion = new VBox();
+        VBConnexion.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+
         Label titre2 = new Label("Connexion");
         titre2.setFont(new Font("Arial", 20));
-        
 
         this.login = new TextField();
         this.login.setPromptText("Nom d'utilisateur");
         this.password = new PasswordField();
         this.password.setPromptText("Mot de passe");
+        this.password.setPrefWidth(10);
+        
 
-        HBox hbBouton = new HBox(10); 
-         
-
+        HBox hbBouton = new HBox();
         Button annuler = new Button("Annuler");
+        annuler.setStyle("-fx-background-color: #A9A9A9; -fx-text-fill: white; -fx-font-size: 14px;");
+        
+        
         Button seConnecter = new Button("Se connecter");
-
+        seConnecter.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 14px;");
+        
+        hbBouton.setSpacing(50);
+        hbBouton.setAlignment(Pos.CENTER);
         hbBouton.getChildren().addAll(annuler, seConnecter);
 
         VBConnexion.getChildren().addAll(titre1, titre2, this.login, this.password, hbBouton);
@@ -96,6 +102,6 @@ public class IUTOAppli extends Application {
 
     public void pageConnexion() {
         this.borderP.setCenter(connexion());
-        this.borderP.setTop(titre());
+        //this.borderP.setTop(titre());
     }
 }
