@@ -7,15 +7,16 @@ DROP TABLE IF EXISTS 'EPREUVE';
 DROP TABLE IF EXISTS 'PAYS';
 
 CREATE TABLE 'ATHLETE' (
+    'idA' int NOT NULL,
     'nomA' varchar(50) NOT NULL,
     'prenomA' varchar(50) NOT NULL,
     'sexeA' varchar(1) NOT NULL,
-    'force' decimal(10,0) NOT NULL,
-    'agilite' decimal(10,0) NOT NULL,
-    'endurance' decimal(10,0) NOT NULL,
+    'force' int NOT NULL,
+    'agilite' int NOT NULL,
+    'endurance' int NOT NULL,
     'nomEq' varchar(50) NOT NULL,
     'nomP' varchar(50) NOT NULL,
-    PRIMARY KEY('nomA', 'prenomA'),
+    PRIMARY KEY('idA'),
     FOREIGN KEY ('nomEq') REFERENCES EQUIPE('nomEq'),
     FOREIGN KEY ('nomP') REFERENCES PAYS('nomP')
 );
@@ -52,13 +53,11 @@ CREATE TABLE 'EPREUVE' (
 );
 
 CREATE TABLE 'PARTICIPEA' (
-    'nomA' varchar(50) NOT NULL,
-    'prenomA' varchar(50) NOT NULL,
+    'idA' int NOT NULL,
     'nomEp' varchar(50) NOT NULL,
     'genre' varchar(1) NOT NULL,
-    PRIMARY KEY('nomA','prenomA','nomEp','genre'),
-    FOREIGN KEY 'nomA' REFERENCES ATHLETE('nomA'),
-    FOREIGN KEY 'prenomA' REFERENCES ATHLETE('prenomA'),
+    PRIMARY KEY('idA','nomEp','genre'),
+    FOREIGN KEY 'idA' REFERENCES ATHLETE('idA'),
     FOREIGN KEY 'nomEp' REFERENCES EPREUVE('nomEp'),
     FOREIGN KEY 'genre' REFERENCES EPREUVE('genre')
 );
