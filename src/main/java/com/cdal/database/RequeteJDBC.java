@@ -98,7 +98,7 @@ public class RequeteJDBC {
         ps.setInt(7,a.getEndurance());
         ps.setString(8, e.obtenirNom());
         ps.setString(9,p.getNom());
-        ps.execute();
+        ps.executeUpdate();
     }
 
 
@@ -108,8 +108,45 @@ public class RequeteJDBC {
         ps.setString(2, e.obtenirSexe());
         ps.setString(3,p.getNom() );
         ps.execute();
-
     }
+
+    public void effacerEquipe(Equipe e) throws SQLException {
+		PreparedStatement ps = this.laConnexion.prepareStatement("delete from EQUIPE where nomEq = ?");
+		ps.setString(1, e.obtenirNom());
+		ps.execute();
+	}
+    public void MaJEquipe(Equipe e,Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement(" update IGNORE EQUIPE set nomEq = ?,"+"sexeE = ?,"+"nomP = ?");
+        ps.setString(1, e.obtenirNom());
+        ps.setString(2, e.obtenirSexe());
+        ps.setString(3,p.getNom());
+        ps.executeUpdate();
+    }
+
+    public void AjoutPays(Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("Insert into PAYS values (?,?,?,?)");
+        ps.setString(1, p.getNom());
+        ps.setInt(2, p.getNbMedaillesOr());
+        ps.setInt(3, p.getNbMedaillesArgent());
+        ps.setInt(4, p.getNbMedaillesBronze());
+        ps.execute();
+    }
+
+    public void effacerPays(Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("delete from PAYS where nomP = ?");
+        ps.setString(0, p.getNom());
+        ps.execute();
+    }
+
+    public void MaJPays(Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("upadte IGNORE PAYS set nomP = ?,"+"medailleOR = ?,"+"medailleARGENT = ?,"+"medailleBRONZE = ?");
+        ps.setString(1, p.getNom());
+        ps.setInt(2, p.getNbMedaillesOr());
+        ps.setInt(3, p.getNbMedaillesArgent());
+        ps.setInt(4, p.getNbMedaillesBronze());
+        ps.executeUpdate();
+    }
+
 
 
 }
