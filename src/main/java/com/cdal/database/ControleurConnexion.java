@@ -1,8 +1,11 @@
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 
 import java.sql.SQLException;
+
+import main.java.com.cdal.*;
 
 public class ControleurConnexion implements EventHandler<ActionEvent>{
     IUTOAppli appli;
@@ -14,11 +17,11 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent actionEvent) {
         IUTOAppli l=appli.getLoginBD();
-        ConnexionBD connexionMySQL = appli.getConnexionBD();
+        ConnexionBD connexionBD = appli.getConnexionBD();
 
         try {
-            connexionMySQL.connecter(l.getLogin(), l.getMotDePasse());
-	    if (connexionMySQL.isConnecte())
+            connexionBD.connecter(l.getLogin(), l.getMotDePasse());
+	    if (connexionBD.isConnecte())
 		appli.connexionReussie();
 	    else
 		appli.setMessage("Vous n'êtes pas connecté");	

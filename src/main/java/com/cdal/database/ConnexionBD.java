@@ -1,5 +1,6 @@
 import java.sql.*;
 
+
 public class ConnexionBD {
 	private Connection mysql=null;
 	private boolean connecte=false;
@@ -7,8 +8,8 @@ public class ConnexionBD {
 		Class.forName("org.mariadb.jdbc.Driver");
 	}
 
-	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
-		this.mysql = DriverManager.getConnection("jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin,motDePasse);
+	public void connecter(String nomLogin, String motDePasse) throws SQLException {
+		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DB"+nomLogin,nomLogin,motDePasse);
 		this.connecte=mysql!=null;
 	}
 	public void close() throws SQLException {
