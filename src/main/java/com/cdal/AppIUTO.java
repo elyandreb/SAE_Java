@@ -1,3 +1,5 @@
+package main.java.com.cdal;
+
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -53,7 +55,11 @@ public class AppIUTO extends Application {
 
     @Override
     public void init() {
-        this.connexionBD = new ConnexionBD();
+        try {
+            this.connexionBD = new ConnexionBD();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver non trouvé :(");
+        }
         pagePrincipale = new BorderPane();
         logoJO = new ImageView(new Image("file:img/logoJO.png"));
         logoIUT = new ImageView(new Image("file:img/logoIUT.png"));

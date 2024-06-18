@@ -1,3 +1,5 @@
+package main.java.com.cdal;
+
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -5,26 +7,23 @@ import javafx.scene.control.Alert;
 
 import java.sql.SQLException;
 
-import main.java.com.cdal.*;
-
 public class ControleurConnexion implements EventHandler<ActionEvent>{
-    IUTOAppli appli;
+    AppIUTO appli;
     
-    public ControleurConnexion(IUTOAppli app){
+    public ControleurConnexion(AppIUTO app){
         this.appli = app;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        IUTOAppli l=appli.getLoginBD();
+        String l=appli.getLogin();
+        String m=appli.getMotDePasse();
         ConnexionBD connexionBD = appli.getConnexionBD();
 
         try {
-            connexionBD.connecter(l.getLogin(), l.getMotDePasse());
+            connexionBD.connecter(l, m);
 	    if (connexionBD.isConnecte())
-		appli.connexionReussie();
-	    else
-		appli.setMessage("Vous n'êtes pas connecté");	
+		appli.connexionReussie();	
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Echec !!!! ");
@@ -33,7 +32,6 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
 			alert.setHeaderText("Echec de la connexion au serveur");
 			alert.setContentText("Voici le message envoyé par le serveur\n"+e.getMessage());
 			alert.showAndWait();
-			appli.setMessage("Vous n'êtes pas connecté");
         }
 
     }
