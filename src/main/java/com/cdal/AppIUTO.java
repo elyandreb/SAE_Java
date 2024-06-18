@@ -48,10 +48,12 @@ public class AppIUTO extends Application {
     private Label equipeTxt;
     private Label paysTxt;
     private Label quitterTxt;
+    private ConnexionBD connexionBD;
 
 
     @Override
     public void init() {
+        this.connexionBD = new ConnexionBD();
         pagePrincipale = new BorderPane();
         logoJO = new ImageView(new Image("file:img/logoJO.png"));
         logoIUT = new ImageView(new Image("file:img/logoIUT.png"));
@@ -78,6 +80,7 @@ public class AppIUTO extends Application {
         valider = new Button("VALIDER");
         annuler = new Button("ANNULER");
         annuler.setOnAction(new ControleurAnnuler(this));
+        valider.setOnAction(new ControleurConnexion(this));
     }
 
     private Scene laScene() {
@@ -331,5 +334,25 @@ public class AppIUTO extends Application {
 
     public static void main(String[] args) {
         Application.launch(args);
+    }
+
+    public String getMotDePasse() {
+        return this.passwdVisible.getText();
+    }
+    
+    public String getLogin() {
+        return this.user.getText();
+    }
+    
+    public void connexionReussie(){
+        
+    }
+    
+    public void deconnexionReussie(){
+        pageConnexion();
+    }
+    
+    public ConnexionBD getConnexionBD(){
+        return connexionBD;
     }
 }
