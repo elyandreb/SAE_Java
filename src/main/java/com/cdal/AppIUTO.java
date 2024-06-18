@@ -334,7 +334,7 @@ public class AppIUTO extends Application {
     public void start(Stage stage) {
         stage.setTitle("JEUX IUT'OLYMPIQUES");
         stage.setScene(this.laScene());
-        pageAccueil();
+        pageConnexion();
         stage.show();
     }
 
