@@ -33,9 +33,11 @@ public class RequeteJDBC {
         int cpt = 0;
         ArrayList<String>  classement =  new ArrayList<>();
         String res = null;
-        this.st = LaConnexion.createStatement();
-        ResultSet r = this.st.executeQuery("Select nomEp, prenomA, nomA, nomP, resultats"+" FROM ATHLETE NATURAL JOIN PAYS NATURAL JOIN EPREUVE NATURAL JOIN SCORE"+
-        "where nomEp = "+nomE+"and sexeA = "+sexeA+"ORDER BY resultats");
+        PreparedStatement ps = this.laConnexion.preparedStatement("Select nomEp, prenomA, nomA, nomP, resultats"+" FROM ATHLETE NATURAL JOIN PAYS NATURAL JOIN EPREUVE NATURAL JOIN SCORE"+
+        "where nomEp = ? and sexeA = ? ORDER BY resultats");
+        ps.setString(1, nomE);
+        ps.setString(2, sexeA);
+        ResultSet r = ps.executeQuery();
         classement.add(r.getString(0));
         while(r.next()){
             st.close();
