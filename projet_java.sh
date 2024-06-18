@@ -45,3 +45,12 @@ else
     echo "Lancement du programme Java..."
     java -cp "$repertoire_destination" "$classe_executable"
 fi
+
+# Commande de compilation
+javac -d out -cp lib/junit-jupiter-api-5.3.2.jar:lib/junit-jupiter-engine-5.3.2.jar:lib/junit-platform-console-standalone-1.3.2.jar src/main/java/com/cdal/*.java src/test/java/com/cdal/*.java
+
+# Commande d'execution
+java -cp out:lib/junit-jupiter-api-5.3.2.jar:lib/junit-jupiter-engine-5.3.2.jar:lib/junit-platform-console-standalone-1.3.2.jar main.java.com.cdal.Executable
+
+# Commande de test 
+java --module-path /usr/share/openjfx/lib/ -javaagent:lib/jacocoagent.jar=destfile=jacoco.exec -cp out:lib/junit-jupiter-api-5.3.2.jar:lib/junit-jupiter-engine-5.3.2.jar:lib/junit-platform-console-standalone-1.3.2.jar org.junit.platform.console.ConsoleLauncher --scan-class-path --class-path out
