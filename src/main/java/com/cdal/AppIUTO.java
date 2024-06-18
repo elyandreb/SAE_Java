@@ -1,3 +1,4 @@
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -18,12 +19,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
+
+
 public class AppIUTO extends Application {
 
     private BorderPane pagePrincipale;
     private ImageView logoJO;
     private ImageView logoIUT;
     private Label titreConnexion;
+    private Label titreAccueil;
     private ImageView logoUser;
     private TextField user; 
     private ImageView logoPasswd;
@@ -32,6 +36,19 @@ public class AppIUTO extends Application {
     private ImageView oeil; 
     private Button valider;
     private Button annuler;
+    private ImageView profil;
+    private Label idProfil;
+    private ImageView accueilImg;
+    private ImageView athleteImg;
+    private ImageView equipeImg;
+    private ImageView paysImg;
+    private ImageView quitterImg;
+    private Label accueilTxt;
+    private Label athleteTxt;
+    private Label equipeTxt;
+    private Label paysTxt;
+    private Label quitterTxt;
+
 
     @Override
     public void init() {
@@ -39,12 +56,25 @@ public class AppIUTO extends Application {
         logoJO = new ImageView(new Image("file:img/logoJO.png"));
         logoIUT = new ImageView(new Image("file:img/logoIUT.png"));
         titreConnexion = new Label("Bienvenue aux Jeux IUT'Olympiques ! \n Connectez-vous !");
+        titreAccueil = new Label("Bienvenue aux Jeux IUT'Olympiques ! \n Connecté en tant que :");
         logoUser = new ImageView(new Image("file:img/user.png"));
         user = new TextField();
         logoPasswd = new ImageView(new Image("file:img/passwd.png"));
         passwdMasquer = new PasswordField();
         passwdVisible = new TextField();
         oeil = new ImageView(new Image("file:img/oeil.png"));
+        profil = new ImageView(new Image("file:img/profil.png"));
+        idProfil = new Label("Identifiant");
+        accueilImg = new ImageView(new Image("file:img/accueil.png"));
+        athleteImg = new ImageView(new Image("file:img/athlete.png"));
+        equipeImg = new ImageView(new Image("file:img/equipe.png"));
+        paysImg = new ImageView(new Image("file:img/pays.png"));
+        quitterImg = new ImageView(new Image("file:img/quitter.png"));
+        accueilTxt = new Label("Accueil");
+        athleteTxt = new Label("Athlètes");
+        equipeTxt = new Label("Equipes");
+        paysTxt = new Label("Pays");
+        quitterTxt = new Label("Quitter");
         valider = new Button("VALIDER");
         annuler = new Button("ANNULER");
         annuler.setOnAction(new ControleurAnnuler(this));
@@ -163,6 +193,113 @@ public class AppIUTO extends Application {
         pagePrincipale.setCenter(connexion);
     }
 
+    public void pageAccueil() {
+        pagePrincipale.getChildren().clear();
+
+        logoJO.setFitWidth(350);
+        logoJO.setFitHeight(175);
+
+        logoIUT.setFitWidth(350);
+        logoIUT.setFitHeight(175);
+
+        VBox gauche = new VBox();
+        gauche.setStyle("-fx-background-color : #7a1a64;");
+        gauche.setAlignment(Pos.CENTER); 
+        gauche.setPrefSize(200, 600);
+
+        VBox identifiant = new VBox();
+        identifiant.setAlignment(Pos.TOP_CENTER);
+        identifiant.setPrefSize(100, 150);
+        identifiant.setStyle("-fx-background-color : #303030;");
+        this.profil.setFitWidth(150);
+        this.profil.setFitHeight(150);
+
+        identifiant.getChildren().addAll(this.profil, this.idProfil);
+        gauche.getChildren().addAll(identifiant);
+
+        VBox menu = new VBox();
+        menu.setAlignment(Pos.CENTER);
+        menu.setSpacing(20);
+        menu.setPrefSize(200, 450);
+        this.accueilImg.setFitWidth(50);
+        this.accueilImg.setFitHeight(50);
+        this.athleteImg.setFitWidth(50);
+        this.athleteImg.setFitHeight(50);
+        this.equipeImg.setFitWidth(50);
+        this.equipeImg.setFitHeight(50);
+        this.paysImg.setFitWidth(50);
+        this.paysImg.setFitHeight(50);
+        this.quitterImg.setFitWidth(50);
+        this.quitterImg.setFitHeight(50);
+
+        HBox accueilBox = new HBox();
+        this.accueilTxt.setFont(new Font("Arial", 16));
+        accueilBox.setAlignment(Pos.CENTER);
+        accueilBox.setSpacing(10);
+        accueilBox.getChildren().addAll(this.accueilImg, new Label("Accueil"));
+
+        Button buttonAccueil = new Button();
+        buttonAccueil.setGraphic(accueilBox);
+        buttonAccueil.setPrefWidth(140);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(10);
+        athleteBox.getChildren().addAll(this.athleteImg, new Label("Athlètes"));
+
+        Button buttonAthlete = new Button();
+        buttonAthlete.setGraphic(athleteBox);
+        buttonAthlete.setPrefWidth(140);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(10);
+        equipeBox.getChildren().addAll(this.equipeImg, new Label("Equipes"));
+
+        Button buttonEquipe = new Button();
+        buttonEquipe.setGraphic(equipeBox);
+        buttonEquipe.setPrefWidth(140);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(10);
+        paysBox.getChildren().addAll(this.paysImg, new Label("Pays"));
+
+        Button buttonPays = new Button();
+        buttonPays.setGraphic(paysBox);
+        buttonPays.setPrefWidth(140);
+
+        HBox quitterBox = new HBox();
+        quitterBox.setAlignment(Pos.CENTER);
+        quitterBox.setSpacing(10);
+        quitterBox.getChildren().addAll(this.quitterImg, new Label("Quitter"));
+
+        Button buttonQuitter = new Button();
+        buttonQuitter.setGraphic(quitterBox);
+        buttonQuitter.setPrefWidth(140);
+
+        menu.getChildren().addAll(buttonAccueil, buttonAthlete, buttonEquipe, buttonPays, buttonQuitter);
+        
+        gauche.getChildren().add(menu);
+         
+
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreAccueil.setFont(font);
+        titreAccueil.setTextFill(Color.web("#7a1a64"));
+        titreAccueil.setTextAlignment(TextAlignment.CENTER);
+
+        VBox droite = new VBox();
+        droite.setStyle("-fx-background-color : #ffffff;");
+        droite.setAlignment(Pos.TOP_CENTER);
+        droite.setPrefSize(800, 600);
+        droite.setSpacing(100);
+        droite.getChildren().addAll(titreAccueil);
+
+        HBox connexion = new HBox();
+        connexion.getChildren().addAll(gauche, droite);
+
+        pagePrincipale.setCenter(connexion);
+    }
     public void mdpVisible() {
         if (passwdMasquer.isVisible()) {
             passwdVisible.setText(passwdMasquer.getText());
@@ -188,7 +325,7 @@ public class AppIUTO extends Application {
     public void start(Stage stage) {
         stage.setTitle("JEUX IUT'OLYMPIQUES");
         stage.setScene(this.laScene());
-        pageConnexion();
+        pageAccueil();
         stage.show();
     }
 
