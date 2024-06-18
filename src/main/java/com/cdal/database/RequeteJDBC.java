@@ -1,8 +1,11 @@
-package src.main.java.com.cdal.database;
+package main.java.com.cdal.database;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
-import src.main.java.com.cdal.Athlete;
+import main.java.com.cdal.Athlete;
+import main.java.com.cdal.Equipe;
+import main.java.com.cdal.Pays;
 
 public class RequeteJDBC {
     private ConnexionBD laConnexion;
@@ -41,25 +44,26 @@ public class RequeteJDBC {
 
     }
 
-    public ArrayList<String> ClassementEpreuve(String nomE, String sexeA) throws SQLException {
+    public ArrayList<String> ClassementEpreuve(Equipe e, Athlete a) throws SQLException {
         int cpt = 0;
         ArrayList<String>  classement =  new ArrayList<>();
         String res = null;
-        PreparedStatement ps = this.laConnexion.preparedStatement("Select nomEp, prenomA, nomA, nomP, resultats"+" FROM ATHLETE NATURAL JOIN PAYS NATURAL JOIN EPREUVE NATURAL JOIN SCORE"+
+        PreparedStatement ps = this.laConnexion.prepareStatement("Select nomEp, prenomA, nomA, nomP, resultats"+" FROM ATHLETE NATURAL JOIN PAYS NATURAL JOIN EPREUVE NATURAL JOIN SCORE"+
         "where nomEp = ? and sexeA = ? ORDER BY resultats");
-        ps.setString(1, nomE);
-        ps.setString(2, sexeA);
+        ps.setString(1, e.obtenirNom());
+        ps.setString(2, a.obtenirSexe());
         ResultSet r = ps.executeQuery();
         classement.add(r.getString(1));
         while(r.next()){
             st.close();
             res += cpt+ r.getString(2) + r.getString(3) + r.getString(4) + r.getInt(5) ;
             cpt+=1;
-        }   
+        }  
+        return classement; 
     }
 
 
-    public int ajoutAthlete(Athlete a, String nomEq, String nomP){
+    public int ajoutAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("insert into ATHLETE values (?,?,?,?,?,?,?,?,?)");
         int id = maxNumAthlete() + 1;
         ps.setInt(1,id);
@@ -69,8 +73,8 @@ public class RequeteJDBC {
         ps.setInt(5,a.getForce());
         ps.setInt(6,a.getAgilite());
         ps.setInt(7,a.getEndurance());
-        ps.setString(8, nomEq);
-        ps.setString(9,nomP);
+        ps.setString(8, e.obtenirNom());
+        ps.setString(9,p.getNom());
         ps.execute();
         return maxNumAthlete();
     }
@@ -82,8 +86,29 @@ public class RequeteJDBC {
 		ps.execute();
 	}
 
-    public void MajAthlete(ind id) throws SQLException {
-        PreparedStatement ps = this.laConnexion.preparedStatement("")
+    public void MajAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE ATHLETE set idA = ?,"+"nomA = ?,"+"prenomA= ?,"+"sexeA = ?,"+"force = ?,"+"agilite = ?,"+"endurance = ?,"+"nomEq = nomEq,"+"nomP = nomP");
+        int id = maxNumAthlete() + 1;
+        ps.setInt(1,id);
+        ps.setString(2,a.obtenirNom());
+        ps.setString(3,a.getPrenom());
+        ps.setString(4,a.obtenirSexe());
+        ps.setInt(5,a.getForce());
+        ps.setInt(6,a.getAgilite());
+        ps.setInt(7,a.getEndurance());
+        ps.setString(8, e.obtenirNom());
+        ps.setString(9,p.getNom());
+        ps.execute();
+    }
+
+
+    public void AjoutEquipe(Equipe e,Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?)");
+        ps.setString(1,e.obtenirNom());
+        ps.setString(2, e.obtenirSexe());
+        ps.setString(3,p.getNom() );
+        ps.execute();
+
     }
 
 
