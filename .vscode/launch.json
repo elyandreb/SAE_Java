@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "vmArgs": "--module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
             "name": "AppIUTO",
             "request": "launch",
             "vmArgs": "--module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml",

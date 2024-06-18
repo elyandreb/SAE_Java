@@ -11,7 +11,7 @@ public class ConnexionBD {
 	}
 
 	public void connecter(String nomLogin, String motDePasse) throws SQLException {
-		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DB"+nomLogin,nomLogin,motDePasse);
+		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DBdumas",nomLogin,motDePasse);
 		this.connecte=mysql!=null;
 	}
 	public void close() throws SQLException {
