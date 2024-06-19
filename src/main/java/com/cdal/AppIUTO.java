@@ -111,6 +111,27 @@ public class AppIUTO extends Application {
     private Button supprimeSport;
     private ComboBox<Epreuve> lesEpreuves;  
     private Button supprimeEpreuve; 
+    private Label titreOrganisateur; 
+    private Button resultatAthlete; 
+    private Label meilleurAthlete; 
+    private Label meilleurResA; 
+    private Label pireAthlete; 
+    private Label pireResA; 
+    private Button retourResAthlete; 
+    private Button resultatEquipe; 
+    private Label meilleurEquipe; 
+    private Label meilleurResE; 
+    private Label pireEquipe; 
+    private Label pireResE; 
+    private Button retourResEquipe; 
+    private Button resultatPays; 
+    private Label meilleurPays; 
+    private Label meilleurResP; 
+    private Label pirePays; 
+    private Label pireResP; 
+    private Button retourResPays; 
+    private Button lancerEpreuve; 
+    private Button lancer; 
 
     @Override
     public void init() {
@@ -220,7 +241,35 @@ public class AppIUTO extends Application {
         retourSport2.setOnAction(new ControleurSport(this));  
         supprimeSport = new Button("SUPPRIMER");
         lesEpreuves = new ComboBox<>(); 
-        supprimeEpreuve = new Button("SUPPRIMER");  
+        supprimeEpreuve = new Button("SUPPRIMER");
+        titreOrganisateur = new Label("ORGANISATEUR");  
+        resultatAthlete = new Button("AFFICHER RESULTATS");
+        resultatAthlete.setOnAction(new ControleurResultatAthlete(this));  
+        meilleurAthlete = new Label("Meilleur athlète : "); 
+        meilleurResA = new Label("Meilleur résultat : ");
+        pireAthlete = new Label("Pire athlète : ");
+        pireResA = new Label("Pire résultat : ");   
+        retourResAthlete = new Button("RETOUR");
+        retourResAthlete.setOnAction(new ControleurAthlete(this)); 
+        resultatEquipe = new Button("AFFICHER RESULTATS");
+        resultatEquipe.setOnAction(new ControleurResultatEquipe(this));
+        meilleurEquipe = new Label("Meilleur équipe : "); 
+        meilleurResE = new Label("Meilleur résultat : ");
+        pireEquipe = new Label("Pire équipe : ");
+        pireResE = new Label("Pire résultat : ");   
+        retourResEquipe = new Button("RETOUR"); 
+        retourResEquipe.setOnAction(new ControleurEquipe(this));
+        resultatPays = new Button("AFFICHER RESULTATS"); 
+        resultatPays.setOnAction(new ControleurResultatPays(this));
+        meilleurPays = new Label("Meilleur pays : "); 
+        meilleurResP = new Label("Meilleur résultat : ");
+        pirePays = new Label("Pire pays : ");
+        pireResP = new Label("Pire résultat : ");   
+        retourResPays = new Button("RETOUR"); 
+        retourResPays.setOnAction(new ControleurPays(this));
+        lancerEpreuve = new Button("LANCER EPREUVE"); 
+        lancerEpreuve.setOnAction(new ControleurLancerEpreuve(this));
+        lancer = new Button("LANCER EPREUVE"); 
     }
 
     private Scene laScene() {
@@ -1151,6 +1200,1456 @@ public class AppIUTO extends Application {
         pagePrincipale.setCenter(journaliste);
     }
 
+    public void pageAccueilOrganisateur() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setPrefSize(700, 725);
+        contenu.setStyle("-fx-background-color : #ffffff;");
+        contenu.setSpacing(100);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageAthleteOrganisateur() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        athleteNom.setFont(font3);
+        athleteNom.setStyle("-fx-text-fill: #7a1a64;");  
+
+        textAthleteNom.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textAthleteNom.setPromptText("Saisissez le nom");
+
+        HBox nomBox = new HBox();
+        nomBox.setSpacing(20);
+        nomBox.getChildren().addAll(athleteNom, textAthleteNom);
+
+        athletePrenom.setFont(font3);
+        athletePrenom.setStyle("-fx-text-fill: #7a1a64;");  
+
+        textAthletePrenom.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textAthletePrenom.setPromptText("Saisissez le prénom");
+
+        HBox prenomBox = new HBox();
+        prenomBox.setSpacing(20);
+        prenomBox.getChildren().addAll(athletePrenom, textAthletePrenom);
+
+        rechercher.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        rechercher.setPrefWidth(215);
+        rechercher.setPrefHeight(15);
+
+        annuler.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        annuler.setPrefWidth(215);
+        annuler.setPrefHeight(15);
+
+        resultatAthlete.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        resultatAthlete.setPrefWidth(450);
+        resultatAthlete.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        rechercher.setFont(boutonFont);
+        annuler.setFont(boutonFont);
+        resultatAthlete.setFont(boutonFont);
+
+        HBox boutonBox = new HBox();
+        boutonBox.setSpacing(20);
+        boutonBox.getChildren().addAll(rechercher, annuler);
+
+        VBox rechercheBox = new VBox();
+        rechercheBox.setSpacing(20);
+        rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        rechercheBox.getChildren().addAll(nomBox, prenomBox, boutonBox, resultatAthlete);
+
+        TableView<Athlete> tableAthlete = new TableView<>();
+
+        TableColumn<Athlete, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Athlete, String> prenomCol = new TableColumn<>("Prénom");
+        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+
+        TableColumn<Athlete, String> sexeCol = new TableColumn<>("Sexe");
+        sexeCol.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+
+        TableColumn<Athlete, Integer> agiliteCol = new TableColumn<>("Agilité");
+        agiliteCol.setCellValueFactory(new PropertyValueFactory<>("agilite"));
+
+        TableColumn<Athlete, Integer> enduranceCol = new TableColumn<>("Endurance");
+        enduranceCol.setCellValueFactory(new PropertyValueFactory<>("endurance"));
+
+        TableColumn<Athlete, Integer> forceCol = new TableColumn<>("Force");
+        forceCol.setCellValueFactory(new PropertyValueFactory<>("force"));
+
+        TableColumn<Athlete, Integer> resCol = new TableColumn<>("Résultat");
+        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
+
+        tableAthlete.getColumns().addAll(nomCol, prenomCol, sexeCol, agiliteCol, enduranceCol, forceCol, resCol);
+        tableAthlete.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+                    
+        contenu.getChildren().addAll(rechercheBox, tableAthlete);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageResultatAthlete() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+        contenu.setAlignment(Pos.CENTER);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        meilleurAthlete.setFont(font3);
+        meilleurAthlete.setStyle("-fx-text-fill: #7a1a64;");
+        
+        meilleurResA.setFont(font3);
+        meilleurResA.setStyle("-fx-text-fill: #7a1a64;");
+
+        pireAthlete.setFont(font3);
+        pireAthlete.setStyle("-fx-text-fill: #7a1a64;");
+
+        pireResA.setFont(font3);
+        pireResA.setStyle("-fx-text-fill: #7a1a64;");
+
+        retourResAthlete.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        retourResAthlete.setPrefWidth(450);
+        retourResAthlete.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        retourResAthlete.setFont(boutonFont);
+
+        VBox resBox = new VBox();
+        resBox.setSpacing(20);
+        resBox.getChildren().addAll(meilleurAthlete, meilleurResA, pireAthlete, pireResA);
+
+        VBox resAthleteBox = new VBox(); 
+        resAthleteBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        resAthleteBox.setSpacing(40);
+        resAthleteBox.getChildren().addAll(resBox, retourResAthlete); 
+                    
+        contenu.getChildren().addAll(resAthleteBox);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageEquipeOrganisateur() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        equipeNom.setFont(font3);
+        equipeNom.setStyle("-fx-text-fill: #7a1a64;");  
+
+        textEquipeNom.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textEquipeNom.setPromptText("Saisissez le nom");
+
+        HBox nomBox = new HBox();
+        nomBox.setSpacing(20);
+        nomBox.getChildren().addAll(equipeNom, textEquipeNom);
+
+        rechercher.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        rechercher.setPrefWidth(215);
+        rechercher.setPrefHeight(15);
+
+        annuler.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        annuler.setPrefWidth(215);
+        annuler.setPrefHeight(15);
+
+        resultatEquipe.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        resultatEquipe.setPrefWidth(450);
+        resultatEquipe.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        rechercher.setFont(boutonFont);
+        annuler.setFont(boutonFont);
+        resultatEquipe.setFont(boutonFont); 
+
+        HBox boutonBox = new HBox();
+        boutonBox.setSpacing(20);
+        boutonBox.getChildren().addAll(rechercher, annuler);
+
+        VBox rechercheBox = new VBox();
+        rechercheBox.setSpacing(20);
+        rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        rechercheBox.getChildren().addAll(nomBox, boutonBox, resultatEquipe);
+
+        TableView<Equipe> tableEquipe = new TableView<>();
+        tableEquipe.setPrefHeight(450);
+
+        TableColumn<Equipe, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Equipe, Integer> resCol = new TableColumn<>("Résultat");
+        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
+
+        tableEquipe.getColumns().addAll(nomCol, resCol);
+        tableEquipe.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+                    
+        contenu.getChildren().addAll(rechercheBox, tableEquipe);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageResultatEquipe() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+        contenu.setAlignment(Pos.CENTER);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        meilleurEquipe.setFont(font3);
+        meilleurEquipe.setStyle("-fx-text-fill: #7a1a64;");
+        
+        meilleurResE.setFont(font3);
+        meilleurResE.setStyle("-fx-text-fill: #7a1a64;");
+
+        pireEquipe.setFont(font3);
+        pireEquipe.setStyle("-fx-text-fill: #7a1a64;");
+
+        pireResE.setFont(font3);
+        pireResE.setStyle("-fx-text-fill: #7a1a64;");
+
+        retourResEquipe.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        retourResEquipe.setPrefWidth(450);
+        retourResEquipe.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        retourResEquipe.setFont(boutonFont);
+
+        VBox resBox = new VBox();
+        resBox.setSpacing(20);
+        resBox.getChildren().addAll(meilleurEquipe, meilleurResE, pireEquipe, pireResE);
+
+        VBox resEquipeBox = new VBox(); 
+        resEquipeBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        resEquipeBox.setSpacing(40);
+        resEquipeBox.getChildren().addAll(resBox, retourResEquipe); 
+                    
+        contenu.getChildren().addAll(resEquipeBox);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pagePaysOrganisateur() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        paysNom.setFont(font3);
+        paysNom.setStyle("-fx-text-fill: #7a1a64;");  
+
+        textPaysNom.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textPaysNom.setPromptText("Saisissez le nom");
+
+        HBox nomBox = new HBox();
+        nomBox.setSpacing(20);
+        nomBox.getChildren().addAll(paysNom, textPaysNom);
+
+        rechercher.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        rechercher.setPrefWidth(215);
+        rechercher.setPrefHeight(15);
+
+        annuler.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        annuler.setPrefWidth(215);
+        annuler.setPrefHeight(15);
+
+        resultatPays.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        resultatPays.setPrefWidth(450);
+        resultatPays.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        rechercher.setFont(boutonFont);
+        annuler.setFont(boutonFont);
+        resultatPays.setFont(boutonFont);
+
+        HBox boutonBox = new HBox();
+        boutonBox.setSpacing(20);
+        boutonBox.getChildren().addAll(rechercher, annuler);
+
+        VBox rechercheBox = new VBox();
+        rechercheBox.setSpacing(20);
+        rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        rechercheBox.getChildren().addAll(nomBox, boutonBox, resultatPays);
+
+        TableView<Pays> tablePays = new TableView<>();
+        tablePays.setPrefHeight(450);
+
+        TableColumn<Pays, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Pays, Integer> orCol = new TableColumn<>("Or");
+        orCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesOr"));
+
+        TableColumn<Pays, Integer> argentCol = new TableColumn<>("Argent");
+        argentCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesArgent"));
+
+        TableColumn<Pays, Integer> bronzeCol = new TableColumn<>("Bronze");
+        bronzeCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesBronze"));
+
+        TableColumn<Pays, Integer> totalCol = new TableColumn<>("Total");
+        totalCol.setCellValueFactory(new PropertyValueFactory<>("totalMedailles"));
+
+        tablePays.getColumns().addAll(nomCol, orCol, argentCol, bronzeCol, totalCol);
+        tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+                    
+        contenu.getChildren().addAll(rechercheBox, tablePays);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageResultatPays() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+        contenu.setAlignment(Pos.CENTER);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        meilleurPays.setFont(font3);
+        meilleurPays.setStyle("-fx-text-fill: #7a1a64;");
+        
+        meilleurResP.setFont(font3);
+        meilleurResP.setStyle("-fx-text-fill: #7a1a64;");
+
+        pirePays.setFont(font3);
+        pirePays.setStyle("-fx-text-fill: #7a1a64;");
+
+        pireResP.setFont(font3);
+        pireResP.setStyle("-fx-text-fill: #7a1a64;");
+
+        retourResPays.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        retourResPays.setPrefWidth(450);
+        retourResPays.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        retourResPays.setFont(boutonFont);
+
+        VBox resBox = new VBox();
+        resBox.setSpacing(20);
+        resBox.getChildren().addAll(meilleurPays, meilleurResP, pirePays, pireResP);
+
+        VBox resPaysBox = new VBox(); 
+        resPaysBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        resPaysBox.setSpacing(40);
+        resPaysBox.getChildren().addAll(resBox, retourResPays); 
+                    
+        contenu.getChildren().addAll(resPaysBox);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageSportOrganisateur() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        sportNom.setFont(font3);
+        sportNom.setStyle("-fx-text-fill: #7a1a64;");
+        
+        lesSports.setPrefWidth(200);
+        
+        HBox nomBox = new HBox();
+        nomBox.setSpacing(20);
+        nomBox.getChildren().addAll(sportNom, lesSports);
+
+        rechercher.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        rechercher.setPrefWidth(215);
+        rechercher.setPrefHeight(15);
+
+        annuler.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        annuler.setPrefWidth(215);
+        annuler.setPrefHeight(15);
+
+        lancerEpreuve.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        lancerEpreuve.setPrefWidth(450);
+        lancerEpreuve.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        rechercher.setFont(boutonFont);
+        annuler.setFont(boutonFont);
+        lancerEpreuve.setFont(boutonFont); 
+
+        HBox boutonBox = new HBox();
+        boutonBox.setSpacing(20);
+        boutonBox.getChildren().addAll(rechercher, annuler);
+
+        VBox rechercheBox = new VBox();
+        rechercheBox.setSpacing(20);
+        rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        rechercheBox.getChildren().addAll(nomBox, boutonBox, lancerEpreuve);
+
+        TableView<Epreuve> tableSport = new TableView<>();
+        tableSport.setPrefHeight(450);
+
+        TableColumn<Epreuve, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Epreuve, String> genreCol = new TableColumn<>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+        tableSport.getColumns().addAll(nomCol, genreCol);
+        tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+                    
+        contenu.getChildren().addAll(rechercheBox, tableSport);
+
+        HBox organisteur = new HBox();
+        organisteur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisteur);
+    }
+
+    public void pageLancerEpreuve() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 20, 20));
+        contenu.setAlignment(Pos.CENTER);
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        nomSport.setFont(font3);
+        nomSport.setStyle("-fx-text-fill: #7a1a64;");  
+
+        HBox sportsBox = new HBox();
+        sportsBox.setSpacing(20);
+        sportsBox.getChildren().addAll(nomSport, lesSports);
+
+        nomEpreuve.setFont(font3);
+        nomEpreuve.setStyle("-fx-text-fill: #7a1a64;");  
+
+        lesEpreuves.setPrefWidth(200);
+
+        HBox epreuvesBox = new HBox();
+        epreuvesBox.setSpacing(20);
+        epreuvesBox.getChildren().addAll(nomEpreuve, lesEpreuves);
+
+        lancer.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        lancer.setPrefWidth(350);
+        lancer.setPrefHeight(15);
+
+        retourSport1.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        retourSport1.setPrefWidth(215);
+        retourSport1.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        lancer.setFont(boutonFont);
+        retourSport1.setFont(boutonFont);
+
+        HBox boutonSportBox = new HBox();
+        boutonSportBox.setSpacing(20);
+        boutonSportBox.getChildren().addAll(lancer, retourSport1);
+
+        VBox lancerBox = new VBox();
+        lancerBox.setSpacing(20);
+        lancerBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        lancerBox.getChildren().addAll(sportsBox, epreuvesBox, boutonSportBox);
+        contenu.getChildren().addAll(lancerBox);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
     public void pageAccueilAdministrateur() {
         pagePrincipale.getChildren().clear();
 
@@ -2034,10 +3533,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tableEquipe);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageAjouteEquipe() {
@@ -2189,10 +3688,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(ajouteEquipeBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageSupprimeEquipe() {
@@ -2344,10 +3843,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(supprimeEquipeBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pagePaysAdministrateur() {
@@ -2534,10 +4033,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tablePays);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageAjoutePays() {
@@ -2727,10 +4226,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(ajoutePaysBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageSupprimePays() {
@@ -2886,10 +4385,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(supprimePaysBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageSportAdministrateur() {
@@ -3066,10 +4565,10 @@ public class AppIUTO extends Application {
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tableSport);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageAjouteSport() {
@@ -3254,10 +4753,10 @@ public class AppIUTO extends Application {
         ajouteEpreuveSportBox.getChildren().addAll(ajouteSportBox, ajouteEpreuveBox); 
         contenu.getChildren().addAll(ajouteEpreuveSportBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void pageSupprimeSport() {
@@ -3438,10 +4937,10 @@ public class AppIUTO extends Application {
         ajouteEpreuveSportBox.getChildren().addAll(ajouteSportBox, ajouteEpreuveBox); 
         contenu.getChildren().addAll(ajouteEpreuveSportBox);
 
-        HBox journaliste = new HBox();
-        journaliste.getChildren().addAll(menu, contenu);
+        HBox administrateur = new HBox();
+        administrateur.getChildren().addAll(menu, contenu);
 
-        pagePrincipale.setCenter(journaliste);
+        pagePrincipale.setCenter(administrateur);
     }
 
     public void mdpVisible() {
