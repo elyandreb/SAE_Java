@@ -53,32 +53,22 @@ CREATE TABLE 'EPREUVE' (
     FOREIGN KEY 'idS' REFERENCES SPORT('idS')
 );
 
-CREATE TABLE 'PARTICIPEA' (
-    'idA' int NOT NULL,
-    'nomEp' varchar(50) NOT NULL,
-    'genre' varchar(1) NOT NULL,
-    PRIMARY KEY('idA','nomEp','genre'),
-    FOREIGN KEY 'idA' REFERENCES ATHLETE('idA'),
-    FOREIGN KEY 'nomEp' REFERENCES EPREUVE('nomEp'),
-    FOREIGN KEY 'genre' REFERENCES EPREUVE('genre')
-);
-
-CREATE TABLE 'PARTICIPEEQ' (
-    'idEq' int NOT NULL,
-    'nomEp' varchar(50) NOT NULL,
-    'genre' varchar(1) NOT NULL,
-    PRIMARY KEY('idEq','nomEp','genre'),
-    FOREIGN KEY 'idEq' REFERENCES EQUIPE('idEq'),
-    FOREIGN KEY 'nomEp' REFERENCES EPREUVE('nomEp'),
-    FOREIGN KEY 'genre' REFERENCES EPREUVE('genre')
-);
-
-CREATE TABLE 'SCORE' (
+CREATE TABLE 'SCOREA' (
     'idA' int NOT NULL,
     'nomEp' int NOT NULL,
     'genre' varchar(1) NOT NULL,
-    'resultats' int,
+    'resultatsA' int,
     FOREIGN KEY 'idA' REFERENCES ATHLETE('idA'),
+    FOREIGN KEY 'nomEp' REFERENCES EPREUVE('nomEp'),
+    FOREIGN KEY 'genre' REFERENCES EPREUVE('genre')
+);
+
+CREATE TABLE 'SCOREEQ' (
+    'idEq' int NOT NULL,
+    'nomEp' int NOT NULL,
+    'genre' varchar(1) NOT NULL,
+    'resultatsEq' int,
+    FOREIGN KEY 'idEq' REFERENCES EQUIPE('idEq'),
     FOREIGN KEY 'nomEp' REFERENCES EPREUVE('nomEp'),
     FOREIGN KEY 'genre' REFERENCES EPREUVE('genre')
 )
