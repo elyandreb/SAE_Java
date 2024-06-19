@@ -25,7 +25,7 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
                     else{System.out.println("Mot de passe incorrect pour le journaliste");}
                 }
                 else if(l.charAt(l.length()-1)=='O'){
-                    if(1000<=m && m<2000){appli.pageAccueilJournaliste();}
+                    if(1000<=m && m<2000){appli.pageAccueilOrganisateur();}
                     else{System.out.println("Mot de passe incorrect pour l'organisateur");}
                 }
                 else if(l.charAt(l.length()-1)=='A'){
