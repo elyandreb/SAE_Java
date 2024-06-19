@@ -17,3 +17,4 @@ public class ControleurVisibilter implements EventHandler<MouseEvent> {
     }
     
 }
+

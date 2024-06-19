@@ -13,7 +13,7 @@ public class ControleurPays implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pagePaysJournaliste();
+        appli.pagePaysAdministrateur();
     }
     
 }
