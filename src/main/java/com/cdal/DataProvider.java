@@ -35,9 +35,7 @@ public class DataProvider {
             Pays pays = this.manager.getPays(paysS);
             Sport sport = this.manager.getSport(sportS);
             if(sport == null){ 
-                float[] stats = NomSport.getStats(sportS);
-                if(stats == null) continue;
-                sport = this.manager.addSport(new Sport(NomSport.getNomSport(sportS), force, agilite, endurance));
+                sport = this.manager.addSport(new Sport(sportS));
             }
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
             Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays);

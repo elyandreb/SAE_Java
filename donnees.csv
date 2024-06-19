@@ -1,4 +1,4 @@
-Nom,Prénom,Sexe,Pays,Sport,Épreuve,Force,Endurance,Agilité
+Nom,Prénom,Sexe,Pays,Sport,Épreuve, Cat, Nbj,Force,Endurance,Agilité
 Li,Fang,F,Kenya,Escrime,Escrime fleuret,3,3,11
 Sasaki,Aoi,M,Japon,Escrime,Escrime fleuret,8,19,14
 Yamaguchi,Yuma,M,Japon,Volley-Ball,Volley-Ball,10,2,15
