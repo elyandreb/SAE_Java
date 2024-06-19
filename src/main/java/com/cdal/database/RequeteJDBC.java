@@ -3,9 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.cdal.Athlete;
-import main.java.com.cdal.Equipe;
-import main.java.com.cdal.Pays;
+import main.java.com.cdal.*;
 
 public class RequeteJDBC {
     private ConnexionBD laConnexion;
