@@ -1,6 +1,8 @@
 package main.java.com.cdal;
 
 
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -57,8 +59,11 @@ public class AppIUTO extends Application {
     public void init() {
         try {
             this.connexionBD = new ConnexionBD();
+            connexionBD.connecter();
         } catch (ClassNotFoundException e) {
             System.out.println("Driver non trouvé :(");
+        } catch (SQLException e) {
+            System.out.println("Problèmes SQL (mdp?)");
         }
         pagePrincipale = new BorderPane();
         logoJO = new ImageView(new Image("file:img/logoJO.png"));
@@ -343,16 +348,13 @@ public class AppIUTO extends Application {
     }
 
     public String getMotDePasse() {
-        return this.passwdVisible.getText();
+        return this.passwdMasquer.getText();
     }
     
     public String getLogin() {
         return this.user.getText();
     }
     
-    public void connexionReussie(){
-        
-    }
     
     public void deconnexionReussie(){
         pageConnexion();

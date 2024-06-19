@@ -10,8 +10,8 @@ public class ConnexionBD {
 		Class.forName("org.mariadb.jdbc.Driver");
 	}
 
-	public void connecter(String nomLogin, String motDePasse) throws SQLException {
-		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DBdumas",nomLogin,motDePasse);
+	public void connecter() throws SQLException {
+		this.mysql = DriverManager.getConnection("jdbc:mysql://servinfo-maria:3306/DBdumas","dumas","dumas");
 		this.connecte=mysql!=null;
 	}
 	public void close() throws SQLException {
