@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Nom,Prénom,Sexe,Pays,Sport,Épreuve, Cat, Nbj,Force,Endurance,Agilité
 Li,Fang,F,Kenya,Escrime,Escrime fleuret,3,3,11
 Sasaki,Aoi,M,Japon,Escrime,Escrime fleuret,8,19,14
@@ -399,3 +400,406 @@ Nakamura,Daiki,F,Japon,Volley-Ball,Volley-Ball,19,1,20
 Martin,Sacha,M,Chine,Volley-Ball,Volley-Ball,17,4,13
 Hartmann,Niklas,M,Chine,Volley-Ball,Volley-Ball,18,12,16
 Wang,Yang,F,Japon,Natation,Natation relais libre,8,12,6
+=======
+Nom,Prénom,Sexe,Pays,Sport,Épreuve,Categorie,nb_joueurs,Force,Endurance,Agilité
+Wu,Huang,M,Kenya,Escrime,Escrime épée,Individuelles,1,13,7,16
+Wang,Hui,F,Brésil,Athlétisme,Athlétisme relais 400m,Collectives,4,1,5,14
+Gao,Xia,F,France,Volley-Ball,Volley-Ball,Collectives,6,7,8,2
+Kobayashi,Sakura,F,Japon,Handball,Handball,Collectives,7,4,19,7
+Meyer,David,F,Australie,Handball,Handball,Collectives,7,10,18,6
+Yang,Yan,M,France,Escrime,Escrime épée,Individuelles,1,13,8,6
+Kimura,Haruka,M,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,10,19,13
+Goto,Yusuke,F,Japon,Escrime,Escrime épée,Individuelles,1,5,13,19
+Neumann,Marie,M,Maroc,Volley-Ball,Volley-Ball,Collectives,6,18,11,19
+Nakamura,Hiroshi,M,Kenya,Escrime,Escrime fleuret,Individuelles,1,20,11,12
+Zhang,Hong,F,Chine,Volley-Ball,Volley-Ball,Collectives,6,11,1,5
+Sakai,Riko,F,Brésil,Volley-Ball,Volley-Ball,Collectives,6,17,2,18
+Fujita,Riku,M,France,Handball,Handball,Collectives,7,1,6,2
+Watanabe,Yuma,F,Brésil,Volley-Ball,Volley-Ball,Collectives,6,6,12,9
+Hasegawa,Ren,M,France,Escrime,Escrime épée,Individuelles,1,6,14,3
+Ishii,Yusuke,F,Maroc,Athlétisme,Athlétisme relais 400m,Collectives,4,19,8,16
+Goto,Ryota,F,Chine,Natation,Natation 100 brasse,Individuelles,1,15,5,5
+Hayashi,Yui,M,Japon,Handball,Handball,Collectives,7,11,14,1
+Mori,Yuki,F,Turquie,Volley-Ball,Volley-Ball,Collectives,6,6,8,4
+Kondo,Ren,F,Allemagne,Natation,Natation 100 brasse,Individuelles,1,5,18,15
+Hayashi,Yuna,M,Turquie,Natation,Natation 100 brasse,Individuelles,1,2,10,5
+Hu,Xin,F,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,16,18,7
+Sasaki,Takeshi,F,Chine,Handball,Handball,Collectives,7,10,20,12
+Lehmann,Julian,M,Kenya,Natation,Natation relais libre,Collectives,4,2,12,4
+Wang,Min,M,Turquie,Athlétisme,Athlétisme 110 haies,Individuelles,1,15,13,14
+Li,Xiang,M,Australie,Handball,Handball,Collectives,7,9,13,17
+Schwarz,Clara,F,Kenya,Handball,Handball,Collectives,7,19,14,13
+Xu,Min,F,Australie,Handball,Handball,Collectives,7,11,13,16
+Garcia,Sarah,M,Kenya,Escrime,Escrime fleuret,Individuelles,1,6,6,18
+Wang,Huang,F,USA,Handball,Handball,Collectives,7,6,2,18
+Fujita,Kazuki,F,Japon,Escrime,Escrime épée,Individuelles,1,9,9,11
+Yang,Hong,M,Allemagne,Handball,Handball,Collectives,7,14,20,19
+Robin,Tom,M,Australie,Natation,Natation 100 brasse,Individuelles,1,15,20,17
+Ma,Wu,M,Allemagne,Natation,Natation 100 brasse,Individuelles,1,13,2,3
+Shibata,Akira,F,USA,Escrime,Escrime fleuret,Individuelles,1,15,12,19
+Hoffmann,Sophie,F,Kenya,Volley-Ball,Volley-Ball,Collectives,6,15,12,12
+Garcia,Sarah,M,France,Volley-Ball,Volley-Ball,Collectives,6,4,1,13
+Yoshida,Ryota,M,Allemagne,Athlétisme,Athlétisme 110 haies,Individuelles,1,3,8,2
+Sasaki,Yuna,M,Turquie,Escrime,Escrime épée,Individuelles,1,1,14,8
+Lin,Jun,M,Allemagne,Handball,Handball,Collectives,7,13,18,4
+Simon,Nolan,M,France,Handball,Handball,Collectives,7,1,18,2
+Nakamura,Ryota,M,Brésil,Athlétisme,Athlétisme relais 400m,Collectives,4,11,14,1
+Saito,Yui,F,Australie,Handball,Handball,Collectives,7,12,5,3
+Leroy,Inès,M,Maroc,Escrime,Escrime épée,Individuelles,1,15,18,6
+Sun,Qian,F,Maroc,Handball,Handball,Collectives,7,4,4,1
+Sun,Sun,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,3,16,10
+Wang,Chen,F,Japon,Escrime,Escrime épée,Individuelles,1,10,8,16
+Richter,Anna,M,Brésil,Handball,Handball,Collectives,7,8,17,4
+Meier,Ben,M,Chine,Escrime,Escrime fleuret,Individuelles,1,17,16,3
+Petit,Emma,F,Brésil,Handball,Handball,Collectives,7,5,13,19
+Weber,Emilia,F,Australie,Escrime,Escrime épée,Individuelles,1,11,7,3
+Meier,Simon,M,Allemagne,Volley-Ball,Volley-Ball,Collectives,6,18,14,3
+Blanc,Lucas,M,Turquie,Handball,Handball,Collectives,7,9,3,10
+Li,Fang,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,10,11,2
+Laurent,Mathis,F,Maroc,Escrime,Escrime épée,Individuelles,1,10,12,17
+Kobayashi,Ryota,F,Japon,Handball,Handball,Collectives,7,8,1,20
+Goto,Yui,F,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,12,9,18
+Bernard,Raphaël,F,Japon,Natation,Natation 100 brasse,Individuelles,1,17,12,13
+Kimura,Naoki,M,Brésil,Handball,Handball,Collectives,7,13,20,20
+Hu,Ma,F,France,Athlétisme,Athlétisme relais 400m,Collectives,4,10,5,10
+Hayashi,Aoi,M,Chine,Natation,Natation 100 brasse,Individuelles,1,7,7,5
+Inoue,Aoi,F,Allemagne,Escrime,Escrime épée,Individuelles,1,13,14,13
+Zhao,Fang,F,Japon,Athlétisme,Athlétisme 110 haies,Individuelles,1,7,11,5
+Hu,Wei,M,Kenya,Escrime,Escrime épée,Individuelles,1,12,14,20
+Ma,Chen,M,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,16,6,6
+Mercier,Jade,F,Brésil,Handball,Handball,Collectives,7,10,19,13
+Watanabe,Riku,F,USA,Volley-Ball,Volley-Ball,Collectives,6,4,15,19
+Girard,Gabin,F,Turquie,Escrime,Escrime épée,Individuelles,1,15,4,15
+Lambert,Maëlys,M,France,Athlétisme,Athlétisme relais 400m,Collectives,4,14,9,14
+Hayashi,Ryota,F,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,9,19,10
+Tanaka,Saki,F,Maroc,Escrime,Escrime épée,Individuelles,1,17,19,15
+Hartmann,Felix,M,Maroc,Volley-Ball,Volley-Ball,Collectives,6,4,12,18
+Li,Hong,M,Kenya,Handball,Handball,Collectives,7,20,5,6
+Muller,Louise,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,18,11,19
+Yang,Hu,M,USA,Handball,Handball,Collectives,7,7,7,16
+Müller,David,F,USA,Handball,Handball,Collectives,7,9,14,15
+Fontaine,Gabriel,F,Turquie,Escrime,Escrime fleuret,Individuelles,1,11,11,7
+Wolf,Laura,M,Allemagne,Escrime,Escrime épée,Individuelles,1,5,19,6
+Sakamoto,Hiroshi,M,Maroc,Handball,Handball,Collectives,7,1,12,15
+Li,Yan,F,Australie,Natation,Natation 100 brasse,Individuelles,1,2,4,8
+Huang,Li,M,Turquie,Escrime,Escrime épée,Individuelles,1,18,9,16
+Zhao,Yang,F,Allemagne,Athlétisme,Athlétisme relais 400m,Collectives,4,16,14,12
+Shimizu,Yuna,F,France,Escrime,Escrime fleuret,Individuelles,1,1,6,12
+Yamaguchi,Mio,F,USA,Handball,Handball,Collectives,7,20,8,1
+Schneider,Maja,M,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,19,2,2
+Durand,Inès,F,Maroc,Escrime,Escrime fleuret,Individuelles,1,8,6,17
+Yoshida,Shiori,F,USA,Handball,Handball,Collectives,7,6,12,8
+Braun,Julian,M,Turquie,Athlétisme,Athlétisme relais 400m,Collectives,4,14,3,5
+Inoue,Yuma,M,Kenya,Natation,Natation 100 brasse,Individuelles,1,16,5,8
+Fournier,Camille,M,Turquie,Handball,Handball,Collectives,7,13,11,10
+Shimizu,Yuki,M,Allemagne,Volley-Ball,Volley-Ball,Collectives,6,14,15,9
+Guerin,Jules,F,Turquie,Escrime,Escrime épée,Individuelles,1,16,1,17
+Barbier,Sarah,F,Brésil,Escrime,Escrime fleuret,Individuelles,1,10,16,6
+Inoue,Takumi,M,Turquie,Escrime,Escrime épée,Individuelles,1,10,11,6
+Yamaguchi,Aoi,F,Australie,Natation,Natation relais libre,Collectives,4,15,3,4
+Hasegawa,Yuna,F,Kenya,Escrime,Escrime fleuret,Individuelles,1,10,4,4
+Lin,Xin,M,USA,Handball,Handball,Collectives,7,4,13,6
+Schmid,Laura,F,Turquie,Volley-Ball,Volley-Ball,Collectives,6,2,9,1
+Guo,Zhu,F,Turquie,Athlétisme,Athlétisme 110 haies,Individuelles,1,13,5,1
+Maeda,Yuto,F,USA,Volley-Ball,Volley-Ball,Collectives,6,6,20,1
+Dubois,Inès,F,Japon,Athlétisme,Athlétisme 110 haies,Individuelles,1,20,14,7
+Hu,Zhao,M,Australie,Athlétisme,Athlétisme relais 400m,Collectives,4,3,8,18
+He,Xu,F,Maroc,Athlétisme,Athlétisme relais 400m,Collectives,4,4,20,19
+Guerin,Léna,F,Turquie,Athlétisme,Athlétisme relais 400m,Collectives,4,16,8,20
+Li,Jun,M,USA,Natation,Natation 100 brasse,Individuelles,1,16,4,2
+Hartmann,Laura,M,Brésil,Handball,Handball,Collectives,7,7,12,20
+Faure,Clara,M,Japon,Athlétisme,Athlétisme 110 haies,Individuelles,1,8,4,19
+Zhou,Ling,F,Kenya,Volley-Ball,Volley-Ball,Collectives,6,10,10,7
+Kondo,Akira,M,Turquie,Handball,Handball,Collectives,7,9,19,14
+Gao,Xia,F,Japon,Volley-Ball,Volley-Ball,Collectives,6,18,13,4
+Goto,Shiori,F,Japon,Athlétisme,Athlétisme 110 haies,Individuelles,1,18,20,6
+Müller,Felix,M,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,13,4,7
+Fujita,Yuma,M,Australie,Natation,Natation 100 brasse,Individuelles,1,14,9,2
+Kobayashi,Rina,F,France,Natation,Natation relais libre,Collectives,4,1,15,15
+Bauer,Sophie,M,France,Handball,Handball,Collectives,7,12,18,2
+Huang,Zhang,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,7,8,5
+He,Wei,F,USA,Athlétisme,Athlétisme 110 haies,Individuelles,1,6,2,13
+Schäfer,Maja,F,Brésil,Escrime,Escrime épée,Individuelles,1,13,2,6
+Yamaguchi,Yui,F,Japon,Escrime,Escrime fleuret,Individuelles,1,6,1,1
+Zimmermann,Maja,M,Australie,Natation,Natation relais libre,Collectives,4,15,9,1
+Saito,Ryota,M,Australie,Natation,Natation relais libre,Collectives,4,9,3,2
+Lambert,Ethan,F,USA,Natation,Natation relais libre,Collectives,4,13,17,6
+Kobayashi,Aoi,M,Brésil,Athlétisme,Athlétisme 110 haies,Individuelles,1,14,7,17
+Matsumoto,Yui,F,France,Handball,Handball,Collectives,7,4,17,3
+Maeda,Riku,M,Kenya,Escrime,Escrime épée,Individuelles,1,3,10,16
+Meier,Tom,M,Kenya,Escrime,Escrime fleuret,Individuelles,1,8,7,10
+Hasegawa,Hana,M,Kenya,Handball,Handball,Collectives,7,3,6,9
+Dubois,Clara,M,Maroc,Athlétisme,Athlétisme relais 400m,Collectives,4,4,16,1
+Yamamoto,Yuna,F,Japon,Natation,Natation relais libre,Collectives,4,16,7,9
+Chen,Liu,M,Kenya,Athlétisme,Athlétisme relais 400m,Collectives,4,9,12,11
+Hayashi,Riku,M,Chine,Natation,Natation relais libre,Collectives,4,6,6,6
+Ma,Xue,M,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,19,16,16
+Shibata,Takumi,M,USA,Natation,Natation relais libre,Collectives,4,5,1,10
+Ishikawa,Yuki,F,USA,Athlétisme,Athlétisme relais 400m,Collectives,4,20,13,9
+Hasegawa,Yuna,M,Allemagne,Handball,Handball,Collectives,7,14,15,18
+Ito,Yusuke,M,Brésil,Handball,Handball,Collectives,7,1,2,15
+Lin,Huang,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,20,10,19
+Michel,Théo,M,Australie,Escrime,Escrime fleuret,Individuelles,1,18,12,11
+Wang,Yan,M,Japon,Handball,Handball,Collectives,7,20,4,10
+Lehmann,Ben,M,Allemagne,Handball,Handball,Collectives,7,12,16,1
+Nakamura,Aoi,M,Turquie,Volley-Ball,Volley-Ball,Collectives,6,6,13,9
+Wu,Zhao,M,Allemagne,Escrime,Escrime épée,Individuelles,1,20,8,5
+Yang,Huang,F,Brésil,Escrime,Escrime épée,Individuelles,1,16,12,3
+Inoue,Hiroshi,F,France,Volley-Ball,Volley-Ball,Collectives,6,3,2,1
+Sun,Zhang,M,Kenya,Escrime,Escrime épée,Individuelles,1,2,3,1
+Barbier,Emma,F,Australie,Volley-Ball,Volley-Ball,Collectives,6,2,1,8
+Nakamura,Ryota,F,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,18,7,17
+Mercier,Mathis,F,USA,Handball,Handball,Collectives,7,3,7,19
+Liu,Yan,F,Japon,Escrime,Escrime fleuret,Individuelles,1,1,20,15
+Thomas,Sarah,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,7,1,4
+Matsumoto,Rin,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,14,3,12
+Maeda,Haruto,M,USA,Escrime,Escrime fleuret,Individuelles,1,12,20,18
+Guerin,Emma,F,Australie,Athlétisme,Athlétisme relais 400m,Collectives,4,10,4,19
+Rousseau,Emma,M,Maroc,Volley-Ball,Volley-Ball,Collectives,6,4,3,11
+Lin,Fang,F,Japon,Escrime,Escrime épée,Individuelles,1,14,14,17
+Sasaki,Sakura,M,Australie,Natation,Natation relais libre,Collectives,4,2,3,6
+Sakamoto,Sakura,F,Maroc,Handball,Handball,Collectives,7,11,12,18
+Tanaka,Asuka,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,17,8,9
+Neumann,Maja,F,France,Natation,Natation 100 brasse,Individuelles,1,2,14,9
+Guo,Qian,F,Japon,Natation,Natation 100 brasse,Individuelles,1,9,6,10
+Krause,Hannah,F,Maroc,Escrime,Escrime fleuret,Individuelles,1,14,1,19
+Yang,Jun,F,Australie,Volley-Ball,Volley-Ball,Collectives,6,9,17,8
+Morel,Léna,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,2,6,15
+Schneider,Hannah,M,Brésil,Escrime,Escrime épée,Individuelles,1,19,15,10
+Richard,Théo,F,Kenya,Handball,Handball,Collectives,7,8,3,17
+Yang,Ma,M,Australie,Handball,Handball,Collectives,7,20,11,1
+Inoue,Yuna,M,Maroc,Natation,Natation relais libre,Collectives,4,8,2,18
+Lambert,Emma,F,Allemagne,Athlétisme,Athlétisme relais 400m,Collectives,4,5,14,11
+Liu,Chen,M,USA,Handball,Handball,Collectives,7,12,3,2
+Wu,Ting,F,USA,Volley-Ball,Volley-Ball,Collectives,6,16,6,11
+Zhang,Xue,F,Australie,Handball,Handball,Collectives,7,16,17,16
+Huang,Hu,F,Kenya,Handball,Handball,Collectives,7,6,11,6
+Lefebvre,Sacha,M,USA,Escrime,Escrime épée,Individuelles,1,18,17,8
+Yang,Qian,M,Australie,Handball,Handball,Collectives,7,12,18,4
+Zhou,Guo,M,Chine,Natation,Natation relais libre,Collectives,4,6,14,15
+He,Xue,M,Maroc,Escrime,Escrime épée,Individuelles,1,1,7,3
+Mori,Ryota,F,Brésil,Athlétisme,Athlétisme 110 haies,Individuelles,1,11,20,13
+Michel,Jules,F,Kenya,Escrime,Escrime épée,Individuelles,1,3,10,15
+Becker,Clara,M,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,4,1,7
+Sun,Sun,F,Turquie,Handball,Handball,Collectives,7,9,4,19
+Ishikawa,Rin,M,Maroc,Athlétisme,Athlétisme 110 haies,Individuelles,1,1,19,14
+Richter,Paul,F,Chine,Volley-Ball,Volley-Ball,Collectives,6,14,13,2
+Kondo,Ryota,M,France,Handball,Handball,Collectives,7,5,5,20
+Kondo,Sosuke,F,Brésil,Handball,Handball,Collectives,7,6,15,15
+Becker,Anna,M,USA,Volley-Ball,Volley-Ball,Collectives,6,15,5,14
+Rousseau,Maëlys,F,Brésil,Natation,Natation relais libre,Collectives,4,14,7,4
+Saito,Nana,M,Japon,Natation,Natation 100 brasse,Individuelles,1,12,4,3
+Laurent,Inès,M,Chine,Natation,Natation 100 brasse,Individuelles,1,19,8,5
+Ishikawa,Sosuke,F,France,Natation,Natation relais libre,Collectives,4,19,12,15
+Lin,Yan,F,Allemagne,Athlétisme,Athlétisme 110 haies,Individuelles,1,19,8,2
+Lange,Maja,F,Australie,Natation,Natation 100 brasse,Individuelles,1,18,11,17
+Matsumoto,Akira,F,France,Escrime,Escrime épée,Individuelles,1,4,14,20
+Maeda,Asuka,F,USA,Athlétisme,Athlétisme 110 haies,Individuelles,1,6,9,7
+Wang,Ma,F,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,13,4,3
+Wu,Qian,F,Japon,Natation,Natation relais libre,Collectives,4,10,15,11
+Barbier,Jules,F,Brésil,Natation,Natation 100 brasse,Individuelles,1,16,3,19
+Suzuki,Yuki,F,Japon,Escrime,Escrime fleuret,Individuelles,1,16,13,13
+Xu,Li,F,France,Natation,Natation 100 brasse,Individuelles,1,17,7,20
+Sun,Jun,M,Japon,Volley-Ball,Volley-Ball,Collectives,6,5,15,2
+Sakamoto,Kokoro,F,France,Escrime,Escrime fleuret,Individuelles,1,6,14,6
+Murakami,Ren,F,Japon,Athlétisme,Athlétisme relais 400m,Collectives,4,17,9,16
+Robin,Mathis,F,USA,Escrime,Escrime fleuret,Individuelles,1,16,14,17
+Guerin,Sarah,F,Australie,Athlétisme,Athlétisme relais 400m,Collectives,4,3,7,18
+Wang,Zhang,F,Australie,Natation,Natation 100 brasse,Individuelles,1,15,10,16
+Schulze,Maja,M,USA,Volley-Ball,Volley-Ball,Collectives,6,20,8,7
+Lambert,Louis,F,France,Athlétisme,Athlétisme relais 400m,Collectives,4,17,2,18
+Yamaguchi,Shiori,M,Allemagne,Volley-Ball,Volley-Ball,Collectives,6,4,13,9
+He,Shuang,M,France,Natation,Natation relais libre,Collectives,4,6,6,20
+Lin,Min,M,Allemagne,Escrime,Escrime fleuret,Individuelles,1,17,4,15
+Ogawa,Riku,F,Chine,Escrime,Escrime fleuret,Individuelles,1,8,10,15
+Laurent,Arthur,F,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,15,15,20
+Yamada,Riku,F,Brésil,Natation,Natation relais libre,Collectives,4,3,9,13
+Ma,Jing,M,France,Volley-Ball,Volley-Ball,Collectives,6,19,20,13
+Maeda,Mio,F,Allemagne,Handball,Handball,Collectives,7,13,18,1
+Kato,Hana,F,Maroc,Volley-Ball,Volley-Ball,Collectives,6,19,4,1
+He,Wu,F,Japon,Athlétisme,Athlétisme relais 400m,Collectives,4,4,20,1
+Sasaki,Ryota,F,Allemagne,Handball,Handball,Collectives,7,9,8,13
+Barbier,Louis,F,Turquie,Handball,Handball,Collectives,7,7,2,1
+Garcia,Léna,M,Australie,Handball,Handball,Collectives,7,8,5,1
+Lin,Jing,F,Kenya,Handball,Handball,Collectives,7,19,5,17
+Lefevre,Emma,M,Turquie,Escrime,Escrime fleuret,Individuelles,1,3,3,19
+Mori,Hiroshi,F,Japon,Natation,Natation 100 brasse,Individuelles,1,5,9,19
+Chen,Liu,F,France,Natation,Natation 100 brasse,Individuelles,1,20,16,18
+Schulze,Elias,M,Australie,Escrime,Escrime épée,Individuelles,1,1,5,16
+Saito,Yuna,M,Kenya,Escrime,Escrime fleuret,Individuelles,1,19,10,14
+Suzuki,Yuna,M,Kenya,Volley-Ball,Volley-Ball,Collectives,6,19,6,20
+Vincent,Gabin,M,Japon,Handball,Handball,Collectives,7,15,3,6
+Petit,Ethan,F,Turquie,Handball,Handball,Collectives,7,2,12,14
+Fontaine,Manon,M,USA,Athlétisme,Athlétisme relais 400m,Collectives,4,15,16,12
+Perez,Gabriel,M,Australie,Escrime,Escrime fleuret,Individuelles,1,11,6,14
+Chen,Jing,F,USA,Escrime,Escrime fleuret,Individuelles,1,18,15,8
+Ogawa,Hinata,M,Maroc,Natation,Natation 100 brasse,Individuelles,1,8,3,20
+Blanc,Zoé,F,USA,Volley-Ball,Volley-Ball,Collectives,6,8,18,14
+Muller,Sacha,M,Turquie,Escrime,Escrime fleuret,Individuelles,1,3,8,17
+Fujita,Yuki,M,USA,Natation,Natation 100 brasse,Individuelles,1,16,15,7
+Morel,Maëlys,M,Australie,Handball,Handball,Collectives,7,20,11,6
+Ishii,Shiori,F,Turquie,Natation,Natation relais libre,Collectives,4,9,12,2
+Robin,Louise,F,France,Escrime,Escrime fleuret,Individuelles,1,16,13,19
+Bernard,Juliette,F,Turquie,Volley-Ball,Volley-Ball,Collectives,6,1,4,10
+Ishikawa,Haruka,F,Maroc,Athlétisme,Athlétisme 110 haies,Individuelles,1,15,7,11
+Faure,Manon,M,Brésil,Natation,Natation 100 brasse,Individuelles,1,1,6,3
+Li,Li,F,Allemagne,Escrime,Escrime épée,Individuelles,1,1,11,7
+Wu,Yan,M,France,Volley-Ball,Volley-Ball,Collectives,6,11,15,20
+Sakai,Mio,F,Allemagne,Handball,Handball,Collectives,7,17,4,15
+Rousseau,Noé,M,USA,Athlétisme,Athlétisme relais 400m,Collectives,4,16,6,11
+Liu,Guo,M,France,Volley-Ball,Volley-Ball,Collectives,6,11,6,9
+Lefebvre,Chloé,M,Kenya,Volley-Ball,Volley-Ball,Collectives,6,1,8,13
+Becker,Anna,F,USA,Handball,Handball,Collectives,7,6,7,11
+Liu,He,M,Chine,Volley-Ball,Volley-Ball,Collectives,6,19,14,3
+Chen,Ling,F,Chine,Natation,Natation relais libre,Collectives,4,13,4,3
+Ito,Yuki,F,Japon,Handball,Handball,Collectives,7,2,5,7
+Maier,Paul,M,Chine,Natation,Natation relais libre,Collectives,4,4,19,2
+Lin,Zhao,F,Maroc,Athlétisme,Athlétisme 110 haies,Individuelles,1,9,5,12
+Sasaki,Daiki,F,Maroc,Athlétisme,Athlétisme relais 400m,Collectives,4,9,19,6
+Ogawa,Nana,M,Australie,Handball,Handball,Collectives,7,1,10,12
+Hayashi,Daiki,F,France,Natation,Natation 100 brasse,Individuelles,1,11,3,12
+He,Jun,F,Kenya,Escrime,Escrime fleuret,Individuelles,1,15,20,12
+Fontaine,Nathan,F,Turquie,Escrime,Escrime fleuret,Individuelles,1,6,8,3
+Maier,David,F,USA,Natation,Natation 100 brasse,Individuelles,1,9,19,4
+Takahashi,Naoki,F,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,17,3,5
+Ito,Kokoro,M,Kenya,Volley-Ball,Volley-Ball,Collectives,6,3,3,12
+Wang,Lan,M,Chine,Natation,Natation 100 brasse,Individuelles,1,12,12,13
+Kondo,Mio,M,Turquie,Escrime,Escrime fleuret,Individuelles,1,12,2,10
+Zhang,Min,M,Kenya,Handball,Handball,Collectives,7,2,8,17
+Michel,Chloé,M,USA,Volley-Ball,Volley-Ball,Collectives,6,7,18,18
+Chen,Hui,M,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,11,8,16
+Krüger,Tim,M,Kenya,Natation,Natation relais libre,Collectives,4,5,13,3
+Sato,Haruto,F,Turquie,Athlétisme,Athlétisme 110 haies,Individuelles,1,6,7,14
+Moreau,Sarah,F,Japon,Natation,Natation relais libre,Collectives,4,4,19,6
+Schmid,Tom,F,Maroc,Natation,Natation relais libre,Collectives,4,6,1,2
+Wu,Ma,F,France,Natation,Natation 100 brasse,Individuelles,1,16,9,12
+Simon,Emma,F,USA,Volley-Ball,Volley-Ball,Collectives,6,20,3,9
+Ito,Hana,M,Japon,Natation,Natation relais libre,Collectives,4,6,3,19
+Zhang,Hong,F,Kenya,Handball,Handball,Collectives,7,15,10,2
+Dubois,Gabriel,F,Kenya,Athlétisme,Athlétisme relais 400m,Collectives,4,19,7,15
+Thomas,Jade,M,Japon,Handball,Handball,Collectives,7,13,1,7
+Ishii,Rin,F,Allemagne,Natation,Natation 100 brasse,Individuelles,1,19,18,16
+Muller,Louis,M,France,Escrime,Escrime épée,Individuelles,1,4,12,12
+Becker,Leon,M,Chine,Escrime,Escrime fleuret,Individuelles,1,10,3,3
+Leroy,Maëlys,M,France,Volley-Ball,Volley-Ball,Collectives,6,17,14,18
+Wang,Zhu,F,USA,Escrime,Escrime épée,Individuelles,1,8,18,11
+Lambert,Chloé,F,Australie,Volley-Ball,Volley-Ball,Collectives,6,16,13,18
+Krause,Hannah,M,USA,Athlétisme,Athlétisme 110 haies,Individuelles,1,6,11,20
+Perez,Noé,F,Kenya,Natation,Natation 100 brasse,Individuelles,1,20,7,11
+Zhang,Chen,F,Allemagne,Escrime,Escrime épée,Individuelles,1,13,9,4
+He,Xin,M,Japon,Handball,Handball,Collectives,7,7,14,14
+Laurent,Tom,M,Kenya,Volley-Ball,Volley-Ball,Collectives,6,4,1,3
+Suzuki,Yuna,F,Kenya,Natation,Natation relais libre,Collectives,4,20,13,5
+Sakamoto,Daiki,M,Turquie,Volley-Ball,Volley-Ball,Collectives,6,3,10,10
+Xu,Chen,M,Brésil,Natation,Natation 100 brasse,Individuelles,1,2,20,9
+Guo,Xu,M,Brésil,Athlétisme,Athlétisme 110 haies,Individuelles,1,20,13,19
+Shimizu,Takeshi,F,USA,Natation,Natation 100 brasse,Individuelles,1,17,16,19
+Weber,Luisa,F,Japon,Handball,Handball,Collectives,7,17,17,19
+Sakamoto,Yuna,F,Kenya,Handball,Handball,Collectives,7,6,1,8
+Fournier,Noé,F,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,9,10,5
+Mori,Yuto,F,Maroc,Handball,Handball,Collectives,7,13,12,14
+Shimizu,Rin,M,USA,Escrime,Escrime épée,Individuelles,1,16,8,11
+Dubois,Ethan,M,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,20,2,16
+Sakai,Ryota,M,Chine,Handball,Handball,Collectives,7,11,2,10
+Shimizu,Asuka,F,Australie,Volley-Ball,Volley-Ball,Collectives,6,1,4,14
+Matsumoto,Hana,F,Brésil,Natation,Natation relais libre,Collectives,4,16,9,1
+Sakamoto,Ryota,F,Chine,Athlétisme,Athlétisme 110 haies,Individuelles,1,15,6,15
+Tanaka,Yuto,F,Allemagne,Escrime,Escrime épée,Individuelles,1,1,4,20
+Mori,Riko,M,Maroc,Natation,Natation 100 brasse,Individuelles,1,12,6,6
+Laurent,Clara,M,Turquie,Athlétisme,Athlétisme 110 haies,Individuelles,1,12,13,8
+Sakai,Shiori,M,Japon,Handball,Handball,Collectives,7,10,8,6
+Guo,Chen,M,Maroc,Handball,Handball,Collectives,7,7,8,19
+Michel,Hugo,M,Turquie,Athlétisme,Athlétisme 110 haies,Individuelles,1,19,19,2
+Nakamura,Takumi,F,Kenya,Volley-Ball,Volley-Ball,Collectives,6,14,6,10
+Petit,Lola,M,Japon,Athlétisme,Athlétisme relais 400m,Collectives,4,6,3,16
+Fournier,Paul,M,Kenya,Escrime,Escrime épée,Individuelles,1,19,8,6
+Suzuki,Ryota,F,Brésil,Athlétisme,Athlétisme relais 400m,Collectives,4,4,7,4
+Sakamoto,Nana,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,13,15,10
+Ma,Hong,M,Brésil,Handball,Handball,Collectives,7,11,14,12
+Barbier,Inès,M,Brésil,Handball,Handball,Collectives,7,3,20,3
+Wang,Fang,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,12,20,14
+Ogawa,Riku,M,France,Escrime,Escrime fleuret,Individuelles,1,12,16,20
+Leroy,Gabin,F,France,Escrime,Escrime fleuret,Individuelles,1,8,13,5
+Zhu,Hong,F,Japon,Handball,Handball,Collectives,7,17,5,12
+Ishikawa,Yui,F,Japon,Athlétisme,Athlétisme relais 400m,Collectives,4,7,17,6
+Zhang,He,F,France,Volley-Ball,Volley-Ball,Collectives,6,19,10,4
+Watanabe,Takumi,F,Allemagne,Volley-Ball,Volley-Ball,Collectives,6,14,17,2
+Shimizu,Haruto,F,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,16,7,11
+Xu,Zhao,M,Chine,Volley-Ball,Volley-Ball,Collectives,6,12,2,7
+Takahashi,Kokoro,F,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,5,16,15
+Tanaka,Yuna,F,Brésil,Handball,Handball,Collectives,7,13,4,12
+Chen,Fang,F,Maroc,Escrime,Escrime épée,Individuelles,1,6,2,10
+Fontaine,Tom,M,France,Athlétisme,Athlétisme relais 400m,Collectives,4,4,1,6
+Hayashi,Hinata,M,Japon,Natation,Natation relais libre,Collectives,4,11,2,13
+Fujita,Kokoro,M,France,Escrime,Escrime fleuret,Individuelles,1,8,11,16
+Liu,Hu,M,Kenya,Natation,Natation relais libre,Collectives,4,1,18,7
+Muller,Emma,M,Turquie,Athlétisme,Athlétisme relais 400m,Collectives,4,9,19,20
+Maeda,Riku,F,Allemagne,Handball,Handball,Collectives,7,10,9,14
+Muller,Camille,M,USA,Volley-Ball,Volley-Ball,Collectives,6,12,15,17
+Dupont,Emma,M,France,Escrime,Escrime épée,Individuelles,1,1,19,20
+Takahashi,Ren,M,Chine,Handball,Handball,Collectives,7,15,2,5
+Kobayashi,Yuki,M,Kenya,Natation,Natation 100 brasse,Individuelles,1,2,13,8
+Lehmann,Maja,F,Japon,Escrime,Escrime fleuret,Individuelles,1,4,10,5
+Wu,Wang,F,Australie,Escrime,Escrime fleuret,Individuelles,1,19,18,12
+Yang,Yan,F,Japon,Athlétisme,Athlétisme 110 haies,Individuelles,1,9,16,19
+Watanabe,Takumi,F,USA,Handball,Handball,Collectives,7,13,18,20
+Matsumoto,Takumi,M,Brésil,Natation,Natation relais libre,Collectives,4,2,14,6
+Ogawa,Takeshi,F,Brésil,Handball,Handball,Collectives,7,10,9,20
+Kimura,Naoki,M,Kenya,Escrime,Escrime épée,Individuelles,1,4,16,6
+Zhou,Sun,M,Allemagne,Handball,Handball,Collectives,7,7,6,7
+Sun,Ling,M,Allemagne,Volley-Ball,Volley-Ball,Collectives,6,5,5,12
+Goto,Hiroshi,M,Brésil,Handball,Handball,Collectives,7,17,4,11
+Roux,Hugo,F,France,Volley-Ball,Volley-Ball,Collectives,6,18,1,17
+Bernard,Emma,F,Brésil,Volley-Ball,Volley-Ball,Collectives,6,1,8,4
+Schröder,Lina,M,Turquie,Athlétisme,Athlétisme relais 400m,Collectives,4,15,16,12
+Liu,Xue,F,Maroc,Natation,Natation relais libre,Collectives,4,8,3,15
+Yamamoto,Ren,F,France,Natation,Natation relais libre,Collectives,4,13,11,11
+Zhang,Jun,F,USA,Athlétisme,Athlétisme relais 400m,Collectives,4,15,18,18
+Ishii,Yusuke,F,France,Volley-Ball,Volley-Ball,Collectives,6,14,6,3
+Gao,Min,F,Maroc,Escrime,Escrime épée,Individuelles,1,5,2,7
+Lin,Min,M,Chine,Natation,Natation relais libre,Collectives,4,9,2,20
+Zhao,Xue,M,France,Volley-Ball,Volley-Ball,Collectives,6,3,9,11
+Ishii,Mio,F,Kenya,Athlétisme,Athlétisme 110 haies,Individuelles,1,2,13,1
+Ma,Li,M,Turquie,Natation,Natation relais libre,Collectives,4,15,14,17
+Lambert,Lucas,F,Brésil,Athlétisme,Athlétisme relais 400m,Collectives,4,13,10,17
+Tanaka,Shiori,M,Allemagne,Escrime,Escrime fleuret,Individuelles,1,3,14,2
+Murakami,Ren,M,USA,Volley-Ball,Volley-Ball,Collectives,6,15,17,20
+Fujita,Riku,M,Brésil,Volley-Ball,Volley-Ball,Collectives,6,15,19,11
+Zhang,Zhang,M,Australie,Handball,Handball,Collectives,7,9,9,5
+Hu,Jing,M,Brésil,Escrime,Escrime épée,Individuelles,1,4,3,12
+Yamamoto,Riku,F,France,Escrime,Escrime épée,Individuelles,1,7,16,9
+Maeda,Rina,F,Allemagne,Natation,Natation relais libre,Collectives,4,12,2,12
+Sakamoto,Akira,F,Chine,Volley-Ball,Volley-Ball,Collectives,6,7,12,10
+Yamamoto,Haruka,F,Kenya,Volley-Ball,Volley-Ball,Collectives,6,17,12,14
+Zhou,Liu,F,USA,Natation,Natation relais libre,Collectives,4,7,13,7
+Zhou,Ma,F,France,Athlétisme,Athlétisme 110 haies,Individuelles,1,7,17,14
+Schulz,Sarah,M,France,Natation,Natation relais libre,Collectives,4,10,19,5
+Fontaine,Anna,F,Maroc,Natation,Natation relais libre,Collectives,4,13,17,12
+Inoue,Aoi,M,Chine,Natation,Natation 100 brasse,Individuelles,1,7,2,4
+Faure,Louise,F,Kenya,Handball,Handball,Collectives,7,3,2,9
+Yoshida,Rin,M,Brésil,Natation,Natation 100 brasse,Individuelles,1,7,2,1
+Wagner,Lukas,F,Maroc,Escrime,Escrime fleuret,Individuelles,1,6,1,7
+Michel,Léa,F,Australie,Natation,Natation 100 brasse,Individuelles,1,15,3,11
+He,Jun,F,USA,Volley-Ball,Volley-Ball,Collectives,6,15,18,17
+Lefevre,Léa,F,USA,Escrime,Escrime fleuret,Individuelles,1,20,15,5
+Zhao,Min,M,Chine,Handball,Handball,Collectives,7,4,16,14
+Meyer,Moritz,M,Chine,Natation,Natation 100 brasse,Individuelles,1,4,5,12
+Zhou,Ling,F,Maroc,Handball,Handball,Collectives,7,15,18,19
+Lin,Xia,M,Japon,Volley-Ball,Volley-Ball,Collectives,6,17,11,10
+Durand,Sarah,M,Brésil,Athlétisme,Athlétisme 110 haies,Individuelles,1,9,18,15
+Suzuki,Akira,F,France,Athlétisme,Athlétisme relais 400m,Collectives,4,5,14,6
+Leroy,Emma,F,Kenya,Athlétisme,Athlétisme relais 400m,Collectives,4,1,12,15
+Hasegawa,Sosuke,F,Maroc,Natation,Natation 100 brasse,Individuelles,1,18,13,6
+Guo,Chen,M,Australie,Volley-Ball,Volley-Ball,Collectives,6,12,13,20
+Chen,Jun,M,Kenya,Handball,Handball,Collectives,7,12,2,9
+Guo,Ling,F,Japon,Volley-Ball,Volley-Ball,Collectives,6,15,20,19
+Wu,Guo,M,Allemagne,Handball,Handball,Collectives,7,17,7,12
+Goto,Naoki,F,Allemagne,Natation,Natation 100 brasse,Individuelles,1,7,10,10
+Robert,Lucas,F,Japon,Natation,Natation relais libre,Collectives,4,14,16,20
+Inoue,Riko,F,Australie,Athlétisme,Athlétisme 110 haies,Individuelles,1,19,17,13
+Guo,Sun,M,USA,Volley-Ball,Volley-Ball,Collectives,6,18,13,6
+Moreau,Zoé,M,Maroc,Volley-Ball,Volley-Ball,Collectives,6,18,8,10
+Zhou,Guo,M,Chine,Handball,Handball,Collectives,7,14,10,16
+Faure,Gabin,M,Allemagne,Escrime,Escrime fleuret,Individuelles,1,18,3,4
+Li,Xiang,F,Japon,Natation,Natation relais libre,Collectives,4,1,19,6
+>>>>>>> 2865fa594d7702f907eb424e7560df7d9a186aaf
