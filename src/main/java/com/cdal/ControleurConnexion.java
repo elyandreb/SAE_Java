@@ -24,23 +24,41 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
                 ConnexionBD connexionBD = appli.getConnexionBD();
                 if(l.charAt(l.length()-1)=='J'){
                     if(0<=m && m<1000){appli.pageAccueilJournaliste();}
-                    else{System.out.println("Mot de passe incorrect pour le journaliste");}
+                    else{this.popUpMdpErrone().show();this.appli.resetMdp();}
                 }
                 else if(l.charAt(l.length()-1)=='O'){
                     if(1000<=m && m<2000){appli.pageAccueilJournaliste();}
-                    else{System.out.println("Mot de passe incorrect pour l'organisateur");}
+                    else{this.popUpMdpErrone().show();this.appli.resetMdp();}
                 }
                 else if(l.charAt(l.length()-1)=='A'){
                     if(2000<=m && m<3000){appli.pageAccueilJournaliste();}
-                    else{System.out.println("Mot de passe incorrect pour l'administrateur");}
+                    else{this.popUpMdpErrone().show();this.appli.resetMdp();}
                 }
-                else{System.out.println("Identifiant incorrect");}
+                else{this.popUpIdErrone().show();}
             } else {
                 System.out.println("Le mot de passe est null ou vide");
             }
         } catch (NumberFormatException e) {
             System.out.println("Le mot de passe ne peut pas être converti en entier : " + e.getMessage());
+            this.popUpMdpErrone2().show();
+            this.appli.resetMdp();
+
         }
 
     }
+    public Alert popUpMdpErrone(){    
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Votre mot de passe doit contenir\n un nombre entre 1 et 9999  ");
+        return alert;
+    }
+
+    public Alert popUpIdErrone(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Votre identifiant doit être de la forme\n XXXXJ, XXXXO ou XXXXA");
+        return alert;
+    }
+
+    public Alert popUpMdpErrone2(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Votre mot de passe uniquement des chiffres ");
+        return alert;
+    }
+
 }
