@@ -768,4 +768,9 @@ public class AppIUTO extends Application {
     public void deconnexionReussie(){
         pageConnexion();
     }
+
+    public void resetMdp(){
+        passwdMasquer.setText("");
+        passwdVisible.setText("");
+    }
 }
