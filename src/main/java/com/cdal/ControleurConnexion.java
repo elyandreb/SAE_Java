@@ -23,15 +23,15 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
                 int m = Integer.valueOf(motDePasseStr);
                 ConnexionBD connexionBD = appli.getConnexionBD();
                 if(l.charAt(l.length()-1)=='J'){
-                    if(0<=m && m<1000){appli.pageAccueil();}
+                    if(0<=m && m<1000){appli.pageAccueilJournaliste();}
                     else{System.out.println("Mot de passe incorrect pour le journaliste");}
                 }
                 else if(l.charAt(l.length()-1)=='O'){
-                    if(1000<=m && m<2000){appli.pageAccueil();}
+                    if(1000<=m && m<2000){appli.pageAccueilJournaliste();}
                     else{System.out.println("Mot de passe incorrect pour l'organisateur");}
                 }
                 else if(l.charAt(l.length()-1)=='A'){
-                    if(2000<=m && m<3000){appli.pageAccueil();}
+                    if(2000<=m && m<3000){appli.pageAccueilJournaliste();}
                     else{System.out.println("Mot de passe incorrect pour l'administrateur");}
                 }
                 else{System.out.println("Identifiant incorrect");}
