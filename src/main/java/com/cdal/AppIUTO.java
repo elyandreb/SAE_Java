@@ -86,7 +86,7 @@ public class AppIUTO extends Application {
         oeil = new ImageView(new Image("file:img/oeil.png"));
         oeil.setOnMouseClicked(new ControleurVisibilter(this)); 
         valider = new Button("VALIDER");
-        valider.setOnAction(new ControleurValider(this));
+        valider.setOnAction(new ControleurConnexion(this));
         annuler = new Button("ANNULER");
         annuler.setOnAction(new ControleurAnnuler(this));
         profil = new ImageView(new Image("file:img/profil.png"));
