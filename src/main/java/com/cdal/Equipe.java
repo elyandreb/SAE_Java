@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
  */
 public class Equipe implements Participant, Comparable<Equipe> {
     private String nom; // Le nom de l'équipe
-    private List<Athlete> athletes; // La liste des athlètes de l'équipe
     private Pays pays; //Le pays
+    private List<Athlete> athletes; // La liste des athlètes de l'équipe
 
     /**
      * Constructeur de la classe Equipe
@@ -41,7 +41,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
      * Méthode pour obtenir le pays de l'équipe
      * @return Le pays de l'équipe
      */
-    public Pays obtenirPays() {
+    public Pays getrPays() {
         return this.pays;
     }
 
