@@ -66,12 +66,14 @@ public class AppIUTO extends Application {
     private Button deconnexion;
     private ImageView imageJ; 
     private ImageView imageO; 
-    private ImageView imageA; 
+    private ImageView imageA;
+    private TableView<Athlete> tableAthlete;
     private Label athleteNom; 
     private TextField textAthleteNom; 
     private Label athletePrenom; 
     private TextField textAthletePrenom; 
     private Button rechercher; 
+    private TableView<Equipe> tableEquipe;
     private Label equipeNom; 
     private TextField textEquipeNom; 
     private Label paysNom; 
@@ -86,7 +88,10 @@ public class AppIUTO extends Application {
     private RadioButton femme; 
     private Label athleteAgilite; 
     private Label athleteEndurance; 
-    private Label athleteForce; 
+    private Label athleteForce;
+    private Spinner<Integer> agiliteSpinner; 
+    private Spinner<Integer> enduranceSpinner; 
+    private Spinner<Integer> forceSpinner;
     private Button ajouteAthlete; 
     private Button retourAthlete; 
     private Button supprimeAthlete;
@@ -110,7 +115,8 @@ public class AppIUTO extends Application {
     private Button retourPays; 
     private Button supprimePays; 
     private Button ajouteSpt; 
-    private Button supprimeSpt; 
+    private Button supprimeSpt;
+    private TableView<Epreuve> tableSport;
     private Label nomSport; 
     private TextField textNomSport; 
     private Label nomEpreuve; 
@@ -179,11 +185,13 @@ public class AppIUTO extends Application {
         imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
         imageO = new ImageView(new Image("file:img/organisateur.jpg"));
         imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
+        tableAthlete = new TableView<>(); 
         athleteNom = new Label("Nom de l'athlète");
         textAthleteNom = new TextField();
         athletePrenom = new Label("Prénom de l'athlète");
         textAthletePrenom = new TextField();
         rechercher = new Button("RECHERCHER");
+        tableEquipe = new TableView<>();
         equipeNom = new Label("Nom de l'équipe");
         textEquipeNom = new TextField();
         paysNom = new Label("Nom du pays");
@@ -201,7 +209,11 @@ public class AppIUTO extends Application {
         athleteAgilite = new Label("Agilité");
         athleteEndurance = new Label("Endurance");
         athleteForce = new Label("Force");
+        agiliteSpinner = new Spinner<>(); 
+        forceSpinner = new Spinner<>();
+        enduranceSpinner = new Spinner<>();
         ajouteAthlete = new Button("AJOUTER");
+        ajouteAthlete.setOnAction(new ControleurAjouteAthlete(this, connexionBD, requetes));
         retourAthlete = new Button("RETOUR");
         retourAthlete.setOnAction(new ControleurAthlete(this)); 
         supprimeAthlete = new Button("SUPPRIMER"); 
@@ -210,6 +222,7 @@ public class AppIUTO extends Application {
         supprimeEqp = new Button("SUPPRIMER");
         supprimeEqp.setOnAction(new ControleurPageSupprimerEquipe(this)); 
         ajouterEquipe = new Button("AJOUTER");
+        ajouterEquipe.setOnAction(new ControleurAjouteEquipe(this, connexionBD, requetes));
         retourEquipe = new Button("RETOUR"); 
         retourEquipe.setOnAction(new ControleurEquipe(this)); 
         supprimerEquipe = new Button("SUPPRIMER");
@@ -235,14 +248,17 @@ public class AppIUTO extends Application {
         ajouteSpt.setOnAction(new ControleurPageAjouteSport(this));
         supprimeSpt = new Button("SUPPRIMER");
         supprimeSpt.setOnAction(new ControleurPageSupprimerSport(this));
+        tableSport = new TableView<>();
         nomSport = new Label("Nom du sport");
         textNomSport = new TextField();
         nomEpreuve = new Label("Nom de l'épreuve");
         textNomEpreuve = new TextField();   
         ajouteSport = new Button("AJOUTER");
+        ajouteSport.setOnAction(new ControleurAjouteSport(this, connexionBD, requetes));
         retourSport1 = new Button("RETOUR"); 
         retourSport1.setOnAction(new ControleurSport(this));
-        ajouteEpreuve = new Button("AJOUTER"); 
+        ajouteEpreuve = new Button("AJOUTER");
+        ajouteEpreuve.setOnAction(new ControleurAjouteEpreuve(this, connexionBD, requetes));
         retourSport2 = new Button("RETOUR"); 
         retourSport2.setOnAction(new ControleurSport(this));  
         supprimeSport = new Button("SUPPRIMER");
@@ -1199,8 +1215,6 @@ public class AppIUTO extends Application {
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouterAthl, supprimerAthl);
 
-        TableView<Athlete> tableAthlete = new TableView<>();
-
         TableColumn<Athlete, String> nomCol = new TableColumn<>("Nom");
         nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
@@ -1281,7 +1295,6 @@ public class AppIUTO extends Application {
         athleteAgilite.setFont(font3);
         athleteAgilite.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> agiliteSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         agiliteSpinner.setValueFactory(valeur1);
         agiliteSpinner.setStyle("-fx-font-size: 15px;");  
@@ -1293,7 +1306,6 @@ public class AppIUTO extends Application {
         athleteEndurance.setFont(font3);
         athleteEndurance.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> enduranceSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         enduranceSpinner.setValueFactory(valeur2);
         enduranceSpinner.setStyle("-fx-font-size: 15px;");  
@@ -1305,7 +1317,6 @@ public class AppIUTO extends Application {
         athleteForce.setFont(font3);
         athleteForce.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> forceSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         forceSpinner.setValueFactory(valeur3);
         forceSpinner.setStyle("-fx-font-size: 15px;");  
@@ -1469,7 +1480,6 @@ public class AppIUTO extends Application {
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouteEqp, supprimeEqp);
 
-        TableView<Equipe> tableEquipe = new TableView<>();
         tableEquipe.setPrefHeight(450);
 
         TableColumn<Equipe, String> nomCol = new TableColumn<>("Nom");
@@ -1875,7 +1885,6 @@ public class AppIUTO extends Application {
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouteSpt, supprimeSpt);
 
-        TableView<Epreuve> tableSport = new TableView<>();
         tableSport.setPrefHeight(450);
 
         TableColumn<Epreuve, String> nomCol = new TableColumn<>("Nom");
@@ -2116,6 +2125,30 @@ public class AppIUTO extends Application {
     public int getBronzeSpinner(){return this.bronzeSpinner.getValue();}
 
     public TableView<Pays> getTablePays() {return this.tablePays;}
+
+    public String getTextAthleteNom(){return this.textAthleteNomAjoute.getText();}
+
+    public String getTextAthletePrenom(){return this.textAthletePrenomAjoute.getText();}
+
+    public String getSexeAthlete(){if(homme.isSelected()){return "M";}else{return "F";}}
+
+    public int getAgiliteSpinner(){return this.agiliteSpinner.getValue();}
+
+    public int getEnduranceSpinner(){return this.enduranceSpinner.getValue();}
+
+    public int getForceSpinner(){return this.forceSpinner.getValue();}
+
+    public TableView<Athlete> getTableAthlete() {return this.tableAthlete;}
+
+    public String getTextEquipeNom(){return this.textEquipeNom.getText();}
+
+    public TableView<Equipe> getTableEquipe() {return this.tableEquipe;}
+
+    public String getTextNomSport(){return this.textNomSport.getText();}
+
+    public String getTextNomEpreuve(){return this.textNomEpreuve.getText();}
+
+    public TableView<Epreuve> getTableSport() {return this.tableSport;}
 
     @Override
     public void start(Stage stage) {
