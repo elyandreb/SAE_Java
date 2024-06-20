@@ -76,7 +76,7 @@ public class EpreuveTest {
     public void testAjouteParticipantEpreuveValide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.ajouteParticipantEpreuve(participant);
         List<Participant> listeParticipants = new ArrayList<>();
         listeParticipants.add(participant);
@@ -87,7 +87,7 @@ public class EpreuveTest {
     public void testAjouteParticipantEpreuveInvalide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.ajouteParticipantEpreuve(participant);
         epreuve.ajouteParticipantEpreuve(participant); 
     }
@@ -96,7 +96,7 @@ public class EpreuveTest {
     public void testSupprimeParticipantEpreuveValide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.ajouteParticipantEpreuve(participant);
         epreuve.supprimeParticipantEpreuve(participant);
         assertEquals(new ArrayList<Participant>(), epreuve.getParticipants());
@@ -106,7 +106,7 @@ public class EpreuveTest {
     public void testSupprimeParticipantEpreuveInvalide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.supprimeParticipantEpreuve(participant); 
     }
 
@@ -114,7 +114,7 @@ public class EpreuveTest {
     public void testRechercheParticipantEpreuveValide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.ajouteParticipantEpreuve(participant);
         assertEquals(participant, epreuve.rechercheParticipantEpreuve(participant));
     }
@@ -123,7 +123,7 @@ public class EpreuveTest {
     public void testRechercheParticipantEpreuveInvalide() {
         Sport natation = new Natation("Natation", "Individuel", 1);
         Epreuve epreuve = new Epreuve("Natation : 100m brasse femmes", "F", natation);
-        Participant participant = new Athlete("Doe", "John", "Homme", 80, 70, 90);
+        Participant participant = new Athlete("Doe", "John", "H", 80, 70, 90);
         epreuve.rechercheParticipantEpreuve(participant); 
     }
 
