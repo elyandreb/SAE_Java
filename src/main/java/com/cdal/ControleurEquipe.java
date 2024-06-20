@@ -13,7 +13,16 @@ public class ControleurEquipe implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pageEquipeOrganisateur();
+        String l = appli.getLogin();
+        if(l.charAt(l.length()-1)=='J'){
+            appli.pageEquipeJournaliste();
+        }
+        else if(l.charAt(l.length()-1)=='O'){
+            appli.pageEquipeOrganisateur();
+        }
+        else if(l.charAt(l.length()-1)=='A'){
+            appli.pageEquipeAdministrateur();
+        }
     }
     
 }
