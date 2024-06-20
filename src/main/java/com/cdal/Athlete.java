@@ -221,7 +221,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      */
     @Override 
     public double resultat(Epreuve epreuve) {
-        double res = ((this.force + this.agilite + this.endurance) / 3);
+        double res = ((this.force + this.agilite + this.endurance) / 3)*Math.random();
         System.out.println("Résultat de " + this.nom + " dans l'épreuve de " + epreuve.getNom() + " : " + res);
         return res;
     }

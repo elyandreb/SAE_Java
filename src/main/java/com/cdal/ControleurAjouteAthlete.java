@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 public class ControleurAjouteAthlete implements EventHandler<ActionEvent> {
     
     private AppIUTO appli;
+    private ConnexionBD connexionBD;
+    private RequeteJDBC requetes;
     
     public ControleurAjouteAthlete(AppIUTO appli){
         this.appli = appli;
@@ -13,7 +15,7 @@ public class ControleurAjouteAthlete implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pageAjouteAthlete();
+        
     }
     
 }

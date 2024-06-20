@@ -114,7 +114,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
         double res = 0;
         int cpt = 0;
         for (int i = 0; i < this.athletes.size(); ++i) {
-            res += ((athletes.get(i).getForce() + athletes.get(i).getAgilite() + athletes.get(i).getEndurance()) / 3);
+            res += ((athletes.get(i).getForce() + athletes.get(i).getAgilite() + athletes.get(i).getEndurance()) / 3)*Math.random();
             cpt += 1;
         }
         if (cpt == 0) {

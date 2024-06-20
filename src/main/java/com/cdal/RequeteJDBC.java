@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequeteJDBC {
+    private AppIUTO appli;
     private ConnexionBD laConnexion;
     private Statement st;
     

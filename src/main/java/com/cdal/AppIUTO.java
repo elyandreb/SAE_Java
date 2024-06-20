@@ -35,6 +35,7 @@ import javafx.scene.text.TextFlow;
 public class AppIUTO extends Application {
 
     private ConnexionBD connexionBD;
+    private RequeteJDBC requetes;
     private BorderPane pagePrincipale;
     private ImageView logoJO;
     private ImageView logoIUT;
@@ -95,12 +96,16 @@ public class AppIUTO extends Application {
     private Button retourEquipe; 
     private Button supprimerEquipe; 
     private Button ajoutePs; 
-    private Button supprimePs; 
+    private Button supprimePs;
+    private TableView<Pays> tablePays; 
     private Label nomPaysAjoute; 
     private TextField textPaysAjoute; 
     private Label orPaysAjoute; 
     private Label argentPaysAjoute; 
     private Label bronzePaysAjoute; 
+    private Spinner<Integer> orSpinner; 
+    private Spinner<Integer> argentSpinner; 
+    private Spinner<Integer> bronzeSpinner; 
     private Button ajoutePays; 
     private Button retourPays; 
     private Button supprimePays; 
@@ -133,6 +138,7 @@ public class AppIUTO extends Application {
         } catch (SQLException e) {
             System.out.println("Problèmes SQL (mdp?)");
         }
+        requetes = new RequeteJDBC(connexionBD);
         pagePrincipale = new BorderPane();
         logoJO = new ImageView(new Image("file:img/logoJO.png"));
         logoIUT = new ImageView(new Image("file:img/logoIUT.png"));
@@ -211,12 +217,17 @@ public class AppIUTO extends Application {
         ajoutePs.setOnAction(new ControleurPageAjoutePays(this));
         supprimePs = new Button("SUPPRIMER");  
         supprimePs.setOnAction(new ControleurPageSupprimerPays(this));
+        tablePays = new TableView<>();
         nomPaysAjoute = new Label("Nom du pays");
         textPaysAjoute = new TextField(); 
         orPaysAjoute = new Label("Nombre de médailles d'or");
         argentPaysAjoute = new Label("Nombre de médailles d'argent");
-        bronzePaysAjoute = new Label("Nombre de médailles de bronze");    
+        bronzePaysAjoute = new Label("Nombre de médailles de bronze");
+        orSpinner = new Spinner<>(); 
+        argentSpinner = new Spinner<>(); 
+        bronzeSpinner = new Spinner<>();    
         ajoutePays = new Button("AJOUTER");
+        ajoutePays.setOnAction(new ControleurAjoutePays(this, connexionBD, requetes));
         retourPays = new Button("RETOUR");  
         retourPays.setOnAction(new ControleurPays(this));
         supprimePays = new Button("SUPPRIMER"); 
@@ -1637,7 +1648,6 @@ public class AppIUTO extends Application {
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajoutePs, supprimePs);
 
-        TableView<Pays> tablePays = new TableView<>();
         tablePays.setPrefHeight(450);
 
         TableColumn<Pays, String> nomCol = new TableColumn<>("Nom");
@@ -1652,10 +1662,7 @@ public class AppIUTO extends Application {
         TableColumn<Pays, Integer> bronzeCol = new TableColumn<>("Bronze");
         bronzeCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesBronze"));
 
-        TableColumn<Pays, Integer> totalCol = new TableColumn<>("Total");
-        totalCol.setCellValueFactory(new PropertyValueFactory<>("totalMedailles"));
-
-        tablePays.getColumns().addAll(nomCol, orCol, argentCol, bronzeCol, totalCol);
+        tablePays.getColumns().addAll(nomCol, orCol, argentCol, bronzeCol);
         tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tablePays);
@@ -1691,7 +1698,6 @@ public class AppIUTO extends Application {
         orPaysAjoute.setFont(font3);
         orPaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> orSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         orSpinner.setValueFactory(valeur1);
         orSpinner.setStyle("-fx-font-size: 15px;");  
@@ -1704,7 +1710,6 @@ public class AppIUTO extends Application {
         argentPaysAjoute.setFont(font3);
         argentPaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> argentSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         argentSpinner.setValueFactory(valeur2);
         argentSpinner.setStyle("-fx-font-size: 15px;");  
@@ -1717,7 +1722,6 @@ public class AppIUTO extends Application {
         bronzePaysAjoute.setFont(font3);
         bronzePaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
-        Spinner<Integer> bronzeSpinner = new Spinner<>();
         SpinnerValueFactory<Integer> valeur3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         bronzeSpinner.setValueFactory(valeur3);
         bronzeSpinner.setStyle("-fx-font-size: 15px;");
@@ -2077,7 +2081,6 @@ public class AppIUTO extends Application {
         passwdVisible.setText("");
         textAthleteNom.setText("");
         textAthletePrenom.setText("");
-        textPaysNom.setText("");
     }
 
     public String getMotDePasse() {
@@ -2103,6 +2106,16 @@ public class AppIUTO extends Application {
     public void effacerMessageErreur() {
         erreurLabel.setText(""); 
     }
+
+    public String getTextPaysAjoute(){return this.textPaysAjoute.getText();}
+
+    public int getOrSpinner(){return this.orSpinner.getValue();}
+
+    public int getArgentSpinner(){return this.argentSpinner.getValue();}
+
+    public int getBronzeSpinner(){return this.bronzeSpinner.getValue();}
+
+    public TableView<Pays> getTablePays() {return this.tablePays;}
 
     @Override
     public void start(Stage stage) {
