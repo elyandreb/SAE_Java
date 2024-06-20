@@ -62,6 +62,9 @@ public class AppIUTO extends Application {
     private Button sport; 
     private ImageView deco; 
     private Button deconnexion;
+    private ImageView imageJ; 
+    private ImageView imageO; 
+    private ImageView imageA; 
     private Label athleteNom; 
     private TextField textAthleteNom; 
     private Label athletePrenom; 
@@ -165,6 +168,9 @@ public class AppIUTO extends Application {
         deco = new ImageView(new Image("file:img/deco.png"));
         deconnexion = new Button("DECONNEXION");
         deconnexion.setOnAction(new ControleurDeconnexion(this));
+        imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
+        imageO = new ImageView(new Image("file:img/organisateur.jpg"));
+        imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
         athleteNom = new Label("Nom de l'athlète");
         textAthleteNom = new TextField();
         athletePrenom = new Label("Prénom de l'athlète");
@@ -488,7 +494,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(650);
 
-        ImageView imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
         imageJ.setFitWidth(565); 
         imageJ.setFitHeight(370);
 
@@ -1339,7 +1344,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(600);
 
-        ImageView imageO = new ImageView(new Image("file:img/organisateur.jpg"));
         imageO.setFitWidth(565); 
         imageO.setFitHeight(315);
 
@@ -2524,7 +2528,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(600);
 
-        ImageView imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
         imageA.setFitWidth(565); 
         imageA.setFitHeight(300);
 
