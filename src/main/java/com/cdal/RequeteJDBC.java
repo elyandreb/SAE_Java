@@ -120,9 +120,9 @@ public class RequeteJDBC {
         ps.execute();
     }
 
-    public void effacerEquipe(Equipe e) throws SQLException {
+    public void effacerEquipe(String nomEq) throws SQLException {
 		PreparedStatement ps = this.laConnexion.prepareStatement("delete from EQUIPE where nomEq = ?");
-		ps.setString(1, e.obtenirNom());
+		ps.setString(1, nomEq);
 		ps.execute();
 	}
     public void maJEquipe(Equipe e,Pays p) throws SQLException {
