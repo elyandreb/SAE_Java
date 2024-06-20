@@ -14,31 +14,39 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        String l=appli.getLogin();
+        String l = appli.getLogin();
         try {
             String motDePasseStr = appli.getMotDePasse();
             if (motDePasseStr != null && !motDePasseStr.isEmpty()) {
                 int m = Integer.valueOf(motDePasseStr);
                 ConnexionBD connexionBD = appli.getConnexionBD();
-                if(l.charAt(l.length()-1)=='J'){
-                    if(0<=m && m<1000){appli.pageAccueilJournaliste();}
-                    else{System.out.println("Mot de passe incorrect pour le journaliste");}
+                if (l.charAt(l.length() - 1) == 'J') {
+                    if (0 <= m && m < 1000) {
+                        appli.pageAccueilJournaliste();
+                    } else {
+                        appli.setErreurMessage("Mot de passe incorrect pour le journaliste");
+                    }
+                } else if (l.charAt(l.length() - 1) == 'O') {
+                    if (1000 <= m && m < 2000) {
+                        appli.pageAccueilOrganisateur();
+                    } else {
+                        appli.setErreurMessage("Mot de passe incorrect pour l'organisateur");
+                    }
+                } else if (l.charAt(l.length() - 1) == 'A') {
+                    if (2000 <= m && m < 3000) {
+                        appli.pageAccueilAdministrateur();
+                    } else {
+                        appli.setErreurMessage("Mot de passe incorrect pour l'administrateur");
+                    }
+                } else {
+                    appli.setErreurMessage("Identifiant incorrect");
                 }
-                else if(l.charAt(l.length()-1)=='O'){
-                    if(1000<=m && m<2000){appli.pageAccueilOrganisateur();}
-                    else{System.out.println("Mot de passe incorrect pour l'organisateur");}
-                }
-                else if(l.charAt(l.length()-1)=='A'){
-                    if(2000<=m && m<3000){appli.pageAccueilAdministrateur();}
-                    else{System.out.println("Mot de passe incorrect pour l'administrateur");}
-                }
-                else{System.out.println("Identifiant incorrect");}
             } else {
-                System.out.println("Le mot de passe est null ou vide");
+                appli.setErreurMessage("Le mot de passe ou l'identifiant est vide");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Le mot de passe ne peut pas être converti en entier : " + e.getMessage());
+            appli.setErreurMessage("Le mot de passe doit être un entier");
         }
-
     }
+
 }
