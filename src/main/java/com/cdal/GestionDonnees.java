@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DataManager {
+public class GestionDonnees {
     public final Set<Pays> pays;
     public final Set<Athlete> athletes;
     public final Set<Equipe> equipes;
@@ -15,7 +15,7 @@ public class DataManager {
     public final Set<Sport> sports;
     
 
-    public DataManager() {
+    public GestionDonnees() {
         pays = new HashSet<Pays>();
         athletes = new HashSet<Athlete>();
         equipes = new HashSet<Equipe>();
@@ -142,8 +142,8 @@ public class DataManager {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if(!(obj instanceof DataManager)) return false;
-        DataManager other = (DataManager) obj;
+        if(!(obj instanceof GestionDonnees)) return false;
+        GestionDonnees other = (GestionDonnees) obj;
         return this.pays.equals(other.pays) 
         && this.athletes.equals(other.athletes) 
         && this.equipes.equals(other.equipes) 
