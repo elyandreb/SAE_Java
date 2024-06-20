@@ -217,6 +217,7 @@ public class AppIUTO extends Application {
         retourAthlete = new Button("RETOUR");
         retourAthlete.setOnAction(new ControleurAthlete(this)); 
         supprimeAthlete = new Button("SUPPRIMER"); 
+        supprimeAthlete.setOnAction(new ControleurSupprimerAthlete(this));
         ajouteEqp = new Button("AJOUTER");
         ajouteEqp.setOnAction(new ControleurPageAjouteEquipe(this));
         supprimeEqp = new Button("SUPPRIMER");
@@ -226,6 +227,7 @@ public class AppIUTO extends Application {
         retourEquipe = new Button("RETOUR"); 
         retourEquipe.setOnAction(new ControleurEquipe(this)); 
         supprimerEquipe = new Button("SUPPRIMER");
+        supprimeEquipe.setOnAction(new ControleurSupprimerEquipe(this));
         ajoutePs = new Button("AJOUTER");
         ajoutePs.setOnAction(new ControleurPageAjoutePays(this));
         supprimePs = new Button("SUPPRIMER");  
@@ -244,6 +246,7 @@ public class AppIUTO extends Application {
         retourPays = new Button("RETOUR");  
         retourPays.setOnAction(new ControleurPays(this));
         supprimePays = new Button("SUPPRIMER"); 
+        supprimePays.setOnAction(new ControleurSupprimerPays(this));
         ajouteSpt = new Button("AJOUTER");
         ajouteSpt.setOnAction(new ControleurPageAjouteSport(this));
         supprimeSpt = new Button("SUPPRIMER");
@@ -262,6 +265,7 @@ public class AppIUTO extends Application {
         retourSport2 = new Button("RETOUR"); 
         retourSport2.setOnAction(new ControleurSport(this));  
         supprimeSport = new Button("SUPPRIMER");
+        supprimeSport.setOnAction(new ControleurSupprimerSport(this));
         lesEpreuves = new ComboBox<>(); 
         supprimeEpreuve = new Button("SUPPRIMER");
         titreOrganisateur = new Label("ORGANISATEUR");  
