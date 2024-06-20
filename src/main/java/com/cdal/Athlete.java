@@ -32,7 +32,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
         if (prenom == null || prenom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le prénom de l'athlète ne peut pas être vide ou null.");
         }
-        if (!(sexe.equals("Homme") || sexe.equals("Femme"))) {
+        if (!(sexe.equals("H") || sexe.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format du sexe n'est pas respecter.");
         }
         if (force < 0) {
@@ -132,7 +132,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * @throws IllegalArgumentException Si le format du sexe n'est pas respecté ou si le sexe est vide ou null
      */
     public void setSexe(String nouveauSexe) throws IllegalArgumentException {
-        if (!(nouveauSexe.equals("Homme") || nouveauSexe.equals("Femme"))) {
+        if (!(nouveauSexe.equals("H") || nouveauSexe.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format du sexe n'est pas respecter.");
         }
         this.sexe = nouveauSexe;

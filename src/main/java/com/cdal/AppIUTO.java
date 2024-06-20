@@ -62,6 +62,9 @@ public class AppIUTO extends Application {
     private Button sport; 
     private ImageView deco; 
     private Button deconnexion;
+    private ImageView imageJ; 
+    private ImageView imageO; 
+    private ImageView imageA; 
     private Label athleteNom; 
     private TextField textAthleteNom; 
     private Label athletePrenom; 
@@ -165,6 +168,9 @@ public class AppIUTO extends Application {
         deco = new ImageView(new Image("file:img/deco.png"));
         deconnexion = new Button("DECONNEXION");
         deconnexion.setOnAction(new ControleurDeconnexion(this));
+        imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
+        imageO = new ImageView(new Image("file:img/organisateur.jpg"));
+        imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
         athleteNom = new Label("Nom de l'athlète");
         textAthleteNom = new TextField();
         athletePrenom = new Label("Prénom de l'athlète");
@@ -488,7 +494,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(650);
 
-        ImageView imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
         imageJ.setFitWidth(565); 
         imageJ.setFitHeight(370);
 
@@ -1339,7 +1344,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(600);
 
-        ImageView imageO = new ImageView(new Image("file:img/organisateur.jpg"));
         imageO.setFitWidth(565); 
         imageO.setFitHeight(315);
 
@@ -2524,7 +2528,6 @@ public class AppIUTO extends Application {
         textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
         textFlow1.setPrefWidth(600);
 
-        ImageView imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
         imageA.setFitWidth(565); 
         imageA.setFitHeight(300);
 
@@ -2901,8 +2904,8 @@ public class AppIUTO extends Application {
         athleteAgilite.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> agiliteSpinner = new Spinner<>();
-        SpinnerValueFactory<Integer> valeur = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
-        agiliteSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        agiliteSpinner.setValueFactory(valeur1);
         agiliteSpinner.setStyle("-fx-font-size: 15px;");  
 
         HBox agiliteBox = new HBox();
@@ -2913,7 +2916,8 @@ public class AppIUTO extends Application {
         athleteEndurance.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> enduranceSpinner = new Spinner<>();
-        enduranceSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        enduranceSpinner.setValueFactory(valeur2);
         enduranceSpinner.setStyle("-fx-font-size: 15px;");  
 
         HBox enduranceBox = new HBox();
@@ -2924,7 +2928,8 @@ public class AppIUTO extends Application {
         athleteForce.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> forceSpinner = new Spinner<>();
-        forceSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        forceSpinner.setValueFactory(valeur3);
         forceSpinner.setStyle("-fx-font-size: 15px;");  
 
         HBox forceBox = new HBox();
@@ -3944,8 +3949,8 @@ public class AppIUTO extends Application {
         orPaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> orSpinner = new Spinner<>();
-        SpinnerValueFactory<Integer> valeur = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
-        orSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        orSpinner.setValueFactory(valeur1);
         orSpinner.setStyle("-fx-font-size: 15px;");  
         orSpinner.setPrefWidth(150);
 
@@ -3957,7 +3962,8 @@ public class AppIUTO extends Application {
         argentPaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> argentSpinner = new Spinner<>();
-        argentSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        argentSpinner.setValueFactory(valeur2);
         argentSpinner.setStyle("-fx-font-size: 15px;");  
         argentSpinner.setPrefWidth(150);
 
@@ -3969,7 +3975,8 @@ public class AppIUTO extends Application {
         bronzePaysAjoute.setStyle("-fx-text-fill: #7a1a64;"); 
 
         Spinner<Integer> bronzeSpinner = new Spinner<>();
-        bronzeSpinner.setValueFactory(valeur);
+        SpinnerValueFactory<Integer> valeur3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
+        bronzeSpinner.setValueFactory(valeur3);
         bronzeSpinner.setStyle("-fx-font-size: 15px;");
         bronzeSpinner.setPrefWidth(150);  
 
