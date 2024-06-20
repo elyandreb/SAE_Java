@@ -156,11 +156,14 @@ public class RecupDonnees {
             for(Epreuve epr: this.gestion.getEpreuves()){
                 if(!(epr.rechercheParticipantEpreuve(a)==null)){ep = epr;}
             }
-            List<Athlete> l = dico.get(Pair.with(ep.getNom(), a.obtenirSexe()));
+            List<Athlete> l = dico.get(new Pair<>(ep.getNom(), a.obtenirSexe()));
             if(l==null){
                 l=new ArrayList<Athlete>();
-                dico.put(ep, l);}
+                dico.put(new Pair<>(ep.getNom(), a.obtenirSexe()), l);}
             l.add(a);
+            for(Epreuve e : this.gestion.getEpreuves()){
+                
+            }
             ajouteAthlete(a, null, p);
             ajoutePays(p);
             ajouteEquipe(null, p);
