@@ -12,6 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import javafx.util.Pair;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
 public class RecupDonnees {
     private GestionDonnees gestion;
     private Statement st;
@@ -32,6 +38,9 @@ public class RecupDonnees {
 		rs.close();
 		return 0;}
 
+    /*
+     * Permet de passer du csv vers du java
+     */
     public void chargerCSV(String nomdufichier) throws FileNotFoundException{
         Scanner scanner = new Scanner(new File(nomdufichier));
         scanner.nextLine();
@@ -74,12 +83,15 @@ public class RecupDonnees {
         scanner.close();
     }
 
+    /*
+     * Permet de passer java vers du csv
+     */
     public void sauvegarderCSV(String nomdufichier) throws FileNotFoundException{
         File f = new File(nomdufichier);
         PrintWriter pw = new PrintWriter(f);
         Pays p = null;
         Epreuve e = null;
-        pw.println("Nom,Prénom,Sexe,Pays,Sport,Épreuve,,Catégorie,NombreJoueurs,Force,Endurance,Agilite");
+        pw.println("Nom,Prénom,Sexe,Pays,Sport,Épreuve,Catégorie,NombreJoueurs,Force,Endurance,Agilite");
         for(Athlete a : gestion.getAthletes()){
             for(Pays pays: this.gestion.getPays()){
                 if(!(pays.rechercheAthlete(a)==null)){p = pays;}
@@ -92,8 +104,11 @@ public class RecupDonnees {
         pw.close();
     }
 
-    public void chargerSQl(ConnexionBD connexionBD) throws SQLException{
-        Statement st = connexionBD.createStatement();
+    /*
+     * Permet de passer sql vers du java
+     */
+    public void chargerSQl() throws SQLException{
+        Statement st = laConnexion.createStatement();
         ResultSet pays = st.executeQuery("SELECT * FROM PAYS");
 
         while (pays.next()) {
@@ -127,8 +142,32 @@ public class RecupDonnees {
         }
     }
 
+    /*
+     * Permet de passer du java vers du sql
+     */
+    public void sauvegarderSQL() throws SQLException{
+        HashMap<Pair<String, String>, List<Athlete>> dico = new HashMap<>();
+        Pays p = null;
+        Epreuve ep = null;
+        for(Athlete a : gestion.getAthletes()){
+            for(Pays pays: this.gestion.getPays()){
+                if(!(pays.rechercheAthlete(a)==null)){p = pays;}
+            }
+            for(Epreuve epr: this.gestion.getEpreuves()){
+                if(!(epr.rechercheParticipantEpreuve(a)==null)){ep = epr;}
+            }
+            List<Athlete> l = dico.get(Pair.with(ep.getNom(), a.obtenirSexe()));
+            if(l==null){
+                l=new ArrayList<Athlete>();
+                dico.put(ep, l);}
+            l.add(a);
+            ajouteAthlete(a, null, p);
+            ajoutePays(p);
+            ajouteEquipe(null, p);
+        }
+    }
 
-    public int ajoutAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
+    public int ajouteAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("insert into ATHLETE values (?,?,?,?,?,?,?,?,?)");
         int id = maxNumAthlete() + 1;
         ps.setInt(1,id);
@@ -151,7 +190,7 @@ public class RecupDonnees {
 		ps.execute();
 	}
 
-    public void MajAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
+    public void majAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE ATHLETE set idA = ?,"+"nomA = ?,"+"prenomA= ?,"+"sexeA = ?,"+"force = ?,"+"agilite = ?,"+"endurance = ?,"+"nomEq = nomEq,"+"nomP = nomP");
         int id = maxNumAthlete() + 1;
         ps.setInt(1,id);
@@ -167,7 +206,7 @@ public class RecupDonnees {
     }
 
 
-    public void AjoutEquipe(Equipe e,Pays p) throws SQLException {
+    public void ajouteEquipe(Equipe e,Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?)");
         ps.setString(1,e.obtenirNom());
         ps.setString(2, e.obtenirSexe());
@@ -180,7 +219,7 @@ public class RecupDonnees {
 		ps.setString(1, e.obtenirNom());
 		ps.execute();
 	}
-    public void MaJEquipe(Equipe e,Pays p) throws SQLException {
+    public void maJEquipe(Equipe e,Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE EQUIPE set nomEq = ?,"+"sexeE = ?,"+"nomP = ?");
         ps.setString(1, e.obtenirNom());
         ps.setString(2, e.obtenirSexe());
@@ -188,7 +227,7 @@ public class RecupDonnees {
         ps.executeUpdate();
     }
 
-    public void AjoutPays(Pays p) throws SQLException {
+    public void ajoutePays(Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("Insert into PAYS values (?,?,?,?)");
         ps.setString(1, p.getNom());
         ps.setInt(2, p.getNbMedaillesOr());
@@ -203,7 +242,7 @@ public class RecupDonnees {
         ps.execute();
     }
 
-    public void MaJPays(Pays p) throws SQLException {
+    public void maJPays(Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("upadte IGNORE PAYS set nomP = ?,"+"medailleOR = ?,"+"medailleARGENT = ?,"+"medailleBRONZE = ?");
         ps.setString(1, p.getNom());
         ps.setInt(2, p.getNbMedaillesOr());
@@ -211,4 +250,21 @@ public class RecupDonnees {
         ps.setInt(4, p.getNbMedaillesBronze());
         ps.executeUpdate();
     }
+
+    public void lancegcsv(){
+    try {
+        String pythonInterpreter = "python3";
+        String pythonScriptPath = "gcsv.py";
+        ProcessBuilder processBuilder = new ProcessBuilder(pythonInterpreter, pythonScriptPath);
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        //while ((line = reader.readLine()) != null) {
+        //    System.out.println(line);
+        //}
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }
