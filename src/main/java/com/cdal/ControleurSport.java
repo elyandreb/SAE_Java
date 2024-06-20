@@ -13,7 +13,16 @@ public class ControleurSport implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pageSportOrganisateur();
+        String l = appli.getLogin();
+        if(l.charAt(l.length()-1)=='J'){
+            appli.pageSportJournaliste();
+        }
+        else if(l.charAt(l.length()-1)=='O'){
+            appli.pageSportOrganisateur();
+        }
+        else if(l.charAt(l.length()-1)=='A'){
+            appli.pageSportAdministrateur();
+        }
     }
     
 }

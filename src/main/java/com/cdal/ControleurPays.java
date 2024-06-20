@@ -13,7 +13,16 @@ public class ControleurPays implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pagePaysOrganisateur();
+        String l = appli.getLogin();
+        if(l.charAt(l.length()-1)=='J'){
+            appli.pagePaysJournaliste();
+        }
+        else if(l.charAt(l.length()-1)=='O'){
+            appli.pagePaysOrganisateur();
+        }
+        else if(l.charAt(l.length()-1)=='A'){
+            appli.pagePaysAdministrateur();
+        }
     }
     
 }

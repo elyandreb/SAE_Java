@@ -13,7 +13,16 @@ public class ControleurAccueil implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent e){
-        appli.pageAccueilOrganisateur();
+        String l = appli.getLogin();
+        if(l.charAt(l.length()-1)=='J'){
+            appli.pageAccueilJournaliste();
+        }
+        else if(l.charAt(l.length()-1)=='O'){
+            appli.pageAccueilOrganisateur();
+        }
+        else if(l.charAt(l.length()-1)=='A'){
+            appli.pageAccueilAdministrateur();
+        }
     }
     
 }

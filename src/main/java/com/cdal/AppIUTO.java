@@ -28,7 +28,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 public class AppIUTO extends Application {
 
@@ -111,27 +113,11 @@ public class AppIUTO extends Application {
     private Button supprimeSport;
     private ComboBox<Epreuve> lesEpreuves;  
     private Button supprimeEpreuve; 
-    private Label titreOrganisateur; 
-    private Button resultatAthlete; 
-    private Label meilleurAthlete; 
-    private Label meilleurResA; 
-    private Label pireAthlete; 
-    private Label pireResA; 
-    private Button retourResAthlete; 
-    private Button resultatEquipe; 
-    private Label meilleurEquipe; 
-    private Label meilleurResE; 
-    private Label pireEquipe; 
-    private Label pireResE; 
-    private Button retourResEquipe; 
-    private Button resultatPays; 
-    private Label meilleurPays; 
-    private Label meilleurResP; 
-    private Label pirePays; 
-    private Label pireResP; 
-    private Button retourResPays; 
+    private Label titreOrganisateur;  
     private Button lancerEpreuve; 
     private Button lancer; 
+    private Button enregistrerEpreuve; 
+    private Button enregistrer; 
 
     @Override
     public void init() {
@@ -163,6 +149,7 @@ public class AppIUTO extends Application {
         ligneBlanche = new Region();
         home = new ImageView(new Image("file:img/home.png"));
         accueil = new Button("ACCUEIL");
+        accueil.setOnAction(new ControleurAccueil(this));
         athl = new ImageView(new Image("file:img/athlete.png"));
         athlete = new Button("ATHLETE");
         athlete.setOnAction(new ControleurAthlete(this));
@@ -243,33 +230,12 @@ public class AppIUTO extends Application {
         lesEpreuves = new ComboBox<>(); 
         supprimeEpreuve = new Button("SUPPRIMER");
         titreOrganisateur = new Label("ORGANISATEUR");  
-        resultatAthlete = new Button("AFFICHER RESULTATS");
-        resultatAthlete.setOnAction(new ControleurResultatAthlete(this));  
-        meilleurAthlete = new Label("Meilleur athlète : "); 
-        meilleurResA = new Label("Meilleur résultat : ");
-        pireAthlete = new Label("Pire athlète : ");
-        pireResA = new Label("Pire résultat : ");   
-        retourResAthlete = new Button("RETOUR");
-        retourResAthlete.setOnAction(new ControleurAthlete(this)); 
-        resultatEquipe = new Button("AFFICHER RESULTATS");
-        resultatEquipe.setOnAction(new ControleurResultatEquipe(this));
-        meilleurEquipe = new Label("Meilleur équipe : "); 
-        meilleurResE = new Label("Meilleur résultat : ");
-        pireEquipe = new Label("Pire équipe : ");
-        pireResE = new Label("Pire résultat : ");   
-        retourResEquipe = new Button("RETOUR"); 
-        retourResEquipe.setOnAction(new ControleurEquipe(this));
-        resultatPays = new Button("AFFICHER RESULTATS"); 
-        resultatPays.setOnAction(new ControleurResultatPays(this));
-        meilleurPays = new Label("Meilleur pays : "); 
-        meilleurResP = new Label("Meilleur résultat : ");
-        pirePays = new Label("Pire pays : ");
-        pireResP = new Label("Pire résultat : ");   
-        retourResPays = new Button("RETOUR"); 
-        retourResPays.setOnAction(new ControleurPays(this));
         lancerEpreuve = new Button("LANCER EPREUVE"); 
         lancerEpreuve.setOnAction(new ControleurLancerEpreuve(this));
-        lancer = new Button("LANCER EPREUVE"); 
+        lancer = new Button("LANCER EPREUVE");
+        enregistrerEpreuve = new Button("ENREGISTRER EPREUVE");
+        enregistrerEpreuve.setOnAction(new ControleurEnregistrerEpreuve(this));
+        enregistrer = new Button("ENREGISTRER EPREUVE"); 
     }
 
     private Scene laScene() {
@@ -495,8 +461,45 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setPrefSize(700, 725);
-        contenu.setStyle("-fx-background-color : #ffffff;");
+        contenu.setPadding(new Insets(20, 20, 30, 20));
+        contenu.setAlignment(Pos.CENTER);
+        contenu.setStyle("-fx-background-color: #ffffff;");
         contenu.setSpacing(100);
+
+        Font fontTitre = Font.font("Arial", FontWeight.BOLD, 20);
+
+        Font fontTexte = Font.font("Arial", FontWeight.NORMAL, 15);
+
+        String l = getLogin();
+
+        Label titreAccueil = new Label("Bienvenue " + l + " !");
+        titreAccueil.setFont(fontTitre);
+        titreAccueil.setStyle("-fx-text-fill: #7a1a64;");
+
+        Text para1 = new Text(
+        "Votre rôle principal dans cette application est de consulter efficacement les résultats des épreuves olympiques. "
+        + "Accédez aux performances des athlètes et des équipes dans des disciplines comme la natation, le volley-ball, l’escrime, l’athlétisme et le handball. "
+        + "Utilisez une interface conviviale pour suivre les classements par épreuve et visualiser les palmarès des médailles par pays, "
+        + "facilitant ainsi la création de rapports détaillés pour votre audience."
+        );
+        para1.setFont(fontTexte);
+
+        TextFlow textFlow1 = new TextFlow(para1);
+        textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
+        textFlow1.setPrefWidth(650);
+
+        ImageView imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
+        imageJ.setFitWidth(565); 
+        imageJ.setFitHeight(370);
+
+        imageJ.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px;");
+
+        VBox accueilBox = new VBox();
+        accueilBox.setSpacing(20);
+        accueilBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        accueilBox.getChildren().addAll(titreAccueil, textFlow1, imageJ);
+
+        contenu.getChildren().addAll(accueilBox);
 
         HBox journaliste = new HBox();
         journaliste.getChildren().addAll(menu, contenu);
@@ -613,7 +616,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -803,7 +806,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -969,7 +972,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -1144,7 +1147,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -1309,8 +1312,45 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setPrefSize(700, 725);
-        contenu.setStyle("-fx-background-color : #ffffff;");
+        contenu.setPadding(new Insets(20, 20, 30, 20));
+        contenu.setAlignment(Pos.CENTER);
+        contenu.setStyle("-fx-background-color: #ffffff;");
         contenu.setSpacing(100);
+
+        Font fontTitre = Font.font("Arial", FontWeight.BOLD, 20);
+
+        Font fontTexte = Font.font("Arial", FontWeight.NORMAL, 15);
+
+        String l = getLogin();
+
+        Label titreAccueil = new Label("Bienvenue " + l + " !");
+        titreAccueil.setFont(fontTitre);
+        titreAccueil.setStyle("-fx-text-fill: #7a1a64;");
+
+        Text para1 = new Text(
+        "En tant qu'organisateur dans cette application, votre rôle est crucial. Vous avez le pouvoir de lancer et d'enregistrer les épreuves sportives telles que la natation, le volley-ball, l’escrime, l’athlétisme et le handball. "
+        + "Cela inclut la gestion des détails logistiques et le suivi en temps réel du déroulement des compétitions. "
+        + "L'interface conviviale vous permet de superviser les départs, de suivre les résultats instantanément, et de faire des ajustements si nécessaire pour assurer le bon déroulement des jeux. "
+        + "Votre contribution joue un rôle déterminant dans la réussite globale de l'événement, en assurant une organisation fluide et une expérience enrichissante pour tous les participants."
+        );
+        para1.setFont(fontTexte);
+
+        TextFlow textFlow1 = new TextFlow(para1);
+        textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
+        textFlow1.setPrefWidth(600);
+
+        ImageView imageO = new ImageView(new Image("file:img/organisateur.jpg"));
+        imageO.setFitWidth(565); 
+        imageO.setFitHeight(315);
+
+        imageO.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px;");
+
+        VBox accueilBox = new VBox();
+        accueilBox.setSpacing(20);
+        accueilBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        accueilBox.getChildren().addAll(titreAccueil, textFlow1, imageO);
+
+        contenu.getChildren().addAll(accueilBox);
 
         HBox organisateur = new HBox();
         organisateur.getChildren().addAll(menu, contenu);
@@ -1427,7 +1467,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -1460,15 +1500,10 @@ public class AppIUTO extends Application {
         annuler.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
         annuler.setPrefWidth(215);
         annuler.setPrefHeight(15);
-
-        resultatAthlete.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        resultatAthlete.setPrefWidth(450);
-        resultatAthlete.setPrefHeight(15);
-
+        
         Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
         rechercher.setFont(boutonFont);
         annuler.setFont(boutonFont);
-        resultatAthlete.setFont(boutonFont);
 
         HBox boutonBox = new HBox();
         boutonBox.setSpacing(20);
@@ -1477,7 +1512,7 @@ public class AppIUTO extends Application {
         VBox rechercheBox = new VBox();
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        rechercheBox.getChildren().addAll(nomBox, prenomBox, boutonBox, resultatAthlete);
+        rechercheBox.getChildren().addAll(nomBox, prenomBox, boutonBox);
 
         TableView<Athlete> tableAthlete = new TableView<>();
 
@@ -1506,158 +1541,6 @@ public class AppIUTO extends Application {
         tableAthlete.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tableAthlete);
-
-        HBox organisateur = new HBox();
-        organisateur.getChildren().addAll(menu, contenu);
-
-        pagePrincipale.setCenter(organisateur);
-    }
-
-    public void pageResultatAthlete() {
-        pagePrincipale.getChildren().clear();
-
-        profil.setFitWidth(150);
-        profil.setFitHeight(150);
-        
-        Font font = Font.font("Arial", FontWeight.BOLD, 20);
-        titreOrganisateur.setFont(font);
-        titreOrganisateur.setTextFill(Color.web("#ffffff"));
-        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
-
-        ligneBlanche.setPrefWidth(50);
-        ligneBlanche.setPrefHeight(5); 
-        ligneBlanche.setStyle("-fx-background-color: white;");
-
-        VBox haut = new VBox();
-        haut.setAlignment(Pos.CENTER);
-        haut.setSpacing(10);
-        haut.getChildren().addAll(profil, titreOrganisateur);
-
-        home.setFitWidth(40);
-        home.setFitHeight(40);
-
-        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        accueil.setPrefWidth(200);
-        accueil.setPrefHeight(40);
-
-        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        accueil.setFont(buttonFont);
-
-        HBox homeBox = new HBox();
-        homeBox.setAlignment(Pos.CENTER);
-        homeBox.setSpacing(20);
-        homeBox.getChildren().addAll(home, accueil);
-
-        athl.setFitWidth(40);
-        athl.setFitHeight(40);
-
-        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        athlete.setPrefWidth(200);
-        athlete.setPrefHeight(40);
-        athlete.setFont(buttonFont);
-
-        HBox athleteBox = new HBox();
-        athleteBox.setAlignment(Pos.CENTER);
-        athleteBox.setSpacing(20);
-        athleteBox.getChildren().addAll(athl, athlete);
-
-        eqp.setFitWidth(40);
-        eqp.setFitHeight(40);
-
-        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        equipe.setPrefWidth(200);
-        equipe.setPrefHeight(40);
-        equipe.setFont(buttonFont);
-
-        HBox equipeBox = new HBox();
-        equipeBox.setAlignment(Pos.CENTER);
-        equipeBox.setSpacing(20);
-        equipeBox.getChildren().addAll(eqp, equipe);
-
-        ps.setFitWidth(40);
-        ps.setFitHeight(40);
-
-        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        pays.setPrefWidth(200);
-        pays.setPrefHeight(40);
-        pays.setFont(buttonFont);
-
-        HBox paysBox = new HBox();
-        paysBox.setAlignment(Pos.CENTER);
-        paysBox.setSpacing(20);
-        paysBox.getChildren().addAll(ps, pays);
-
-        spt.setFitWidth(40);
-        spt.setFitHeight(40);
-
-        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        sport.setPrefWidth(200);
-        sport.setPrefHeight(40);
-        sport.setFont(buttonFont);
-
-        HBox sportBox = new HBox();
-        sportBox.setAlignment(Pos.CENTER);
-        sportBox.setSpacing(20);
-        sportBox.getChildren().addAll(spt, sport);
-
-        deco.setFitWidth(40);
-        deco.setFitHeight(40);
-
-        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        deconnexion.setPrefWidth(200);
-        deconnexion.setPrefHeight(40);
-        deconnexion.setFont(buttonFont);
-
-        HBox decoBox = new HBox();
-        decoBox.setAlignment(Pos.CENTER);
-        decoBox.setSpacing(20);
-        decoBox.getChildren().addAll(deco, deconnexion);
-
-        VBox menu = new VBox();
-        menu.setStyle("-fx-background-color : #7a1a64;");
-        menu.setSpacing(30);
-        menu.setPadding(new Insets(20, 20, 20, 20));
-        menu.setPrefSize(300, 725);
-        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
-
-        VBox contenu = new VBox();
-        contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
-        contenu.setSpacing(30);
-        contenu.setPrefSize(700, 725);
-        contenu.setAlignment(Pos.CENTER);
-
-        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
-
-        meilleurAthlete.setFont(font3);
-        meilleurAthlete.setStyle("-fx-text-fill: #7a1a64;");
-        
-        meilleurResA.setFont(font3);
-        meilleurResA.setStyle("-fx-text-fill: #7a1a64;");
-
-        pireAthlete.setFont(font3);
-        pireAthlete.setStyle("-fx-text-fill: #7a1a64;");
-
-        pireResA.setFont(font3);
-        pireResA.setStyle("-fx-text-fill: #7a1a64;");
-
-        retourResAthlete.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        retourResAthlete.setPrefWidth(450);
-        retourResAthlete.setPrefHeight(15);
-
-        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        retourResAthlete.setFont(boutonFont);
-
-        VBox resBox = new VBox();
-        resBox.setSpacing(20);
-        resBox.getChildren().addAll(meilleurAthlete, meilleurResA, pireAthlete, pireResA);
-
-        VBox resAthleteBox = new VBox(); 
-        resAthleteBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        resAthleteBox.setSpacing(40);
-        resAthleteBox.getChildren().addAll(resBox, retourResAthlete); 
-                    
-        contenu.getChildren().addAll(resAthleteBox);
 
         HBox organisateur = new HBox();
         organisateur.getChildren().addAll(menu, contenu);
@@ -1774,7 +1657,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -1798,14 +1681,9 @@ public class AppIUTO extends Application {
         annuler.setPrefWidth(215);
         annuler.setPrefHeight(15);
 
-        resultatEquipe.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        resultatEquipe.setPrefWidth(450);
-        resultatEquipe.setPrefHeight(15);
-
         Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
         rechercher.setFont(boutonFont);
         annuler.setFont(boutonFont);
-        resultatEquipe.setFont(boutonFont); 
 
         HBox boutonBox = new HBox();
         boutonBox.setSpacing(20);
@@ -1814,7 +1692,7 @@ public class AppIUTO extends Application {
         VBox rechercheBox = new VBox();
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        rechercheBox.getChildren().addAll(nomBox, boutonBox, resultatEquipe);
+        rechercheBox.getChildren().addAll(nomBox, boutonBox);
 
         TableView<Equipe> tableEquipe = new TableView<>();
         tableEquipe.setPrefHeight(450);
@@ -1829,158 +1707,6 @@ public class AppIUTO extends Application {
         tableEquipe.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tableEquipe);
-
-        HBox organisateur = new HBox();
-        organisateur.getChildren().addAll(menu, contenu);
-
-        pagePrincipale.setCenter(organisateur);
-    }
-
-    public void pageResultatEquipe() {
-        pagePrincipale.getChildren().clear();
-
-        profil.setFitWidth(150);
-        profil.setFitHeight(150);
-        
-        Font font = Font.font("Arial", FontWeight.BOLD, 20);
-        titreOrganisateur.setFont(font);
-        titreOrganisateur.setTextFill(Color.web("#ffffff"));
-        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
-
-        ligneBlanche.setPrefWidth(50);
-        ligneBlanche.setPrefHeight(5); 
-        ligneBlanche.setStyle("-fx-background-color: white;");
-
-        VBox haut = new VBox();
-        haut.setAlignment(Pos.CENTER);
-        haut.setSpacing(10);
-        haut.getChildren().addAll(profil, titreOrganisateur);
-
-        home.setFitWidth(40);
-        home.setFitHeight(40);
-
-        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        accueil.setPrefWidth(200);
-        accueil.setPrefHeight(40);
-
-        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        accueil.setFont(buttonFont);
-
-        HBox homeBox = new HBox();
-        homeBox.setAlignment(Pos.CENTER);
-        homeBox.setSpacing(20);
-        homeBox.getChildren().addAll(home, accueil);
-
-        athl.setFitWidth(40);
-        athl.setFitHeight(40);
-
-        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        athlete.setPrefWidth(200);
-        athlete.setPrefHeight(40);
-        athlete.setFont(buttonFont);
-
-        HBox athleteBox = new HBox();
-        athleteBox.setAlignment(Pos.CENTER);
-        athleteBox.setSpacing(20);
-        athleteBox.getChildren().addAll(athl, athlete);
-
-        eqp.setFitWidth(40);
-        eqp.setFitHeight(40);
-
-        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        equipe.setPrefWidth(200);
-        equipe.setPrefHeight(40);
-        equipe.setFont(buttonFont);
-
-        HBox equipeBox = new HBox();
-        equipeBox.setAlignment(Pos.CENTER);
-        equipeBox.setSpacing(20);
-        equipeBox.getChildren().addAll(eqp, equipe);
-
-        ps.setFitWidth(40);
-        ps.setFitHeight(40);
-
-        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        pays.setPrefWidth(200);
-        pays.setPrefHeight(40);
-        pays.setFont(buttonFont);
-
-        HBox paysBox = new HBox();
-        paysBox.setAlignment(Pos.CENTER);
-        paysBox.setSpacing(20);
-        paysBox.getChildren().addAll(ps, pays);
-
-        spt.setFitWidth(40);
-        spt.setFitHeight(40);
-
-        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        sport.setPrefWidth(200);
-        sport.setPrefHeight(40);
-        sport.setFont(buttonFont);
-
-        HBox sportBox = new HBox();
-        sportBox.setAlignment(Pos.CENTER);
-        sportBox.setSpacing(20);
-        sportBox.getChildren().addAll(spt, sport);
-
-        deco.setFitWidth(40);
-        deco.setFitHeight(40);
-
-        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        deconnexion.setPrefWidth(200);
-        deconnexion.setPrefHeight(40);
-        deconnexion.setFont(buttonFont);
-
-        HBox decoBox = new HBox();
-        decoBox.setAlignment(Pos.CENTER);
-        decoBox.setSpacing(20);
-        decoBox.getChildren().addAll(deco, deconnexion);
-
-        VBox menu = new VBox();
-        menu.setStyle("-fx-background-color : #7a1a64;");
-        menu.setSpacing(30);
-        menu.setPadding(new Insets(20, 20, 20, 20));
-        menu.setPrefSize(300, 725);
-        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
-
-        VBox contenu = new VBox();
-        contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
-        contenu.setSpacing(30);
-        contenu.setPrefSize(700, 725);
-        contenu.setAlignment(Pos.CENTER);
-
-        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
-
-        meilleurEquipe.setFont(font3);
-        meilleurEquipe.setStyle("-fx-text-fill: #7a1a64;");
-        
-        meilleurResE.setFont(font3);
-        meilleurResE.setStyle("-fx-text-fill: #7a1a64;");
-
-        pireEquipe.setFont(font3);
-        pireEquipe.setStyle("-fx-text-fill: #7a1a64;");
-
-        pireResE.setFont(font3);
-        pireResE.setStyle("-fx-text-fill: #7a1a64;");
-
-        retourResEquipe.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        retourResEquipe.setPrefWidth(450);
-        retourResEquipe.setPrefHeight(15);
-
-        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        retourResEquipe.setFont(boutonFont);
-
-        VBox resBox = new VBox();
-        resBox.setSpacing(20);
-        resBox.getChildren().addAll(meilleurEquipe, meilleurResE, pireEquipe, pireResE);
-
-        VBox resEquipeBox = new VBox(); 
-        resEquipeBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        resEquipeBox.setSpacing(40);
-        resEquipeBox.getChildren().addAll(resBox, retourResEquipe); 
-                    
-        contenu.getChildren().addAll(resEquipeBox);
 
         HBox organisateur = new HBox();
         organisateur.getChildren().addAll(menu, contenu);
@@ -2097,7 +1823,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -2121,14 +1847,9 @@ public class AppIUTO extends Application {
         annuler.setPrefWidth(215);
         annuler.setPrefHeight(15);
 
-        resultatPays.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        resultatPays.setPrefWidth(450);
-        resultatPays.setPrefHeight(15);
-
         Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
         rechercher.setFont(boutonFont);
         annuler.setFont(boutonFont);
-        resultatPays.setFont(boutonFont);
 
         HBox boutonBox = new HBox();
         boutonBox.setSpacing(20);
@@ -2137,7 +1858,7 @@ public class AppIUTO extends Application {
         VBox rechercheBox = new VBox();
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        rechercheBox.getChildren().addAll(nomBox, boutonBox, resultatPays);
+        rechercheBox.getChildren().addAll(nomBox, boutonBox);
 
         TableView<Pays> tablePays = new TableView<>();
         tablePays.setPrefHeight(450);
@@ -2161,158 +1882,6 @@ public class AppIUTO extends Application {
         tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tablePays);
-
-        HBox organisateur = new HBox();
-        organisateur.getChildren().addAll(menu, contenu);
-
-        pagePrincipale.setCenter(organisateur);
-    }
-
-    public void pageResultatPays() {
-        pagePrincipale.getChildren().clear();
-
-        profil.setFitWidth(150);
-        profil.setFitHeight(150);
-        
-        Font font = Font.font("Arial", FontWeight.BOLD, 20);
-        titreOrganisateur.setFont(font);
-        titreOrganisateur.setTextFill(Color.web("#ffffff"));
-        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
-
-        ligneBlanche.setPrefWidth(50);
-        ligneBlanche.setPrefHeight(5); 
-        ligneBlanche.setStyle("-fx-background-color: white;");
-
-        VBox haut = new VBox();
-        haut.setAlignment(Pos.CENTER);
-        haut.setSpacing(10);
-        haut.getChildren().addAll(profil, titreOrganisateur);
-
-        home.setFitWidth(40);
-        home.setFitHeight(40);
-
-        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        accueil.setPrefWidth(200);
-        accueil.setPrefHeight(40);
-
-        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        accueil.setFont(buttonFont);
-
-        HBox homeBox = new HBox();
-        homeBox.setAlignment(Pos.CENTER);
-        homeBox.setSpacing(20);
-        homeBox.getChildren().addAll(home, accueil);
-
-        athl.setFitWidth(40);
-        athl.setFitHeight(40);
-
-        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        athlete.setPrefWidth(200);
-        athlete.setPrefHeight(40);
-        athlete.setFont(buttonFont);
-
-        HBox athleteBox = new HBox();
-        athleteBox.setAlignment(Pos.CENTER);
-        athleteBox.setSpacing(20);
-        athleteBox.getChildren().addAll(athl, athlete);
-
-        eqp.setFitWidth(40);
-        eqp.setFitHeight(40);
-
-        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        equipe.setPrefWidth(200);
-        equipe.setPrefHeight(40);
-        equipe.setFont(buttonFont);
-
-        HBox equipeBox = new HBox();
-        equipeBox.setAlignment(Pos.CENTER);
-        equipeBox.setSpacing(20);
-        equipeBox.getChildren().addAll(eqp, equipe);
-
-        ps.setFitWidth(40);
-        ps.setFitHeight(40);
-
-        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        pays.setPrefWidth(200);
-        pays.setPrefHeight(40);
-        pays.setFont(buttonFont);
-
-        HBox paysBox = new HBox();
-        paysBox.setAlignment(Pos.CENTER);
-        paysBox.setSpacing(20);
-        paysBox.getChildren().addAll(ps, pays);
-
-        spt.setFitWidth(40);
-        spt.setFitHeight(40);
-
-        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        sport.setPrefWidth(200);
-        sport.setPrefHeight(40);
-        sport.setFont(buttonFont);
-
-        HBox sportBox = new HBox();
-        sportBox.setAlignment(Pos.CENTER);
-        sportBox.setSpacing(20);
-        sportBox.getChildren().addAll(spt, sport);
-
-        deco.setFitWidth(40);
-        deco.setFitHeight(40);
-
-        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
-        deconnexion.setPrefWidth(200);
-        deconnexion.setPrefHeight(40);
-        deconnexion.setFont(buttonFont);
-
-        HBox decoBox = new HBox();
-        decoBox.setAlignment(Pos.CENTER);
-        decoBox.setSpacing(20);
-        decoBox.getChildren().addAll(deco, deconnexion);
-
-        VBox menu = new VBox();
-        menu.setStyle("-fx-background-color : #7a1a64;");
-        menu.setSpacing(30);
-        menu.setPadding(new Insets(20, 20, 20, 20));
-        menu.setPrefSize(300, 725);
-        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
-
-        VBox contenu = new VBox();
-        contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
-        contenu.setSpacing(30);
-        contenu.setPrefSize(700, 725);
-        contenu.setAlignment(Pos.CENTER);
-
-        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
-
-        meilleurPays.setFont(font3);
-        meilleurPays.setStyle("-fx-text-fill: #7a1a64;");
-        
-        meilleurResP.setFont(font3);
-        meilleurResP.setStyle("-fx-text-fill: #7a1a64;");
-
-        pirePays.setFont(font3);
-        pirePays.setStyle("-fx-text-fill: #7a1a64;");
-
-        pireResP.setFont(font3);
-        pireResP.setStyle("-fx-text-fill: #7a1a64;");
-
-        retourResPays.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        retourResPays.setPrefWidth(450);
-        retourResPays.setPrefHeight(15);
-
-        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
-        retourResPays.setFont(boutonFont);
-
-        VBox resBox = new VBox();
-        resBox.setSpacing(20);
-        resBox.getChildren().addAll(meilleurPays, meilleurResP, pirePays, pireResP);
-
-        VBox resPaysBox = new VBox(); 
-        resPaysBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        resPaysBox.setSpacing(40);
-        resPaysBox.getChildren().addAll(resBox, retourResPays); 
-                    
-        contenu.getChildren().addAll(resPaysBox);
 
         HBox organisateur = new HBox();
         organisateur.getChildren().addAll(menu, contenu);
@@ -2429,7 +1998,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -2453,13 +2022,18 @@ public class AppIUTO extends Application {
         annuler.setPrefHeight(15);
 
         lancerEpreuve.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        lancerEpreuve.setPrefWidth(450);
+        lancerEpreuve.setPrefWidth(325);
         lancerEpreuve.setPrefHeight(15);
+
+        enregistrerEpreuve.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        enregistrerEpreuve.setPrefWidth(325);
+        enregistrerEpreuve.setPrefHeight(15);
 
         Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
         rechercher.setFont(boutonFont);
         annuler.setFont(boutonFont);
-        lancerEpreuve.setFont(boutonFont); 
+        lancerEpreuve.setFont(boutonFont);
+        enregistrerEpreuve.setFont(boutonFont); 
 
         HBox boutonBox = new HBox();
         boutonBox.setSpacing(20);
@@ -2468,7 +2042,11 @@ public class AppIUTO extends Application {
         VBox rechercheBox = new VBox();
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        rechercheBox.getChildren().addAll(nomBox, boutonBox, lancerEpreuve);
+        rechercheBox.getChildren().addAll(nomBox, boutonBox);
+
+        HBox boutonEpreuve = new HBox(); 
+        boutonEpreuve.setSpacing(20);
+        boutonEpreuve.getChildren().addAll(lancerEpreuve, enregistrerEpreuve);
 
         TableView<Epreuve> tableSport = new TableView<>();
         tableSport.setPrefHeight(450);
@@ -2482,7 +2060,7 @@ public class AppIUTO extends Application {
         tableSport.getColumns().addAll(nomCol, genreCol);
         tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
-        contenu.getChildren().addAll(rechercheBox, tableSport);
+        contenu.getChildren().addAll(rechercheBox, boutonEpreuve, tableSport);
 
         HBox organisteur = new HBox();
         organisteur.getChildren().addAll(menu, contenu);
@@ -2623,7 +2201,7 @@ public class AppIUTO extends Application {
         epreuvesBox.getChildren().addAll(nomEpreuve, lesEpreuves);
 
         lancer.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
-        lancer.setPrefWidth(350);
+        lancer.setPrefWidth(300);
         lancer.setPrefHeight(15);
 
         retourSport1.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
@@ -2643,6 +2221,166 @@ public class AppIUTO extends Application {
         lancerBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         lancerBox.getChildren().addAll(sportsBox, epreuvesBox, boutonSportBox);
         contenu.getChildren().addAll(lancerBox);
+
+        HBox organisateur = new HBox();
+        organisateur.getChildren().addAll(menu, contenu);
+
+        pagePrincipale.setCenter(organisateur);
+    }
+
+    public void pageEnregistrerEpreuve() {
+        pagePrincipale.getChildren().clear();
+
+        profil.setFitWidth(150);
+        profil.setFitHeight(150);
+        
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        titreOrganisateur.setFont(font);
+        titreOrganisateur.setTextFill(Color.web("#ffffff"));
+        titreOrganisateur.setTextAlignment(TextAlignment.CENTER);
+
+        ligneBlanche.setPrefWidth(50);
+        ligneBlanche.setPrefHeight(5); 
+        ligneBlanche.setStyle("-fx-background-color: white;");
+
+        VBox haut = new VBox();
+        haut.setAlignment(Pos.CENTER);
+        haut.setSpacing(10);
+        haut.getChildren().addAll(profil, titreOrganisateur);
+
+        home.setFitWidth(40);
+        home.setFitHeight(40);
+
+        accueil.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        accueil.setPrefWidth(200);
+        accueil.setPrefHeight(40);
+
+        Font buttonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        accueil.setFont(buttonFont);
+
+        HBox homeBox = new HBox();
+        homeBox.setAlignment(Pos.CENTER);
+        homeBox.setSpacing(20);
+        homeBox.getChildren().addAll(home, accueil);
+
+        athl.setFitWidth(40);
+        athl.setFitHeight(40);
+
+        athlete.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        athlete.setPrefWidth(200);
+        athlete.setPrefHeight(40);
+        athlete.setFont(buttonFont);
+
+        HBox athleteBox = new HBox();
+        athleteBox.setAlignment(Pos.CENTER);
+        athleteBox.setSpacing(20);
+        athleteBox.getChildren().addAll(athl, athlete);
+
+        eqp.setFitWidth(40);
+        eqp.setFitHeight(40);
+
+        equipe.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        equipe.setPrefWidth(200);
+        equipe.setPrefHeight(40);
+        equipe.setFont(buttonFont);
+
+        HBox equipeBox = new HBox();
+        equipeBox.setAlignment(Pos.CENTER);
+        equipeBox.setSpacing(20);
+        equipeBox.getChildren().addAll(eqp, equipe);
+
+        ps.setFitWidth(40);
+        ps.setFitHeight(40);
+
+        pays.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        pays.setPrefWidth(200);
+        pays.setPrefHeight(40);
+        pays.setFont(buttonFont);
+
+        HBox paysBox = new HBox();
+        paysBox.setAlignment(Pos.CENTER);
+        paysBox.setSpacing(20);
+        paysBox.getChildren().addAll(ps, pays);
+
+        spt.setFitWidth(40);
+        spt.setFitHeight(40);
+
+        sport.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        sport.setPrefWidth(200);
+        sport.setPrefHeight(40);
+        sport.setFont(buttonFont);
+
+        HBox sportBox = new HBox();
+        sportBox.setAlignment(Pos.CENTER);
+        sportBox.setSpacing(20);
+        sportBox.getChildren().addAll(spt, sport);
+
+        deco.setFitWidth(40);
+        deco.setFitHeight(40);
+
+        deconnexion.setStyle("-fx-background-color : white; -fx-text-fill: #7a1a64;");
+        deconnexion.setPrefWidth(200);
+        deconnexion.setPrefHeight(40);
+        deconnexion.setFont(buttonFont);
+
+        HBox decoBox = new HBox();
+        decoBox.setAlignment(Pos.CENTER);
+        decoBox.setSpacing(20);
+        decoBox.getChildren().addAll(deco, deconnexion);
+
+        VBox menu = new VBox();
+        menu.setStyle("-fx-background-color : #7a1a64;");
+        menu.setSpacing(30);
+        menu.setPadding(new Insets(20, 20, 20, 20));
+        menu.setPrefSize(300, 725);
+        menu.getChildren().addAll(haut, ligneBlanche, homeBox, athleteBox, equipeBox, paysBox, sportBox, decoBox);
+
+        VBox contenu = new VBox();
+        contenu.setStyle("-fx-background-color: #ffffff");
+        contenu.setPadding(new Insets(20, 20, 20, 20));
+        contenu.setAlignment(Pos.CENTER);
+        contenu.setSpacing(30);
+        contenu.setPrefSize(700, 725);
+
+        Font font3 = Font.font("Arial", FontWeight.BOLD, 20);
+
+        nomSport.setFont(font3);
+        nomSport.setStyle("-fx-text-fill: #7a1a64;");  
+
+        HBox sportsBox = new HBox();
+        sportsBox.setSpacing(20);
+        sportsBox.getChildren().addAll(nomSport, lesSports);
+
+        nomEpreuve.setFont(font3);
+        nomEpreuve.setStyle("-fx-text-fill: #7a1a64;");  
+
+        lesEpreuves.setPrefWidth(200);
+
+        HBox epreuvesBox = new HBox();
+        epreuvesBox.setSpacing(20);
+        epreuvesBox.getChildren().addAll(nomEpreuve, lesEpreuves);
+
+        enregistrer.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        enregistrer.setPrefWidth(350);
+        enregistrer.setPrefHeight(15);
+
+        retourSport1.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
+        retourSport1.setPrefWidth(215);
+        retourSport1.setPrefHeight(15);
+
+        Font boutonFont = Font.font("Arial", FontWeight.BOLD, 20);
+        enregistrer.setFont(boutonFont);
+        retourSport1.setFont(boutonFont);
+
+        HBox boutonSportBox = new HBox();
+        boutonSportBox.setSpacing(20);
+        boutonSportBox.getChildren().addAll(enregistrer, retourSport1);
+
+        VBox enregistrerBox = new VBox();
+        enregistrerBox.setSpacing(20);
+        enregistrerBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        enregistrerBox.getChildren().addAll(sportsBox, epreuvesBox, boutonSportBox);
+        contenu.getChildren().addAll(enregistrerBox);
 
         HBox organisateur = new HBox();
         organisateur.getChildren().addAll(menu, contenu);
@@ -2759,8 +2497,45 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setPrefSize(700, 725);
-        contenu.setStyle("-fx-background-color : #ffffff;");
+        contenu.setPadding(new Insets(20, 20, 30, 20));
+        contenu.setAlignment(Pos.CENTER);
+        contenu.setStyle("-fx-background-color: #ffffff;");
         contenu.setSpacing(100);
+
+        Font fontTitre = Font.font("Arial", FontWeight.BOLD, 20);
+
+        Font fontTexte = Font.font("Arial", FontWeight.NORMAL, 15);
+
+        String l = getLogin();
+
+        Label titreAccueil = new Label("Bienvenue " + l + " !");
+        titreAccueil.setFont(fontTitre);
+        titreAccueil.setStyle("-fx-text-fill: #7a1a64;");
+
+        Text para1 = new Text(
+        "En tant qu'administrateur dans cette application, votre rôle est crucial. Vous avez le pouvoir de saisir et de modifier les données essentielles telles que les détails des épreuves sportives comme la natation, le volley-ball, l’escrime, l’athlétisme et le handball. "
+        + "Cela inclut la gestion des participants, des résultats et des paramètres spécifiques à chaque discipline. "
+        + "Grâce à une interface conviviale, vous pouvez mettre à jour les informations rapidement et efficacement, garantissant ainsi que toutes les données sont précises et à jour pour une gestion optimale des jeux. "
+        + "Votre contribution est essentielle pour maintenir l'intégrité des données et assurer une organisation fluide et transparente des compétitions olympiques."
+        );
+        para1.setFont(fontTexte);
+
+        TextFlow textFlow1 = new TextFlow(para1);
+        textFlow1.setTextAlignment(TextAlignment.JUSTIFY);
+        textFlow1.setPrefWidth(600);
+
+        ImageView imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
+        imageA.setFitWidth(565); 
+        imageA.setFitHeight(300);
+
+        imageA.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px;");
+
+        VBox accueilBox = new VBox();
+        accueilBox.setSpacing(20);
+        accueilBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
+        accueilBox.getChildren().addAll(titreAccueil, textFlow1, imageA);
+
+        contenu.getChildren().addAll(accueilBox);
 
         HBox administrateur = new HBox();
         administrateur.getChildren().addAll(menu, contenu);
@@ -2877,7 +2652,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -3467,7 +3242,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -3958,7 +3733,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
@@ -4172,6 +3947,7 @@ public class AppIUTO extends Application {
         SpinnerValueFactory<Integer> valeur = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0);
         orSpinner.setValueFactory(valeur);
         orSpinner.setStyle("-fx-font-size: 15px;");  
+        orSpinner.setPrefWidth(150);
 
         HBox orBox = new HBox();
         orBox.setSpacing(20);
@@ -4183,6 +3959,7 @@ public class AppIUTO extends Application {
         Spinner<Integer> argentSpinner = new Spinner<>();
         argentSpinner.setValueFactory(valeur);
         argentSpinner.setStyle("-fx-font-size: 15px;");  
+        argentSpinner.setPrefWidth(150);
 
         HBox argentBox = new HBox();
         argentBox.setSpacing(20);
@@ -4193,7 +3970,8 @@ public class AppIUTO extends Application {
 
         Spinner<Integer> bronzeSpinner = new Spinner<>();
         bronzeSpinner.setValueFactory(valeur);
-        bronzeSpinner.setStyle("-fx-font-size: 15px;");  
+        bronzeSpinner.setStyle("-fx-font-size: 15px;");
+        bronzeSpinner.setPrefWidth(150);  
 
         HBox bronzeBox = new HBox();
         bronzeBox.setSpacing(20);
@@ -4500,7 +4278,7 @@ public class AppIUTO extends Application {
 
         VBox contenu = new VBox();
         contenu.setStyle("-fx-background-color: #ffffff");
-        contenu.setPadding(new Insets(20, 20, 40, 20));
+        contenu.setPadding(new Insets(20, 20, 30, 20));
         contenu.setSpacing(30);
         contenu.setPrefSize(700, 725);
 
