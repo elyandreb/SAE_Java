@@ -4780,6 +4780,10 @@ public class AppIUTO extends Application {
         return erreurLabel.getText();
     }
 
+    public void effacerMessageErreur() {
+        erreurLabel.setText(""); 
+    }
+
     @Override
     public void start(Stage stage) {
         stage.setTitle("JEUX IUT'OLYMPIQUES");
