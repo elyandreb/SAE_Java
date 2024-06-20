@@ -9,7 +9,7 @@ public class ControleurSupprimerPays implements EventHandler<ActionEvent> {
     private ConnexionBD connexionBD;
     private RequeteJDBC requetes;
     
-    public ControleurAjoutePays(AppIUTO appli, ConnexionBD connexionBD, RequeteJDBC requetes){
+    public ControleurSupprimerPays(AppIUTO appli, ConnexionBD connexionBD, RequeteJDBC requetes){
         this.appli = appli;
         this.connexionBD = connexionBD;
         this.requetes = requetes;
