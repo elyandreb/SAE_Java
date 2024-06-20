@@ -217,7 +217,7 @@ public class AppIUTO extends Application {
         retourAthlete = new Button("RETOUR");
         retourAthlete.setOnAction(new ControleurAthlete(this)); 
         supprimeAthlete = new Button("SUPPRIMER"); 
-        supprimeAthlete.setOnAction(new ControleurSupprimerAthlete(this));
+        supprimeAthlete.setOnAction(new ControleurSupprimeAthlete(this));
         ajouteEqp = new Button("AJOUTER");
         ajouteEqp.setOnAction(new ControleurPageAjouteEquipe(this));
         supprimeEqp = new Button("SUPPRIMER");
