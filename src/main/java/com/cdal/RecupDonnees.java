@@ -1,4 +1,4 @@
-package main.java.com.cdal;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,9 +45,9 @@ public class RecupDonnees {
     public void chargerCSV(String nomdufichier) throws FileNotFoundException{
         Scanner scanner = new Scanner(new File(nomdufichier));
         scanner.nextLine();
-        HashMap<Epreuve, List<Athlete>> dico = new HashMap<>();
         Sport sportt = null;
         Epreuve epr = null;
+        if(scanner.hasNextLine()){scanner.nextLine();}
         while(scanner.hasNextLine()){
             String[] data = scanner.nextLine().split(",");
             String nom = data[0];
@@ -62,6 +62,7 @@ public class RecupDonnees {
             int endurance = Integer.parseInt(data[9]);
             int agilite = Integer.parseInt(data[10]);
             Athlete ath = null;
+            if (gestion.getPays(pays)==null){gestion.addPays(new Pays(pays, 0,0,0));}
             if(nbJoueurs!=1){ath = new Athlete(nom, prenom, sexe, force, agilite, endurance,gestion.getPays(pays),true);}
             else{ath = new Athlete(nom, prenom, sexe, force, agilite, endurance,gestion.getPays(pays),false);}
             Pays paysm = new Pays(pays, 0,0,0);
@@ -70,19 +71,25 @@ public class RecupDonnees {
             if(sport.charAt(0)=='H'){sportt = new Handball(sport, categorie, nbJoueurs);}
             if(sport.charAt(0)=='N'){sportt = new Natation(sport, categorie, nbJoueurs);}
             if(sport.charAt(0)=='V'){sportt = new Volleyball(sport, categorie, nbJoueurs);}
-            epr = new Epreuve(epreuve, categorie, sportt);
+            epr = new Epreuve(epreuve, sexe, sportt);
+            paysm.ajouteAthlete(ath);
+            if (categorie.equals("Collectif")){
+                Equipe eq = new Equipe(epreuve,paysm);
+                eq.ajouteAthlete(ath);
+                epr.ajouteParticipantEpreuve(eq);            
+            }
+            else{epr.ajouteParticipantEpreuve(ath);}
             this.gestion.addAthlete(ath);
             this.gestion.addPays(paysm);
             this.gestion.addSport(sportt);
-            List<Athlete> l = dico.get(epr);
-            if(l==null){
-                l=new ArrayList<Athlete>();
-                dico.put(epr, l);}
-            l.add(ath);
-        }
-        for(Sport spt: this.gestion.getSports()){
-            this.gestion.createEpreuve(dico.get(epr), sportt);
-        }
+            this.gestion.addEpreuve(epr);
+            
+            
+            
+            System.out.println(paysm.getAthletes());
+            System.out.println(paysm);
+
+            }
         scanner.close();
     }
 
