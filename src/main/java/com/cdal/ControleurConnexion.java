@@ -23,18 +23,21 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
                 if (l.charAt(l.length() - 1) == 'J') {
                     if (0 <= m && m < 1000) {
                         appli.pageAccueilJournaliste();
+                        appli.effacerMessageErreur();
                     } else {
                         appli.setErreurMessage("Mot de passe incorrect pour le journaliste");
                     }
                 } else if (l.charAt(l.length() - 1) == 'O') {
                     if (1000 <= m && m < 2000) {
                         appli.pageAccueilOrganisateur();
+                        appli.effacerMessageErreur();
                     } else {
                         appli.setErreurMessage("Mot de passe incorrect pour l'organisateur");
                     }
                 } else if (l.charAt(l.length() - 1) == 'A') {
                     if (2000 <= m && m < 3000) {
                         appli.pageAccueilAdministrateur();
+                        appli.effacerMessageErreur();
                     } else {
                         appli.setErreurMessage("Mot de passe incorrect pour l'administrateur");
                     }
