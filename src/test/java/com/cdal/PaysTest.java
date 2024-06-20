@@ -112,7 +112,7 @@ public class PaysTest {
     public void testNbAthletes() {
         Pays pays = new Pays("France", 10, 20, 30);
         assertEquals(0, pays.nbAthletes());
-        pays.ajouteAthlete(new Athlete("Jean", "Dupond", "Homme", 10, 12, 5));
+        pays.ajouteAthlete(new Athlete("Jean", "Dupond", "H", 10, 12, 5));
         assertEquals(1, pays.nbAthletes());
     }
 
@@ -135,7 +135,7 @@ public class PaysTest {
     @Test
     public void testAjouteAthleteValide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.ajouteAthlete(athlete);
         assertEquals(true, pays.getAthletes().contains(athlete));
     }
@@ -143,7 +143,7 @@ public class PaysTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAjouteAthleteInvalide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.ajouteAthlete(athlete);
         pays.ajouteAthlete(athlete);
     }
@@ -167,7 +167,7 @@ public class PaysTest {
     @Test
     public void testSupprimeAthleteValide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.ajouteAthlete(athlete);
         pays.supprimeAthlete(athlete);
         assertEquals(false, pays.getAthletes().contains(athlete));
@@ -176,7 +176,7 @@ public class PaysTest {
     @Test(expected = NoSuchElementException.class)
     public void testSupprimeAthleteInvalide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.supprimeAthlete(athlete);
     }
 
@@ -198,7 +198,7 @@ public class PaysTest {
     @Test
     public void testRechercheAthleteValide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.ajouteAthlete(athlete);
         assertEquals(athlete, pays.rechercheAthlete(athlete));
     }
@@ -206,7 +206,7 @@ public class PaysTest {
     @Test(expected = NoSuchElementException.class)
     public void testRechercheAthleteInvalide() {
         Pays pays = new Pays("France", 10, 20, 30);
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         pays.rechercheAthlete(athlete);
     }
 
