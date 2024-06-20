@@ -47,6 +47,7 @@ public class AppIUTO extends Application {
     private ImageView oeil; 
     private Button valider;
     private Button annuler;
+    private Label erreurLabel; 
     private ImageView profil;
     private Label titreJournaliste;
     private Region ligneBlanche; 
@@ -147,6 +148,7 @@ public class AppIUTO extends Application {
         valider.setOnAction(new ControleurConnexion(this));
         annuler = new Button("ANNULER");
         annuler.setOnAction(new ControleurAnnuler(this));
+        erreurLabel = new Label(); 
         profil = new ImageView(new Image("file:img/profil.png"));
         titreJournaliste = new Label("JOURNALISTE");
         ligneBlanche = new Region();
@@ -339,10 +341,15 @@ public class AppIUTO extends Application {
         buttonBox.setSpacing(30);
         buttonBox.getChildren().addAll(valider, annuler);
 
+        erreurLabel.setTextFill(Color.RED);
+        erreurLabel.setAlignment(Pos.CENTER);
+        erreurLabel.setPrefWidth(360);
+        erreurLabel.setWrapText(true);
+
         VBox connexionBox = new VBox();
         connexionBox.setAlignment(Pos.CENTER);
         connexionBox.setSpacing(50);
-        connexionBox.getChildren().addAll(saisiBox, buttonBox);
+        connexionBox.getChildren().addAll(saisiBox, buttonBox, erreurLabel);
 
         VBox droite = new VBox();
         droite.setStyle("-fx-background-color : #ffffff;");
@@ -357,7 +364,7 @@ public class AppIUTO extends Application {
         pagePrincipale.requestFocus();
         pagePrincipale.setCenter(connexion);
     }
-
+        
     public void pageAccueilJournaliste() {
         pagePrincipale.getChildren().clear();
 
@@ -4765,8 +4772,12 @@ public class AppIUTO extends Application {
         return this.connexionBD;
     }
 
-    public void deconnexionReussie(){
-        pageConnexion();
+    public void setErreurMessage(String message) {
+        erreurLabel.setText(message);
+    }
+
+    public String getMessageErreur() {
+        return erreurLabel.getText();
     }
 
     @Override
