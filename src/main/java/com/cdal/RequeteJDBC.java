@@ -194,9 +194,10 @@ public class RequeteJDBC {
             pss.execute();
         }
     }
-    public void effacerEpreuve(String nom) throws SQLException{
-        PreparedStatement ps = this.laConnexion.prepareStatement("delete from EPREUVE where nomE = ?");
-        ps.setString(1, nom);
+    public void effacerEpreuve(String nomE, String nomS) throws SQLException{
+        PreparedStatement ps = this.laConnexion.prepareStatement("delete from EPREUVE NATURAL JOIN SPORT where nomE = ? and nomS = ?");
+        ps.setString(1, nomE);
+	ps.setString(1, nomS);
         ps.execute();
     }
 
