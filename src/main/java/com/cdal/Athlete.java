@@ -19,7 +19,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * Constructeur de la classe Athlete
      * @param nom Le nom de l'athlète
      * @param prenom Le prénom de l'athlète
-     * @param sexe Le sexe de l'athlète ("Homme" ou "Femme")
+     * @param sexe Le sexe de l'athlète ("H" ou "F")
      * @param force La force de l'athlète
      * @param agilite L'agilité de l'athlète
      * @param endurance L'endurance de l'athlète
@@ -128,7 +128,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     
     /**
      * Méthode pour définir le sexe de l'athlète
-     * @param sexe Le nouveau sexe de l'athlète ("Homme" ou "Femme")
+     * @param sexe Le nouveau sexe de l'athlète ("H" ou "F")
      * @throws IllegalArgumentException Si le format du sexe n'est pas respecté ou si le sexe est vide ou null
      */
     public void setSexe(String nouveauSexe) throws IllegalArgumentException {
