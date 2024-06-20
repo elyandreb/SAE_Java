@@ -68,16 +68,16 @@ public class Executable {
         System.out.println(allemagne);
         System.out.println(maroc);
 
-        Athlete athlete1 = new Athlete("Usain", "Bolt", "H", 90, 85, 80);
-        Athlete athlete2 = new Athlete("Simone", "Biles", "F", 85, 90, 85);
-        Athlete athlete3 = new Athlete("Michael", "Phelps", "H", 88, 86, 82);
-        Athlete athlete4 = new Athlete("Serena", "Williams", "F", 87, 88, 84);
-        Athlete athlete5 = new Athlete("Kobe", "Bryant", "H", 89, 87, 83);
-        Athlete athlete6 = new Athlete("Serena", "Williams", "F", 86, 89, 81);
-        Athlete athlete7 = new Athlete("LeBron", "James", "H", 87, 88, 80);
-        Athlete athlete8 = new Athlete("Rafael", "Nadal", "H", 88, 87, 81);
-        Athlete athlete9 = new Athlete("Simone", "Biles", "F", 89, 86, 79);
-        Athlete athlete10 = new Athlete("Cristiano", "Ronaldo", "H", 90, 85, 82);
+        Athlete athlete1 = new Athlete("Usain", "Bolt", "H", 90, 85, 80, france, false);
+        Athlete athlete2 = new Athlete("Simone", "Biles", "F", 85, 90, 85, japon, false);
+        Athlete athlete3 = new Athlete("Michael", "Phelps", "H", 88, 86, 82, coree, false);
+        Athlete athlete4 = new Athlete("Serena", "Williams", "F", 87, 88, 84, allemagne, false);
+        Athlete athlete5 = new Athlete("Kobe", "Bryant", "H", 89, 87, 83, maroc, false);
+        Athlete athlete6 = new Athlete("Serena", "Williams", "F", 86, 89, 81, france, false);
+        Athlete athlete7 = new Athlete("LeBron", "James", "H", 87, 88, 80, japon, false);
+        Athlete athlete8 = new Athlete("Rafael", "Nadal", "H", 88, 87, 81, coree, false);
+        Athlete athlete9 = new Athlete("Simone", "Biles", "F", 89, 86, 79, maroc, false);
+        Athlete athlete10 = new Athlete("Cristiano", "Ronaldo", "H", 90, 85, 82, allemagne, false);
         System.out.println(athlete1);
         System.out.println(athlete2);
         System.out.println(athlete3);

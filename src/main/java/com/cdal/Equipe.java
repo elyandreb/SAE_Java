@@ -12,17 +12,19 @@ import java.util.NoSuchElementException;
 public class Equipe implements Participant, Comparable<Equipe> {
     private String nom; // Le nom de l'équipe
     private List<Athlete> athletes; // La liste des athlètes de l'équipe
+    private Pays pays; //Le pays
 
     /**
      * Constructeur de la classe Equipe
      * @param nom Le nom de l'équipe
      * @throws IllegalArgumentException si le nom est vide ou null
      */
-    public Equipe(String nom) throws IllegalArgumentException {
+    public Equipe(String nom, Pays pays) throws IllegalArgumentException {
         if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'équipe ne peut pas être vide ou null.");
         }
         this.nom = nom;
+        this.pays = pays;
         this.athletes = new ArrayList<>();
     }
     
@@ -33,6 +35,14 @@ public class Equipe implements Participant, Comparable<Equipe> {
     @Override
     public String obtenirNom() {
         return this.nom;
+    }
+
+    /**
+     * Méthode pour obtenir le pays de l'équipe
+     * @return Le pays de l'équipe
+     */
+    public Pays obtenirPays() {
+        return this.pays;
     }
 
     /**
@@ -188,7 +198,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
      */
     @Override
     public String toString() {
-        return "Nom de l'équipe : " + this.obtenirNom() + ", Athlètes de l'équipe : " + this.getAthletes();
+        return "Nom de l'équipe : " + this.obtenirNom() + ", Athlètes de l'équipe : " + this.getAthletes()+ ", Pays de l'équipe : " + this.obtenirPays();
     }
 
     /**
@@ -208,7 +218,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
             return false;
         }
         Equipe e = (Equipe) objet;
-        return this.nom.equals(e.nom) && this.athletes.equals(e.athletes);
+        return this.nom.equals(e.nom) && this.athletes.equals(e.athletes)&&this.pays.equals(e.pays);
     }
 
     /**
@@ -217,7 +227,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
      */
     @Override
     public int hashCode() {
-        return this.nom.hashCode() + this.athletes.hashCode();
+        return this.nom.hashCode() + this.athletes.hashCode() + this.pays.hashCode();
     }
 
 }

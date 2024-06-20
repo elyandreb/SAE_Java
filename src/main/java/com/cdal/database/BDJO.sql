@@ -30,8 +30,8 @@ CREATE TABLE 'ATHLETE' (
     'force' int NOT NULL,
     'agilite' int NOT NULL,
     'endurance' int NOT NULL,
-    'nomEq' varchar(50) NOT NULL,
     'nomP' varchar(50) NOT NULL,
+    'nomEq' varchar(50),
     PRIMARY KEY('idA'),
     FOREIGN KEY ('nomEq') REFERENCES EQUIPE('nomEq'),
     FOREIGN KEY ('nomP') REFERENCES PAYS('nomP')

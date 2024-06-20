@@ -14,6 +14,8 @@ public class Athlete implements Participant, Comparable<Athlete> {
     private int force; // La force de l'athlète
     private int agilite; // L'agilité de l'athlète
     private int endurance; // L'endurance de l'athlète
+    private final Pays pays; // Le pays auquel l'athlète appartient
+    private final Boolean estEquipe; //Savoir si l'athlète fait partie d'une équipe
 
     /**
      * Constructeur de la classe Athlete
@@ -23,9 +25,11 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * @param force La force de l'athlète
      * @param agilite L'agilité de l'athlète
      * @param endurance L'endurance de l'athlète
+     * @param pays Le pays de l'athlète
+     * @param estEquipe Boolean pour savoir si l'athlète fait partie d'une équipe
      * @throws IllegalArgumentException Si l'un des paramètres est invalide
      */
-    public Athlete(String nom, String prenom, String sexe, int force, int agilite, int endurance) throws IllegalArgumentException {
+    public Athlete(String nom, String prenom, String sexe, int force, int agilite, int endurance, Pays pays, Boolean estEquipe) throws IllegalArgumentException {
         if (nom == null || nom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le nom de l'athlète ne peut pas être vide ou null.");
         }
@@ -50,6 +54,8 @@ public class Athlete implements Participant, Comparable<Athlete> {
         this.force = force;
         this.agilite = agilite;
         this.endurance = endurance;
+        this.pays = pays;
+        this.estEquipe = estEquipe;
     }
 
     /**
@@ -101,6 +107,23 @@ public class Athlete implements Participant, Comparable<Athlete> {
     public int getEndurance() {
         return this.endurance;
     }
+
+    /**
+     * Méthode pour obtenir le pays de l'athlète
+     * @return L'endurance de l'athlète
+     */
+    public Pays getPays() {
+        return this.pays;
+    }
+
+    /**
+     * Méthode pour obtenir le pays de l'athlète
+     * @return L'endurance de l'athlète
+     */
+    public boolean getEstEquipe() {
+        return this.estEquipe;
+    }
+
 
     /**
      * Méthode pour définir le nom de l'athlète
@@ -309,7 +332,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
     public String toString() {
         return "Nom : " + this.obtenirNom() + ", Prénom : " + this.getPrenom() + 
             ", Sexe : " + this.obtenirSexe() + ", Force : " + this.getForce() + 
-            ", Agilité : " + this.getAgilite() + ", Endurance : " + this.getEndurance();
+            ", Agilité : " + this.getAgilite() + ", Endurance : " + this.getEndurance()+ ", Pays : " + this.getPays() + "Dans une équipe ? "+this.getEstEquipe();
     }
 
     /**
@@ -329,7 +352,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
             return false;
         }
         Athlete athlete = (Athlete) objet;
-        return this.nom.equals(athlete.nom) && this.prenom.equals(athlete.prenom) && this.sexe.equals(athlete.sexe) && this.force == athlete.force && this.agilite == athlete.agilite && this.endurance == athlete.endurance;
+        return this.nom.equals(athlete.nom) && this.prenom.equals(athlete.prenom) && this.sexe.equals(athlete.sexe) && this.force == athlete.force && this.agilite == athlete.agilite && this.endurance == athlete.endurance && this.pays.equals(athlete.pays) && this.estEquipe.equals(athlete.estEquipe);
     }
     /**
      * Méthode pour obtenir le code de hachage de l'athlète
@@ -337,7 +360,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      */
     @Override
     public int hashCode() {
-        return this.nom.hashCode() + this.prenom.hashCode() + this.sexe.hashCode() + this.force + this.agilite + this.endurance;
+        return this.nom.hashCode() + this.prenom.hashCode() + this.sexe.hashCode() + this.force + this.agilite + this.endurance + this.pays.hashCode() + this.estEquipe.hashCode();
     }
 
 

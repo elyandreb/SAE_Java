@@ -22,6 +22,7 @@ public class RecupDonnees {
     private GestionDonnees gestion;
     private Statement st;
     private ConnexionBD laConnexion;
+    private RequeteJDBC requetes;
 
     public RecupDonnees(GestionDonnees gestion) {
         this.gestion = gestion;
@@ -60,7 +61,9 @@ public class RecupDonnees {
             int force = Integer.parseInt(data[8]);
             int endurance = Integer.parseInt(data[9]);
             int agilite = Integer.parseInt(data[10]);
-            Athlete ath = new Athlete(nom, prenom, sexe, force, agilite, endurance);
+            Athlete ath = null;
+            if(nbJoueurs!=1){ath = new Athlete(nom, prenom, sexe, force, agilite, endurance,gestion.getPays(pays),true);}
+            else{ath = new Athlete(nom, prenom, sexe, force, agilite, endurance,gestion.getPays(pays),false);}
             Pays paysm = new Pays(pays, 0,0,0);
             if(sport.charAt(0)=='A'){sportt = new Athletisme(sport, categorie, nbJoueurs);}
             if(sport.charAt(0)=='E'){sportt = new Escrime(sport, categorie, nbJoueurs);}
@@ -118,7 +121,9 @@ public class RecupDonnees {
         ResultSet athletes = st.executeQuery("SELECT * FROM ATHLETE");
 
         while (athletes.next()) {
-            gestion.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7)));
+            if(athletes.getString(9).equals(null)){
+            gestion.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), gestion.getPays(athletes.getString(8)),false));}
+            else{gestion.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), gestion.getPays(athletes.getString(8)),true));}
         }
 
         ResultSet sports = st.executeQuery("SELECT * FROM SPORT WHERE nombreJoueurs=1");
@@ -149,6 +154,9 @@ public class RecupDonnees {
         HashMap<Pair<String, String>, List<Athlete>> dico = new HashMap<>();
         Pays p = null;
         Epreuve ep = null;
+        for(Equipe eq : gestion.getEquipes()){
+            requetes.ajoutEquipe(eq, eq.obtenirPays());
+        }
         for(Athlete a : gestion.getAthletes()){
             for(Pays pays: this.gestion.getPays()){
                 if(!(pays.rechercheAthlete(a)==null)){p = pays;}
@@ -161,98 +169,14 @@ public class RecupDonnees {
                 l=new ArrayList<Athlete>();
                 dico.put(new Pair<>(ep.getNom(), a.obtenirSexe()), l);}
             l.add(a);
-            for(Epreuve e : this.gestion.getEpreuves()){
-                
-            }
-            ajouteAthlete(a, null, p);
-            ajoutePays(p);
-            ajouteEquipe(null, p);
+            
+            for(Equipe eq : gestion.getEquipes()){
+                if(eq.rechercheAthlete(a).equals(a)){requetes.ajoutAthlete(a, null, p);}}
+
+            requetes.ajoutPays(p);
         }
     }
 
-    public int ajouteAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("insert into ATHLETE values (?,?,?,?,?,?,?,?,?)");
-        int id = maxNumAthlete() + 1;
-        ps.setInt(1,id);
-        ps.setString(2,a.obtenirNom());
-        ps.setString(3,a.getPrenom());
-        ps.setString(4,a.obtenirSexe());
-        ps.setInt(5,a.getForce());
-        ps.setInt(6,a.getAgilite());
-        ps.setInt(7,a.getEndurance());
-        ps.setString(8, e.obtenirNom());
-        ps.setString(9,p.getNom());
-        ps.execute();
-        return maxNumAthlete();
-    }
-
-
-    public void effacerAthlete(int id) throws SQLException {
-		PreparedStatement ps = this.laConnexion.prepareStatement("delete from ATHLETE where idA = ?");
-		ps.setInt(1, id);
-		ps.execute();
-	}
-
-    public void majAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE ATHLETE set idA = ?,"+"nomA = ?,"+"prenomA= ?,"+"sexeA = ?,"+"force = ?,"+"agilite = ?,"+"endurance = ?,"+"nomEq = nomEq,"+"nomP = nomP");
-        int id = maxNumAthlete() + 1;
-        ps.setInt(1,id);
-        ps.setString(2,a.obtenirNom());
-        ps.setString(3,a.getPrenom());
-        ps.setString(4,a.obtenirSexe());
-        ps.setInt(5,a.getForce());
-        ps.setInt(6,a.getAgilite());
-        ps.setInt(7,a.getEndurance());
-        ps.setString(8, e.obtenirNom());
-        ps.setString(9,p.getNom());
-        ps.executeUpdate();
-    }
-
-
-    public void ajouteEquipe(Equipe e,Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?)");
-        ps.setString(1,e.obtenirNom());
-        ps.setString(2, e.obtenirSexe());
-        ps.setString(3,p.getNom() );
-        ps.execute();
-    }
-
-    public void effacerEquipe(Equipe e) throws SQLException {
-		PreparedStatement ps = this.laConnexion.prepareStatement("delete from EQUIPE where nomEq = ?");
-		ps.setString(1, e.obtenirNom());
-		ps.execute();
-	}
-    public void maJEquipe(Equipe e,Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE EQUIPE set nomEq = ?,"+"sexeE = ?,"+"nomP = ?");
-        ps.setString(1, e.obtenirNom());
-        ps.setString(2, e.obtenirSexe());
-        ps.setString(3,p.getNom());
-        ps.executeUpdate();
-    }
-
-    public void ajoutePays(Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("Insert into PAYS values (?,?,?,?)");
-        ps.setString(1, p.getNom());
-        ps.setInt(2, p.getNbMedaillesOr());
-        ps.setInt(3, p.getNbMedaillesArgent());
-        ps.setInt(4, p.getNbMedaillesBronze());
-        ps.execute();
-    }
-
-    public void effacerPays(Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("delete from PAYS where nomP = ?");
-        ps.setString(0, p.getNom());
-        ps.execute();
-    }
-
-    public void maJPays(Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("upadte IGNORE PAYS set nomP = ?,"+"medailleOR = ?,"+"medailleARGENT = ?,"+"medailleBRONZE = ?");
-        ps.setString(1, p.getNom());
-        ps.setInt(2, p.getNbMedaillesOr());
-        ps.setInt(3, p.getNbMedaillesArgent());
-        ps.setInt(4, p.getNbMedaillesBronze());
-        ps.executeUpdate();
-    }
 
     public void lancegcsv(){
     try {
