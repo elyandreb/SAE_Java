@@ -27,8 +27,8 @@ public class EquipeTest {
     @Test
     public void testObtenirSexeEquipeValide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
-        Athlete athlete2 = new Athlete("Marie", "Dupont", "Femme", 8, 10, 6);
+        Athlete athlete1 = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
+        Athlete athlete2 = new Athlete("Marie", "Dupont", "F", 8, 10, 6);
         equipe.ajouteAthlete(athlete1);
         equipe.ajouteAthlete(athlete2);
         assertEquals("F", equipe.obtenirSexe());
@@ -56,8 +56,8 @@ public class EquipeTest {
     @Test
     public void testNbAthletes() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
-        Athlete athlete2 = new Athlete("Marie", "Dupont", "Femme", 8, 10, 6);
+        Athlete athlete1 = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
+        Athlete athlete2 = new Athlete("Marie", "Dupont", "F", 8, 10, 6);
         equipe.ajouteAthlete(athlete1);
         equipe.ajouteAthlete(athlete2);
         assertEquals(2, equipe.nbAthletes());
@@ -72,8 +72,8 @@ public class EquipeTest {
     @Test
     public void testResultatEquipe() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
-        Athlete athlete2 = new Athlete("Marie", "Dupont", "Femme", 8, 10, 6);
+        Athlete athlete1 = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
+        Athlete athlete2 = new Athlete("Marie", "Dupont", "F", 8, 10, 6);
         equipe.ajouteAthlete(athlete1);
         equipe.ajouteAthlete(athlete2);
         
@@ -85,7 +85,7 @@ public class EquipeTest {
     @Test
     public void testAjouteAthleteEquipeValide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         equipe.ajouteAthlete(athlete);
         assertEquals(true, equipe.getAthletes().contains(athlete));
     }
@@ -93,7 +93,7 @@ public class EquipeTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAjouteAthleteEquipeInvalide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         equipe.ajouteAthlete(athlete);
         equipe.ajouteAthlete(athlete);
     }
@@ -101,7 +101,7 @@ public class EquipeTest {
     @Test
     public void testSupprimeAthleteEquipeValide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         equipe.ajouteAthlete(athlete);
         equipe.supprimeAthlete(athlete);
         assertEquals(false, equipe.getAthletes().contains(athlete));
@@ -110,14 +110,14 @@ public class EquipeTest {
     @Test
     public void testSupprimeAthleteEquipeInvalide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         assertEquals(false, equipe.getAthletes().contains(athlete));
     }
 
     @Test
     public void testRechercheAthleteValide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         equipe.ajouteAthlete(athlete);
         assertEquals(athlete, equipe.rechercheAthlete(athlete));
     }
@@ -125,7 +125,7 @@ public class EquipeTest {
     @Test(expected = NoSuchElementException.class)
     public void testRechercheAthleteInvalide() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Athlete athlete = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         equipe.rechercheAthlete(athlete);
     }
 
@@ -151,8 +151,8 @@ public class EquipeTest {
     @Test
     public void testToString() {
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
-        Athlete athlete2 = new Athlete("Marie", "Durand", "Femme", 8, 10, 6);
+        Athlete athlete1 = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
+        Athlete athlete2 = new Athlete("Marie", "Durand", "F", 8, 10, 6);
 
         equipe.ajouteAthlete(athlete1);
         equipe.ajouteAthlete(athlete2);
