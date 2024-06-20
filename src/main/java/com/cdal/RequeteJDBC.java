@@ -89,9 +89,10 @@ public class RequeteJDBC {
     }
 
 
-    public void effacerAthlete(int id) throws SQLException {
-		PreparedStatement ps = this.laConnexion.prepareStatement("delete from ATHLETE where idA = ?");
-		ps.setInt(1, id);
+    public void effacerAthlete(String nom, String prenom) throws SQLException {
+		PreparedStatement ps = this.laConnexion.prepareStatement("delete from ATHLETE where nomA = ? and prenomA = ?");
+		ps.setString(1, nom);
+	    	ps.setString(1, prenom);
 		ps.execute();
 	}
 
