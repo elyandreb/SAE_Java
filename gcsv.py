@@ -17,7 +17,7 @@ prenoms_ma = ["Youssef", "Aya", "Imane", "Mehdi", "Nour", "Hamza", "Fatima", "Ay
 sexes = ["M", "F"]
 pays = ["USA", "Chine", "Japon", "Kenya", "France", "Maroc", "Allemagne", "Australie", "Brésil", "Turquie"]
 sports = ["Natation", "Handball", "Athlétisme", "Escrime", "Volley-Ball"]
-categories = ["Individuelles", "Collectives"]
+categories = ["Individuel", "Collectif"]
 epreuve = ["Natation 100 brasse", "Natation relais libre", "Handball", "Athlétisme 110 haies", "Athlétisme relais 400m", "Escrime fleuret", "Escrime épée", "Volley-Ball"]
 # Correspondance des épreuves par sport
 epreuves_par_sport = {
@@ -29,14 +29,14 @@ epreuves_par_sport = {
 }
 # Correspondance des catégories par épreuve
 categorie_par_epreuve = {
-    "Natation 100 brasse": "Individuelles",
-    "Natation relais libre": "Collectives",
-    "Handball": "Collectives",
-    "Athlétisme 110 haies": "Individuelles",
-    "Athlétisme relais 400m": "Collectives",
-    "Escrime fleuret": "Individuelles",
-    "Escrime épée": "Individuelles",
-    "Volley-Ball": "Collectives"
+    "Natation 100 brasse": "Individuel",
+    "Natation relais libre": "Collectif",
+    "Handball": "Collectif",
+    "Athlétisme 110 haies": "Individuel",
+    "Athlétisme relais 400m": "Collectif",
+    "Escrime fleuret": "Individuel",
+    "Escrime épée": "Individuel",
+    "Volley-Ball": "Collectif"
 }
 
 nb_joueurs_par_epreuve = {
