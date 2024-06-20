@@ -99,7 +99,7 @@ public class JeuxOlympiqueTest {
     @Test
     public void testAjouteParticipantValide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.ajouteParticipant(participant);
         assertEquals(1, jeuxOlympique.nbParticipants());
     }
@@ -107,7 +107,7 @@ public class JeuxOlympiqueTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAjouteParticipantInvalide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.ajouteParticipant(participant);
         jeuxOlympique.ajouteParticipant(participant);
     }
@@ -147,7 +147,7 @@ public class JeuxOlympiqueTest {
     @Test
     public void testSupprimeParticipantValide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.ajouteParticipant(participant);
         jeuxOlympique.supprimeParticipant(participant);
         assertEquals(0, jeuxOlympique.nbParticipants());
@@ -156,7 +156,7 @@ public class JeuxOlympiqueTest {
     @Test(expected = NoSuchElementException.class)
     public void testSupprimeParticipantInvalide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.supprimeParticipant(participant);
     }
 
@@ -195,7 +195,7 @@ public class JeuxOlympiqueTest {
     @Test
     public void testRechercheParticipantValide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.ajouteParticipant(participant);
         assertEquals(participant, jeuxOlympique.rechercheParticipant(participant));
     }
@@ -203,7 +203,7 @@ public class JeuxOlympiqueTest {
     @Test(expected = NoSuchElementException.class)
     public void testRechercheParticipantInvalide() {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Jeux d'été", 2024, "Paris");
-        Participant participant = new Athlete("Jean", "Dupond", "Homme", 10, 12, 5);
+        Participant participant = new Athlete("Jean", "Dupond", "H", 10, 12, 5);
         jeuxOlympique.rechercheParticipant(participant);
     }
 
