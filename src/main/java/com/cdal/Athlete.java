@@ -1,4 +1,4 @@
-package main.java.com.cdal;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * Constructeur de la classe Athlete
      * @param nom Le nom de l'athlète
      * @param prenom Le prénom de l'athlète
-     * @param sexe Le sexe de l'athlète ("H" ou "F")
+     * @param sexe Le sexe de l'athlète ("M" ou "F")
      * @param force La force de l'athlète
      * @param agilite L'agilité de l'athlète
      * @param endurance L'endurance de l'athlète
@@ -36,7 +36,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
         if (prenom == null || prenom.isEmpty()) {
             throw new IllegalArgumentException("Erreur : Le prénom de l'athlète ne peut pas être vide ou null.");
         }
-        if (!(sexe.equals("H") || sexe.equals("F"))) {
+        if (!(sexe.equals("M") || sexe.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format du sexe n'est pas respecter.");
         }
         if (force < 0) {
@@ -155,7 +155,7 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * @throws IllegalArgumentException Si le format du sexe n'est pas respecté ou si le sexe est vide ou null
      */
     public void setSexe(String nouveauSexe) throws IllegalArgumentException {
-        if (!(nouveauSexe.equals("H") || nouveauSexe.equals("F"))) {
+        if (!(nouveauSexe.equals("M") || nouveauSexe.equals("F"))) {
             throw new IllegalArgumentException("Erreur : Le format du sexe n'est pas respecter.");
         }
         this.sexe = nouveauSexe;
@@ -221,90 +221,12 @@ public class Athlete implements Participant, Comparable<Athlete> {
      */
     @Override 
     public double resultat(Epreuve epreuve) {
-        double res = ((this.force + this.agilite + this.endurance) / 3)*Math.random();
+        double res = ((this.force + this.agilite + this.endurance) / 3);
         System.out.println("Résultat de " + this.nom + " dans l'épreuve de " + epreuve.getNom() + " : " + res);
         return res;
     }
 
-    /**
-     * Trie la liste d'athlètes en fonction de leur force de manière croissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triForceCroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriForceCroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur force de manière décroissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triForceDecroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriForceDecroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur agilité de manière croissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triAgiliteCroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriAgiliteCroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur agilité de manière décroissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triAgiliteDecroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriAgiliteDecroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur endurance de manière croissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triEnduranceCroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriEnduranceCroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur endurance de manière décroissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triEnduranceDecroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriEnduranceDecroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur performance de manière croissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triPerfCroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriPerfCroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en fonction de leur performance de manière décroissante
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triPerfDecroissant(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriPerfDecroissant());
-    }
-
-    /**
-     * Trie la liste d'athlètes en plaçant les hommes avant les femmes
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triSexeHomme(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriSexeHomme());
-    }
-
-    /**
-     * Trie la liste d'athlètes en plaçant les femmes avant les hommes
-     * @param listeAthlete La liste d'athlètes à trier
-     */
-    public static void triSexeFemme(List<Athlete> listeAthlete) {
-        Collections.sort(listeAthlete, new TriSexeFemme());
-    }
+    
 
     /**
      * Trie la liste d'athlètes en fonction de leur nom de manière alphabétique croissante
@@ -330,9 +252,11 @@ public class Athlete implements Participant, Comparable<Athlete> {
      */
     @Override
     public String toString() {
-        return "Nom : " + this.obtenirNom() + ", Prénom : " + this.getPrenom() + 
-            ", Sexe : " + this.obtenirSexe() + ", Force : " + this.getForce() + 
-            ", Agilité : " + this.getAgilite() + ", Endurance : " + this.getEndurance()+ ", Pays : " + this.getPays() + "Dans une équipe ? "+this.getEstEquipe();
+        return "Nom : " + this.obtenirNom() + ", Prénom : " + this.getPrenom(); 
+        
+        ///+ 
+        ///    ", Sexe : " + this.obtenirSexe() + ", Force : " + this.getForce() + 
+        ///    ", Agilité : " + this.getAgilite() + ", Endurance : " + this.getEndurance()+ ", Pays : " + this.getPays() + "Dans une équipe ? "+this.getEstEquipe();
     }
 
     /**
