@@ -1,4 +1,4 @@
-package main.java.com.cdal;
+
 
 /**
  * La classe abstraite Sport représente un sport avec ses caractéristiques telles que le nom, la catégorie et le nombre de joueurs
