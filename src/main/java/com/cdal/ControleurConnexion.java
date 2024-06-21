@@ -47,7 +47,7 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
             } else {
                 appli.setErreurMessage("Le mot de passe ou l'identifiant est vide");
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e1) {
             appli.setErreurMessage("Le mot de passe doit être un entier");
         }
     }

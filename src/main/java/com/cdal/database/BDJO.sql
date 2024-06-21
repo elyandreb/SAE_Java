@@ -30,13 +30,13 @@ CREATE TABLE ATHLETE (
     nomA varchar(50) NOT NULL,
     prenomA varchar(50) NOT NULL,
     sexeA varchar(1) NOT NULL,
-    forceA int NOT NULL,  -- Renommé de 'force' à 'forceA'
+    forceA int NOT NULL, 
     agilite int NOT NULL,
     endurance int NOT NULL,
     nomP varchar(50) NOT NULL,
-    nomEq int,  -- Change nomEq to int to reference idEq in EQUIPE
+    idEq int,  
     PRIMARY KEY(idA),
-    FOREIGN KEY (nomEq) REFERENCES EQUIPE(idEq),
+    FOREIGN KEY (idEq) REFERENCES EQUIPE(idEq),
     FOREIGN KEY (nomP) REFERENCES PAYS(nomP)
 );
 

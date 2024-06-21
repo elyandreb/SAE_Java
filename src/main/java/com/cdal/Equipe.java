@@ -41,7 +41,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
      * Méthode pour obtenir le pays de l'équipe
      * @return Le pays de l'équipe
      */
-    public Pays getrPays() {
+    public Pays getPays() {
         return this.pays;
     }
 
@@ -198,7 +198,7 @@ public class Equipe implements Participant, Comparable<Equipe> {
      */
     @Override
     public String toString() {
-        return "Nom de l'équipe : " + this.obtenirNom() + ", Athlètes de l'équipe : " + this.getAthletes()+ ", Pays de l'équipe : " + this.obtenirPays();
+        return "Nom de l'équipe : " + this.obtenirNom() + ", Athlètes de l'équipe : " + this.getAthletes()+ ", Pays de l'équipe : " + this.getPays();
     }
 
     /**

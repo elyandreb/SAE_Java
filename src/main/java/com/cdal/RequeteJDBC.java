@@ -34,6 +34,18 @@ public class RequeteJDBC {
 		rs.close();
 		return 0;
 	}
+
+    public int maxNumEpreuve() throws SQLException {
+		this.st = this.laConnexion.createStatement();
+		ResultSet rs = this.st.executeQuery("Select max(idA) from EPREUVE");
+		if (rs.next()) {
+			int maxNum = rs.getInt(1);
+			rs.close();
+			return maxNum;
+		}
+		rs.close();
+		return 0;
+	}
     public ArrayList<String> classementPays() throws SQLException {
         ArrayList<String> listePays = new ArrayList<>();
         String res  = null;
@@ -82,8 +94,8 @@ public class RequeteJDBC {
         ps.setInt(5,a.getForce());
         ps.setInt(6,a.getAgilite());
         ps.setInt(7,a.getEndurance());
-        ps.setString(8, e.obtenirNom());
-        ps.setString(9,p.getNom());
+        ps.setString(9, e.obtenirNom());
+        ps.setString(8,p.getNom());
         ps.execute();
         return maxNumAthlete();
     }
@@ -113,10 +125,11 @@ public class RequeteJDBC {
 
 
     public void ajoutEquipe(Equipe e,Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?)");
-        ps.setString(1,e.obtenirNom());
-        ps.setString(2, e.obtenirSexe());
-        ps.setString(3,p.getNom() );
+        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?,?)");
+        ps.setInt(1, maxNumEpreuve() + 1);
+        ps.setString(2,e.obtenirNom());
+        ps.setString(3, e.obtenirSexe());
+        ps.setString(4,p.getNom() );
         ps.execute();
     }
 
@@ -180,16 +193,16 @@ public class RequeteJDBC {
         ps.executeUpdate();
     }
 
-    public void ajoutEpreuve(String nom, String genre, Sport sport) throws SQLException{
+    public void ajoutEpreuve(Epreuve e) throws SQLException{
         PreparedStatement ps = this.laConnexion.prepareStatement("Select idS FROM SPORT where nomS = ? and categorie = ? and nombreJoueurs = ?");
-        ps.setString(1, sport.getNom());
-        ps.setString(2, sport.getCategorie());
-        ps.setInt(3, sport.getNbJoueur());
+        ps.setString(1, e.getSport().getNom());
+        ps.setString(2, e.getSport().getCategorie());
+        ps.setInt(3, e.getSport().getNbJoueur());
         ResultSet r = ps.executeQuery();
         while(r.next()){
             PreparedStatement pss = this.laConnexion.prepareStatement("insert into EPREUVE values (?,?,?)");
-            pss.setString(1, nom);
-            pss.setString(2, genre);
+            pss.setString(1, e.getNom());
+            pss.setString(2, e.getGenre());
             pss.setInt(3, r.getInt(1));
             pss.execute();
         }

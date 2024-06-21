@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -20,7 +23,12 @@ public class ControleurSupprimerSport implements EventHandler<ActionEvent> {
         String nomS = appli.getTextNomSport();
         String nomE = appli.getTextNomEpreuve();
 
-        requetes.effacerEpreuve(nomE, nomS);
+        try {
+            requetes.effacerEpreuve(nomE, nomS);
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
             // Récupérer la liste actuelle des épreuves
         ObservableList<Epreuve> currentList = appli.getTableSport().getItems();
@@ -28,7 +36,7 @@ public class ControleurSupprimerSport implements EventHandler<ActionEvent> {
         // Trouver l'épreuve avec les noms donnés
         Epreuve epreuveASupprimer = null;
         for (Epreuve epreuve : currentList) {
-            if (epreuve.getNom().equals(nom) && epreuve.getSport().getNom().equals(nomS)) {
+            if (epreuve.getNom().equals(nomE) && epreuve.getSport().getNom().equals(nomS)) {
                 epreuveASupprimer = epreuve;
                 break;
             }

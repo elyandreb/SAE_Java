@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -20,16 +23,17 @@ public class ControleurAjouteEquipe implements EventHandler<ActionEvent> {
         try {
             String nom = appli.getTextEquipeNom();
 
+            int choixPaysR = (int)(10*Math.random());
             Pays pays = null;
-            if(choixPaysR == 0 || choixPaysR == 1 || choixPaysR == 2){pays = new Pays("Maroc", 0,0,0)}
-            else if((choixPaysR == 3 || choixPaysR == 4){pays = new Pays("France", 0,0,0)}
-            else if((choixPaysR == 5 || choixPaysR == 6){pays = new Pays("Allemagne", 0,0,0)}
-            else if((choixPaysR == 7 || choixPaysR == 8){pays = new Pays("Japon", 0,0,0)}
-            else if((choixPaysR == 9 || choixPaysR == 10){pays = new Pays("Corée", 0,0,0)}
+            if(choixPaysR == 0 || choixPaysR == 1 || choixPaysR == 2){pays = new Pays("Maroc", 0,0,0);}
+            else if((choixPaysR == 3 || choixPaysR == 4)){pays = new Pays("France", 0,0,0);}
+            else if((choixPaysR == 5 || choixPaysR == 6)){pays = new Pays("Allemagne", 0,0,0);}
+            else if((choixPaysR == 7 || choixPaysR == 8)){pays = new Pays("Japon", 0,0,0);}
+            else if((choixPaysR == 9 || choixPaysR == 10)){pays = new Pays("Corée", 0,0,0);}
             
-            Equipe eq = new Equipe(nom, pays)
+            Equipe eq = new Equipe(nom, pays);
 
-            requetes.ajoutEquipe(eq);
+            requetes.ajoutEquipe(eq, pays);
 
             ObservableList<Equipe> currentList = appli.getTableEquipe().getItems();
 

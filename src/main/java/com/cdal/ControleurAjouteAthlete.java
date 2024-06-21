@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -25,23 +28,23 @@ public class ControleurAjouteAthlete implements EventHandler<ActionEvent> {
             int nbEnd = appli.getEnduranceSpinner();
             int nbFor = appli.getForceSpinner();
             
-            int choixEquipeR = 10*Math.random();
+            int choixEquipeR = (int)(10*Math.random());
             Boolean choixEquipe = null;
-            if(choixEquipeR>=5){choixEquipe = true:}else{choixEquipe = false;}
-            int choixPaysR = 10*Math.Random();
+            if(choixEquipeR>=5){choixEquipe = true;}else{choixEquipe = false;}
+            int choixPaysR = (int)(10*Math.random());
             
             Pays pays = null;
-            if(choixPaysR == 0 || choixPaysR == 1 || choixPaysR == 2){pays = new Pays("Maroc", 0,0,0)}
-            else if((choixPaysR == 3 || choixPaysR == 4){pays = new Pays("France", 0,0,0)}
-            else if((choixPaysR == 5 || choixPaysR == 6){pays = new Pays("Allemagne", 0,0,0)}
-            else if((choixPaysR == 7 || choixPaysR == 8){pays = new Pays("Japon", 0,0,0)}
-            else if((choixPaysR == 9 || choixPaysR == 10){pays = new Pays("Corée", 0,0,0)}
+            if(choixPaysR == 0 || choixPaysR == 1 || choixPaysR == 2){pays = new Pays("Maroc", 0,0,0);}
+            else if((choixPaysR == 3 || choixPaysR == 4)){pays = new Pays("France", 0,0,0);}
+            else if((choixPaysR == 5 || choixPaysR == 6)){pays = new Pays("Allemagne", 0,0,0);}
+            else if((choixPaysR == 7 || choixPaysR == 8)){pays = new Pays("Japon", 0,0,0);}
+            else if((choixPaysR == 9 || choixPaysR == 10)){pays = new Pays("Corée", 0,0,0);}
             
-            Athlete athlete = new Athlete(nom, prenom, sexe, nbFor, nbAgi, nbEnd, pays, choixEquipe)
+            Athlete athlete = new Athlete(nom, prenom, sexe, nbFor, nbAgi, nbEnd, pays, choixEquipe);
 
-            requetes.ajoutAthlete(athlete);
+            requetes.ajoutAthlete(athlete, new Equipe(nom, pays), pays);
 
-            ObservableList<Pays> currentList = appli.getTableAthlete().getItems();
+            ObservableList<Athlete> currentList = appli.getTableAthlete().getItems();
 
             if (currentList.contains(athlete)) {
                 throw new IllegalArgumentException("L'athlète est déjà présent dans la liste.");

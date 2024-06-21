@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -9,7 +12,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
     private ConnexionBD connexionBD;
     private RequeteJDBC requetes;
     
-    public ControleurSupprimeAthlete(AppIUTO appli, ConnexionBD connexionBD, RequeteJDBC requetes){
+    public ControleurSupprimeAthlete(AppIUTO appli){
         this.appli = appli;
         this.connexionBD = connexionBD;
         this.requetes = requetes;
@@ -20,7 +23,12 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
             String nom = appli.getTextAthleteNom();
             String prenom = appli.getTextAthletePrenom();
 
-            requetes.effacerAthlete(nom, prenom);
+            try {
+                requetes.effacerAthlete(nom, prenom);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
 
             // Récupérer la liste actuelle des pays
             ObservableList<Athlete> currentList = appli.getTableAthlete().getItems();
@@ -28,7 +36,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
             // Trouver le pays avec le nom donné
             Athlete athleteASupprimer = null;
             for (Athlete a : currentList) {
-                if (a.obetnirNom().equals(nom)&&a.getPrenom().equals(prenom)) {
+                if (a.obtenirNom().equals(nom)&&a.getPrenom().equals(prenom)) {
                     athleteASupprimer = a;
                     break;
                 }

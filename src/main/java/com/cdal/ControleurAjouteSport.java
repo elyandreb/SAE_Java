@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -21,21 +24,27 @@ public class ControleurAjouteSport implements EventHandler<ActionEvent> {
             String nomEp = appli.getTextNomEpreuve();
             String nomS = appli.getTextNomSport();
 
-            int choixSexeR = 10*Math.random();
+            int choixSexeR = (int)(10*Math.random());
             String choixSexe = null;
             if(choixSexeR>=5){choixSexe = "M";}else{choixSexe = "F";}
 
-            int choixSportR = 10*Math.random();
+            int choixSportR = (int)(10*Math.random());
             String choix = null;
-            int nbj = 1;
+            double nbj = 1;
             if(choixSportR>=5){choix = "Individuel";}else{choix = "Collectif";}
-            if(choix.equals("Collectif")){nbj = Math.Random()*10;}
+            if(choix.equals("Collectif")){nbj = Math.random()*10;}
+            Sport sport = null;
+            if(nomS.charAt(0)=='A'){sport = new Athletisme(nomS, choixSexe, (int)nbj);}
+            if(nomS.charAt(0)=='E'){sport = new Natation(nomS, choixSexe, (int)nbj);}
+            if(nomS.charAt(0)=='H'){sport = new Handball(nomS, choixSexe, (int)nbj);}
+            if(nomS.charAt(0)=='N'){sport = new Natation(nomS, choixSexe, (int)nbj);}
+            else{sport = new Athletisme(nomS, choixSexe, (int)nbj);}
             
-            Epreuve ep = new Epreuve(nomEp, choixSexe, nbj);
+            Epreuve ep = new Epreuve(nomEp, choixSexe, sport);
 
             requetes.ajoutEpreuve(ep);
 
-            ObservableList<ep> currentList = appli.getTableSport().getItems();
+            ObservableList<Epreuve> currentList = appli.getTableSport().getItems();
 
             if (currentList.contains(ep)) {
                 throw new IllegalArgumentException("L'épreuve est déjà présente dans la liste.");

@@ -1,5 +1,8 @@
 package main.java.com.cdal;
 
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -19,7 +22,12 @@ public class ControleurSupprimerEquipe implements EventHandler<ActionEvent> {
     public void handle(ActionEvent e) {
         String nom = appli.getTextEquipeNom();
 
-        requetes.effacerEquipe(nom);
+        try {
+            requetes.effacerEquipe(nom);
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
             // Récupérer la liste actuelle des equipes
         ObservableList<Equipe> currentList = appli.getTableEquipe().getItems();

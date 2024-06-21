@@ -227,7 +227,7 @@ public class AppIUTO extends Application {
         retourEquipe = new Button("RETOUR"); 
         retourEquipe.setOnAction(new ControleurEquipe(this)); 
         supprimerEquipe = new Button("SUPPRIMER");
-        supprimeEquipe.setOnAction(new ControleurSupprimerEquipe(this));
+        supprimerEquipe.setOnAction(new ControleurSupprimerEquipe(this, connexionBD, requetes));
         ajoutePs = new Button("AJOUTER");
         ajoutePs.setOnAction(new ControleurPageAjoutePays(this));
         supprimePs = new Button("SUPPRIMER");  
@@ -246,7 +246,7 @@ public class AppIUTO extends Application {
         retourPays = new Button("RETOUR");  
         retourPays.setOnAction(new ControleurPays(this));
         supprimePays = new Button("SUPPRIMER"); 
-        supprimePays.setOnAction(new ControleurSupprimerPays(this));
+        supprimePays.setOnAction(new ControleurSupprimerPays(this, connexionBD, requetes));
         ajouteSpt = new Button("AJOUTER");
         ajouteSpt.setOnAction(new ControleurPageAjouteSport(this));
         supprimeSpt = new Button("SUPPRIMER");
@@ -261,11 +261,11 @@ public class AppIUTO extends Application {
         retourSport1 = new Button("RETOUR"); 
         retourSport1.setOnAction(new ControleurSport(this));
         ajouteEpreuve = new Button("AJOUTER");
-        ajouteEpreuve.setOnAction(new ControleurAjouteEpreuve(this, connexionBD, requetes));
+        //ajouteEpreuve.setOnAction(new ControleurAjouteEpreuve(this, connexionBD, requetes));
         retourSport2 = new Button("RETOUR"); 
         retourSport2.setOnAction(new ControleurSport(this));  
         supprimeSport = new Button("SUPPRIMER");
-        supprimeSport.setOnAction(new ControleurSupprimerSport(this));
+        supprimeSport.setOnAction(new ControleurSupprimerSport(this, connexionBD, requetes));
         lesEpreuves = new ComboBox<>(); 
         supprimeEpreuve = new Button("SUPPRIMER");
         titreOrganisateur = new Label("ORGANISATEUR");  
@@ -2130,9 +2130,9 @@ public class AppIUTO extends Application {
 
     public TableView<Pays> getTablePays() {return this.tablePays;}
 
-    public String getTextAthleteNom(){return this.textAthleteNomAjoute.getText();}
+    public String getTextAthleteNom(){return this.textAthleteNom.getText();}
 
-    public String getTextAthletePrenom(){return this.textAthletePrenomAjoute.getText();}
+    public String getTextAthletePrenom(){return this.textAthletePrenom.getText();}
 
     public String getSexeAthlete(){if(homme.isSelected()){return "M";}else{return "F";}}
 
