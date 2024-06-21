@@ -36,6 +36,13 @@ public class Equipe implements Participant, Comparable<Equipe> {
     public String obtenirNom() {
         return this.nom;
     }
+    /**
+     * Méthode pour obtenir le prénom de l'athlète
+     * @return Le prénom de l'athlète
+     */
+    public String getNom() {
+        return this.nom;
+    }
 
     /**
      * Méthode pour obtenir le pays de l'équipe

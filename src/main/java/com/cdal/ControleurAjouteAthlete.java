@@ -32,17 +32,18 @@ public class ControleurAjouteAthlete implements EventHandler<ActionEvent> {
             Boolean choixEquipe = null;
             if(choixEquipeR>=5){choixEquipe = true;}else{choixEquipe = false;}
             int choixPaysR = (int)(10*Math.random());
-            
             Pays pays = null;
             if(choixPaysR == 0 || choixPaysR == 1 || choixPaysR == 2){pays = new Pays("Maroc", 0,0,0);}
             else if((choixPaysR == 3 || choixPaysR == 4)){pays = new Pays("France", 0,0,0);}
             else if((choixPaysR == 5 || choixPaysR == 6)){pays = new Pays("Allemagne", 0,0,0);}
             else if((choixPaysR == 7 || choixPaysR == 8)){pays = new Pays("Japon", 0,0,0);}
             else if((choixPaysR == 9 || choixPaysR == 10)){pays = new Pays("Corée", 0,0,0);}
+            boolean paysc = requetes.cherchePays(pays.getNom());
+            if(paysc == false){requetes.ajoutPays(pays);}
             
             Athlete athlete = new Athlete(nom, prenom, sexe, nbFor, nbAgi, nbEnd, pays, choixEquipe);
 
-            requetes.ajoutAthlete(athlete, new Equipe(nom, pays), pays);
+            requetes.ajoutAthlete(athlete, pays);
 
             ObservableList<Athlete> currentList = appli.getTableAthlete().getItems();
 

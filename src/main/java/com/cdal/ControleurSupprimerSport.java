@@ -26,7 +26,6 @@ public class ControleurSupprimerSport implements EventHandler<ActionEvent> {
         try {
             requetes.effacerEpreuve(nomE, nomS);
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -47,6 +46,7 @@ public class ControleurSupprimerSport implements EventHandler<ActionEvent> {
             currentList.remove(epreuveASupprimer);
             // Rafraîchir le TableView pour refléter les modifications
             appli.getTableSport().refresh();
+            appli.pageSportAdministrateur();
         } else {
             System.err.println("L'épreuve avec le nom " + nomE + " n'a pas été trouvé.");
         }

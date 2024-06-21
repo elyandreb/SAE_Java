@@ -24,21 +24,19 @@ public class ControleurAjouteSport implements EventHandler<ActionEvent> {
             String nomEp = appli.getTextNomEpreuve();
             String nomS = appli.getTextNomSport();
 
-            int choixSexeR = (int)(10*Math.random());
-            String choixSexe = null;
-            if(choixSexeR>=5){choixSexe = "M";}else{choixSexe = "F";}
+            String choixSexe = appli.getSexeEpreuve();
 
             int choixSportR = (int)(10*Math.random());
             String choix = null;
             double nbj = 1;
             if(choixSportR>=5){choix = "Individuel";}else{choix = "Collectif";}
-            if(choix.equals("Collectif")){nbj = Math.random()*10;}
+            if(choix.equals("Collectif")){nbj = Math.random()*10 +1;}
             Sport sport = null;
             if(nomS.charAt(0)=='A'){sport = new Athletisme(nomS, choixSexe, (int)nbj);}
-            if(nomS.charAt(0)=='E'){sport = new Natation(nomS, choixSexe, (int)nbj);}
+            if(nomS.charAt(0)=='E'){sport = new Escrime(nomS, choixSexe, (int)nbj);}
             if(nomS.charAt(0)=='H'){sport = new Handball(nomS, choixSexe, (int)nbj);}
             if(nomS.charAt(0)=='N'){sport = new Natation(nomS, choixSexe, (int)nbj);}
-            else{sport = new Athletisme(nomS, choixSexe, (int)nbj);}
+            else{sport = new Volleyball(nomS, choix, (int)nbj);}
             
             Epreuve ep = new Epreuve(nomEp, choixSexe, sport);
 

@@ -133,6 +133,11 @@ public class AppIUTO extends Application {
     private Button lancer; 
     private Button enregistrerEpreuve; 
     private Button enregistrer; 
+    private TextField textNomSportSup; 
+    private TextField textNomEpreuveSup;
+    private Label epreuveSexe; 
+    private RadioButton hommeE; 
+    private RadioButton femmeE;
 
     @Override
     public void init() {
@@ -185,13 +190,53 @@ public class AppIUTO extends Application {
         imageJ = new ImageView(new Image("file:img/journaliste.jpeg"));
         imageO = new ImageView(new Image("file:img/organisateur.jpg"));
         imageA = new ImageView(new Image("file:img/administrateur.jpeg"));
+        textNomSportSup = new TextField(); 
+        textNomEpreuveSup = new TextField();
+        epreuveSexe = new Label("Sexe");
+        hommeE = new RadioButton("M");
+        femmeE = new RadioButton("F");
         tableAthlete = new TableView<>(); 
+        tableAthlete.setPrefHeight(450);
+
+        TableColumn<Athlete, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Athlete, String> prenomCol = new TableColumn<>("Prénom");
+        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+
+        TableColumn<Athlete, String> sexeCol = new TableColumn<>("Sexe");
+        sexeCol.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+
+        TableColumn<Athlete, Integer> agiliteCol = new TableColumn<>("Agilité");
+        agiliteCol.setCellValueFactory(new PropertyValueFactory<>("agilite"));
+
+        TableColumn<Athlete, Integer> enduranceCol = new TableColumn<>("Endurance");
+        enduranceCol.setCellValueFactory(new PropertyValueFactory<>("endurance"));
+
+        TableColumn<Athlete, Integer> forceCol = new TableColumn<>("Force");
+        forceCol.setCellValueFactory(new PropertyValueFactory<>("force"));
+
+        TableColumn<Athlete, Integer> resCol = new TableColumn<>("Résultat");
+        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
+
+        tableAthlete.getColumns().addAll(nomCol, prenomCol, sexeCol, agiliteCol, enduranceCol, forceCol, resCol);
+        tableAthlete.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         athleteNom = new Label("Nom de l'athlète");
         textAthleteNom = new TextField();
         athletePrenom = new Label("Prénom de l'athlète");
         textAthletePrenom = new TextField();
         rechercher = new Button("RECHERCHER");
         tableEquipe = new TableView<>();
+        tableEquipe.setPrefHeight(450);
+
+        TableColumn<Equipe, String> nomColeQ = new TableColumn<>("Nom");
+        nomColeQ.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Equipe, Integer> resColeQ = new TableColumn<>("Résultat");
+        resColeQ.setCellValueFactory(new PropertyValueFactory<>("resultat"));
+
+        tableEquipe.getColumns().addAll(nomColeQ, resColeQ);
+        tableEquipe.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         equipeNom = new Label("Nom de l'équipe");
         textEquipeNom = new TextField();
         paysNom = new Label("Nom du pays");
@@ -217,7 +262,7 @@ public class AppIUTO extends Application {
         retourAthlete = new Button("RETOUR");
         retourAthlete.setOnAction(new ControleurAthlete(this)); 
         supprimeAthlete = new Button("SUPPRIMER"); 
-        supprimeAthlete.setOnAction(new ControleurSupprimeAthlete(this));
+        supprimeAthlete.setOnAction(new ControleurSupprimeAthlete(this, connexionBD, requetes));
         ajouteEqp = new Button("AJOUTER");
         ajouteEqp.setOnAction(new ControleurPageAjouteEquipe(this));
         supprimeEqp = new Button("SUPPRIMER");
@@ -233,6 +278,23 @@ public class AppIUTO extends Application {
         supprimePs = new Button("SUPPRIMER");  
         supprimePs.setOnAction(new ControleurPageSupprimerPays(this));
         tablePays = new TableView<>();
+        tablePays.setPrefHeight(450);
+
+        TableColumn<Pays, String> nomColP = new TableColumn<>("Nom");
+        nomColP.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Pays, Integer> orCol = new TableColumn<>("Or");
+        orCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesOr"));
+
+        TableColumn<Pays, Integer> argentCol = new TableColumn<>("Argent");
+        argentCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesArgent"));
+
+        TableColumn<Pays, Integer> bronzeCol = new TableColumn<>("Bronze");
+        bronzeCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesBronze"));
+
+        tablePays.getColumns().addAll(nomColP, orCol, argentCol, bronzeCol);
+        tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
         nomPaysAjoute = new Label("Nom du pays");
         textPaysAjoute = new TextField(); 
         orPaysAjoute = new Label("Nombre de médailles d'or");
@@ -252,6 +314,16 @@ public class AppIUTO extends Application {
         supprimeSpt = new Button("SUPPRIMER");
         supprimeSpt.setOnAction(new ControleurPageSupprimerSport(this));
         tableSport = new TableView<>();
+        tableSport.setPrefHeight(450);
+
+        TableColumn<Epreuve, String> nomColS = new TableColumn<>("Nom");
+        nomColS.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Epreuve, String> genreCol = new TableColumn<>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+        tableSport.getColumns().addAll(nomColS, genreCol);
+        tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         nomSport = new Label("Nom du sport");
         textNomSport = new TextField();
         nomEpreuve = new Label("Nom de l'épreuve");
@@ -261,13 +333,14 @@ public class AppIUTO extends Application {
         retourSport1 = new Button("RETOUR"); 
         retourSport1.setOnAction(new ControleurSport(this));
         ajouteEpreuve = new Button("AJOUTER");
-        //ajouteEpreuve.setOnAction(new ControleurAjouteEpreuve(this, connexionBD, requetes));
+        ajouteEpreuve.setOnAction(new ControleurAjouteSport(this, connexionBD, requetes));
         retourSport2 = new Button("RETOUR"); 
         retourSport2.setOnAction(new ControleurSport(this));  
         supprimeSport = new Button("SUPPRIMER");
         supprimeSport.setOnAction(new ControleurSupprimerSport(this, connexionBD, requetes));
         lesEpreuves = new ComboBox<>(); 
         supprimeEpreuve = new Button("SUPPRIMER");
+        supprimeEpreuve.setOnAction(new ControleurSupprimerSport(this, connexionBD, requetes));
         titreOrganisateur = new Label("ORGANISATEUR");  
         lancerEpreuve = new Button("LANCER EPREUVE"); 
         lancerEpreuve.setOnAction(new ControleurLancerEpreuve(this));
@@ -624,32 +697,6 @@ public class AppIUTO extends Application {
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         rechercheBox.getChildren().addAll(nomBox, prenomBox, boutonBox);
-
-        TableView<Athlete> tableAthlete = new TableView<>();
-
-        TableColumn<Athlete, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Athlete, String> prenomCol = new TableColumn<>("Prénom");
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-
-        TableColumn<Athlete, String> sexeCol = new TableColumn<>("Sexe");
-        sexeCol.setCellValueFactory(new PropertyValueFactory<>("sexe"));
-
-        TableColumn<Athlete, Integer> agiliteCol = new TableColumn<>("Agilité");
-        agiliteCol.setCellValueFactory(new PropertyValueFactory<>("agilite"));
-
-        TableColumn<Athlete, Integer> enduranceCol = new TableColumn<>("Endurance");
-        enduranceCol.setCellValueFactory(new PropertyValueFactory<>("endurance"));
-
-        TableColumn<Athlete, Integer> forceCol = new TableColumn<>("Force");
-        forceCol.setCellValueFactory(new PropertyValueFactory<>("force"));
-
-        TableColumn<Athlete, Integer> resCol = new TableColumn<>("Résultat");
-        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
-
-        tableAthlete.getColumns().addAll(nomCol, prenomCol, sexeCol, agiliteCol, enduranceCol, forceCol, resCol);
-        tableAthlete.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tableAthlete);
 
@@ -700,18 +747,6 @@ public class AppIUTO extends Application {
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         rechercheBox.getChildren().addAll(nomBox, boutonBox);
-
-        TableView<Equipe> tableEquipe = new TableView<>();
-        tableEquipe.setPrefHeight(450);
-
-        TableColumn<Equipe, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Equipe, Integer> resCol = new TableColumn<>("Résultat");
-        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
-
-        tableEquipe.getColumns().addAll(nomCol, resCol);
-        tableEquipe.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tableEquipe);
 
@@ -762,27 +797,6 @@ public class AppIUTO extends Application {
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         rechercheBox.getChildren().addAll(nomBox, boutonBox);
-
-        TableView<Pays> tablePays = new TableView<>();
-        tablePays.setPrefHeight(450);
-
-        TableColumn<Pays, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Pays, Integer> orCol = new TableColumn<>("Or");
-        orCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesOr"));
-
-        TableColumn<Pays, Integer> argentCol = new TableColumn<>("Argent");
-        argentCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesArgent"));
-
-        TableColumn<Pays, Integer> bronzeCol = new TableColumn<>("Bronze");
-        bronzeCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesBronze"));
-
-        TableColumn<Pays, Integer> totalCol = new TableColumn<>("Total");
-        totalCol.setCellValueFactory(new PropertyValueFactory<>("totalMedailles"));
-
-        tablePays.getColumns().addAll(nomCol, orCol, argentCol, bronzeCol, totalCol);
-        tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tablePays);
 
@@ -832,18 +846,6 @@ public class AppIUTO extends Application {
         rechercheBox.setSpacing(20);
         rechercheBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         rechercheBox.getChildren().addAll(nomBox, boutonBox);
-
-        TableView<Epreuve> tableSport = new TableView<>();
-        tableSport.setPrefHeight(450);
-
-        TableColumn<Epreuve, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Epreuve, String> genreCol = new TableColumn<>("Genre");
-        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
-
-        tableSport.getColumns().addAll(nomCol, genreCol);
-        tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, tableSport);
 
@@ -969,18 +971,6 @@ public class AppIUTO extends Application {
         HBox boutonEpreuve = new HBox(); 
         boutonEpreuve.setSpacing(20);
         boutonEpreuve.getChildren().addAll(lancerEpreuve, enregistrerEpreuve);
-
-        TableView<Epreuve> tableSport = new TableView<>();
-        tableSport.setPrefHeight(450);
-
-        TableColumn<Epreuve, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Epreuve, String> genreCol = new TableColumn<>("Genre");
-        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
-
-        tableSport.getColumns().addAll(nomCol, genreCol);
-        tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, boutonEpreuve, tableSport);
 
@@ -1219,29 +1209,6 @@ public class AppIUTO extends Application {
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouterAthl, supprimerAthl);
 
-        TableColumn<Athlete, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Athlete, String> prenomCol = new TableColumn<>("Prénom");
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-
-        TableColumn<Athlete, String> sexeCol = new TableColumn<>("Sexe");
-        sexeCol.setCellValueFactory(new PropertyValueFactory<>("sexe"));
-
-        TableColumn<Athlete, Integer> agiliteCol = new TableColumn<>("Agilité");
-        agiliteCol.setCellValueFactory(new PropertyValueFactory<>("agilite"));
-
-        TableColumn<Athlete, Integer> enduranceCol = new TableColumn<>("Endurance");
-        enduranceCol.setCellValueFactory(new PropertyValueFactory<>("endurance"));
-
-        TableColumn<Athlete, Integer> forceCol = new TableColumn<>("Force");
-        forceCol.setCellValueFactory(new PropertyValueFactory<>("force"));
-
-        TableColumn<Athlete, Integer> resCol = new TableColumn<>("Résultat");
-        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
-
-        tableAthlete.getColumns().addAll(nomCol, prenomCol, sexeCol, agiliteCol, enduranceCol, forceCol, resCol);
-        tableAthlete.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tableAthlete);
 
@@ -1483,17 +1450,6 @@ public class AppIUTO extends Application {
         HBox adminBox = new HBox(); 
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouteEqp, supprimeEqp);
-
-        tableEquipe.setPrefHeight(450);
-
-        TableColumn<Equipe, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Equipe, Integer> resCol = new TableColumn<>("Résultat");
-        resCol.setCellValueFactory(new PropertyValueFactory<>("resultat"));
-
-        tableEquipe.getColumns().addAll(nomCol, resCol);
-        tableEquipe.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tableEquipe);
 
@@ -1661,23 +1617,6 @@ public class AppIUTO extends Application {
         HBox adminBox = new HBox(); 
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajoutePs, supprimePs);
-
-        tablePays.setPrefHeight(450);
-
-        TableColumn<Pays, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Pays, Integer> orCol = new TableColumn<>("Or");
-        orCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesOr"));
-
-        TableColumn<Pays, Integer> argentCol = new TableColumn<>("Argent");
-        argentCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesArgent"));
-
-        TableColumn<Pays, Integer> bronzeCol = new TableColumn<>("Bronze");
-        bronzeCol.setCellValueFactory(new PropertyValueFactory<>("nbMedaillesBronze"));
-
-        tablePays.getColumns().addAll(nomCol, orCol, argentCol, bronzeCol);
-        tablePays.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tablePays);
 
@@ -1769,8 +1708,13 @@ public class AppIUTO extends Application {
         ajoutePaysBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
         ajoutePaysBox.setSpacing(40);
         ajoutePaysBox.getChildren().addAll(ajouteBox, boutonBox); 
+
+        erreurLabel.setTextFill(Color.RED);
+        erreurLabel.setAlignment(Pos.CENTER);
+        erreurLabel.setPrefWidth(360);
+        erreurLabel.setWrapText(true);
                     
-        contenu.getChildren().addAll(ajoutePaysBox);
+        contenu.getChildren().addAll(ajoutePaysBox, erreurLabel);
 
         HBox administrateur = new HBox();
         administrateur.getChildren().addAll(menu(), contenu);
@@ -1888,17 +1832,6 @@ public class AppIUTO extends Application {
         HBox adminBox = new HBox(); 
         adminBox.setSpacing(20);
         adminBox.getChildren().addAll(ajouteSpt, supprimeSpt);
-
-        tableSport.setPrefHeight(450);
-
-        TableColumn<Epreuve, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Epreuve, String> genreCol = new TableColumn<>("Genre");
-        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
-
-        tableSport.getColumns().addAll(nomCol, genreCol);
-        tableSport.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     
         contenu.getChildren().addAll(rechercheBox, adminBox, tableSport);
 
@@ -1972,6 +1905,19 @@ public class AppIUTO extends Application {
         ajouteEpreuve.setFont(boutonFont);
         retourSport2.setFont(boutonFont); 
 
+        epreuveSexe.setFont(font3);
+        epreuveSexe.setStyle("-fx-text-fill: #7a1a64;");
+
+        ToggleGroup sexeE = new ToggleGroup(); 
+        hommeE.setToggleGroup(sexeE);
+        femmeE.setToggleGroup(sexeE);
+        hommeE.setStyle("-fx-font-size: 18px;");
+        femmeE.setStyle("-fx-font-size: 18px;");
+
+        HBox sexeEBox = new HBox(); 
+        sexeEBox.setSpacing(20);
+        sexeEBox.getChildren().addAll(epreuveSexe, hommeE, femmeE);
+
         HBox boutonEpreuveBox = new HBox();
         boutonEpreuveBox.setSpacing(20);
         boutonEpreuveBox.getChildren().addAll(ajouteEpreuve, retourSport2);
@@ -1979,7 +1925,7 @@ public class AppIUTO extends Application {
         VBox ajouteEpreuveBox = new VBox();
         ajouteEpreuveBox.setSpacing(20);
         ajouteEpreuveBox.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 40px;");
-        ajouteEpreuveBox.getChildren().addAll(nomEpreuveBox, boutonEpreuveBox);
+        ajouteEpreuveBox.getChildren().addAll(nomEpreuveBox, sexeEBox, boutonEpreuveBox);
 
         VBox ajouteEpreuveSportBox = new VBox(); 
         ajouteEpreuveSportBox.setSpacing(60);
@@ -2007,9 +1953,12 @@ public class AppIUTO extends Application {
         nomSport.setFont(font3);
         nomSport.setStyle("-fx-text-fill: #7a1a64;");  
 
+        textNomSportSup.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textNomSportSup.setPromptText("Saisissez le nom");
+
         HBox nomSportBox = new HBox();
         nomSportBox.setSpacing(20);
-        nomSportBox.getChildren().addAll(nomSport, lesSports);
+        nomSportBox.getChildren().addAll(nomSport, textNomSportSup);
 
         supprimeSport.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
         supprimeSport.setPrefWidth(215);
@@ -2035,11 +1984,12 @@ public class AppIUTO extends Application {
         nomEpreuve.setFont(font3);
         nomEpreuve.setStyle("-fx-text-fill: #7a1a64;");  
 
-        lesEpreuves.setPrefWidth(200);
+        textNomEpreuveSup.setStyle("-fx-border-color: #7a1a64; -fx-border-width: 1px; -fx-padding: 5px;");
+        textNomEpreuveSup.setPromptText("Saisissez le nom");
 
         HBox nomEpreuveBox = new HBox();
         nomEpreuveBox.setSpacing(20);
-        nomEpreuveBox.getChildren().addAll(nomEpreuve, lesEpreuves);
+        nomEpreuveBox.getChildren().addAll(nomEpreuve, textNomEpreuveSup);
 
         supprimeEpreuve.setStyle("-fx-background-color : #7a1a64; -fx-text-fill: white;");
         supprimeEpreuve.setPrefWidth(215);
@@ -2153,6 +2103,8 @@ public class AppIUTO extends Application {
     public String getTextNomEpreuve(){return this.textNomEpreuve.getText();}
 
     public TableView<Epreuve> getTableSport() {return this.tableSport;}
+
+    public String getSexeEpreuve(){if(hommeE.isSelected()){return "M";}else{return "F";}}
 
     @Override
     public void start(Stage stage) {

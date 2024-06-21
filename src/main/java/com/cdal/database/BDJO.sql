@@ -19,7 +19,6 @@ CREATE TABLE PAYS (
 CREATE TABLE EQUIPE (
     idEq int NOT NULL AUTO_INCREMENT,
     nomEq varchar(50) NOT NULL,
-    sexeE varchar(1) NOT NULL,
     nomP varchar(50) NOT NULL,
     PRIMARY KEY(idEq),
     FOREIGN KEY (nomP) REFERENCES PAYS(nomP)
@@ -34,9 +33,7 @@ CREATE TABLE ATHLETE (
     agilite int NOT NULL,
     endurance int NOT NULL,
     nomP varchar(50) NOT NULL,
-    idEq int,  
     PRIMARY KEY(idA),
-    FOREIGN KEY (idEq) REFERENCES EQUIPE(idEq),
     FOREIGN KEY (nomP) REFERENCES PAYS(nomP)
 );
 

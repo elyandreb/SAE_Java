@@ -35,9 +35,9 @@ public class RequeteJDBC {
 		return 0;
 	}
 
-    public int maxNumEpreuve() throws SQLException {
+    public int maxNumEquipe() throws SQLException {
 		this.st = this.laConnexion.createStatement();
-		ResultSet rs = this.st.executeQuery("Select max(idA) from EPREUVE");
+		ResultSet rs = this.st.executeQuery("Select max(idEq) from EQUIPE");
 		if (rs.next()) {
 			int maxNum = rs.getInt(1);
 			rs.close();
@@ -71,8 +71,8 @@ public class RequeteJDBC {
         String res = null;
         PreparedStatement ps = this.laConnexion.prepareStatement("Select nomEp, prenomA, nomA, nomP, resultats"+" FROM ATHLETE NATURAL JOIN PAYS NATURAL JOIN EPREUVE NATURAL JOIN SCORE"+
         "where nomEp = ? and sexeA = ? ORDER BY resultats");
-        ps.setString(1, e.obtenirNom());
-        ps.setString(2, a.obtenirSexe());
+        ps.setString(1, e.getNom());
+        ps.setString(2, a.getSexe());
         ResultSet r = ps.executeQuery();
         classement.add(r.getString(1));
         while(r.next()){
@@ -84,17 +84,16 @@ public class RequeteJDBC {
     }
 
 
-    public int ajoutAthlete(Athlete a, Equipe e, Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("insert into ATHLETE values (?,?,?,?,?,?,?,?,?)");
+    public int ajoutAthlete(Athlete a, Pays p) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("insert into ATHLETE values (?,?,?,?,?,?,?,?)");
         int id = maxNumAthlete() + 1;
         ps.setInt(1,id);
-        ps.setString(2,a.obtenirNom());
+        ps.setString(2,a.getNom());
         ps.setString(3,a.getPrenom());
-        ps.setString(4,a.obtenirSexe());
+        ps.setString(4,a.getSexe());
         ps.setInt(5,a.getForce());
         ps.setInt(6,a.getAgilite());
         ps.setInt(7,a.getEndurance());
-        ps.setString(9, e.obtenirNom());
         ps.setString(8,p.getNom());
         ps.execute();
         return maxNumAthlete();
@@ -104,7 +103,7 @@ public class RequeteJDBC {
     public void effacerAthlete(String nom, String prenom) throws SQLException {
 		PreparedStatement ps = this.laConnexion.prepareStatement("delete from ATHLETE where nomA = ? and prenomA = ?");
 		ps.setString(1, nom);
-	    	ps.setString(1, prenom);
+	    ps.setString(2, prenom);
 		ps.execute();
 	}
 
@@ -112,24 +111,23 @@ public class RequeteJDBC {
         PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE ATHLETE set idA = ?,"+"nomA = ?,"+"prenomA= ?,"+"sexeA = ?,"+"force = ?,"+"agilite = ?,"+"endurance = ?,"+"nomEq = nomEq,"+"nomP = nomP");
         int id = maxNumAthlete() + 1;
         ps.setInt(1,id);
-        ps.setString(2,a.obtenirNom());
+        ps.setString(2,a.getNom());
         ps.setString(3,a.getPrenom());
-        ps.setString(4,a.obtenirSexe());
+        ps.setString(4,a.getSexe());
         ps.setInt(5,a.getForce());
         ps.setInt(6,a.getAgilite());
         ps.setInt(7,a.getEndurance());
-        ps.setString(8, e.obtenirNom());
+        ps.setString(8, e.getNom());
         ps.setString(9,p.getNom());
         ps.executeUpdate();
     }
 
 
     public void ajoutEquipe(Equipe e,Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?,?)");
-        ps.setInt(1, maxNumEpreuve() + 1);
-        ps.setString(2,e.obtenirNom());
-        ps.setString(3, e.obtenirSexe());
-        ps.setString(4,p.getNom() );
+        PreparedStatement ps = this.laConnexion.prepareStatement("insert into EQUIPE values (?,?,?)");
+        ps.setInt(1, maxNumEquipe() + 1);
+        ps.setString(2,e.getNom());
+        ps.setString(3,p.getNom() );
         ps.execute();
     }
 
@@ -138,11 +136,11 @@ public class RequeteJDBC {
 		ps.setString(1, nomEq);
 		ps.execute();
 	}
+
     public void maJEquipe(Equipe e,Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement(" update IGNORE EQUIPE set nomEq = ?,"+"sexeE = ?,"+"nomP = ?");
-        ps.setString(1, e.obtenirNom());
-        ps.setString(2, e.obtenirSexe());
-        ps.setString(3,p.getNom());
+        PreparedStatement ps = this.laConnexion.prepareStatement(" update IGNORE EQUIPE set nomEq = ?,"+"nomP = ?");
+        ps.setString(1, e.getNom());
+        ps.setString(2,p.getNom());
         ps.executeUpdate();
     }
 
@@ -157,17 +155,27 @@ public class RequeteJDBC {
 
     public void effacerPays(Pays p) throws SQLException {
         PreparedStatement ps = this.laConnexion.prepareStatement("delete from PAYS where nomP = ?");
-        ps.setString(0, p.getNom());
+        ps.setString(1, p.getNom());
         ps.execute();
     }
 
     public void maJPays(Pays p) throws SQLException {
-        PreparedStatement ps = this.laConnexion.prepareStatement("upadte IGNORE PAYS set nomP = ?,"+"medailleOR = ?,"+"medailleARGENT = ?,"+"medailleBRONZE = ?");
+        PreparedStatement ps = this.laConnexion.prepareStatement("update IGNORE PAYS set nomP = ?,"+"medailleOR = ?,"+"medailleARGENT = ?,"+"medailleBRONZE = ?");
         ps.setString(1, p.getNom());
         ps.setInt(2, p.getNbMedaillesOr());
         ps.setInt(3, p.getNbMedaillesArgent());
         ps.setInt(4, p.getNbMedaillesBronze());
         ps.executeUpdate();
+    }
+
+    public boolean cherchePays(String nom) throws SQLException {
+        PreparedStatement ps = this.laConnexion.prepareStatement("select * from PAYS where nomP = ?");
+        ps.setString(1, nom);
+        ResultSet r = ps.executeQuery();
+        while(r.next()){
+            return true;
+        }  
+        return false; 
     }
 
     public void ajoutSport(String nom, String catégorie, int nbj) throws SQLException{
@@ -195,8 +203,8 @@ public class RequeteJDBC {
 
     public void ajoutEpreuve(Epreuve e) throws SQLException{
         PreparedStatement ps = this.laConnexion.prepareStatement("Select idS FROM SPORT where nomS = ? and categorie = ? and nombreJoueurs = ?");
-        ps.setString(1, e.getSport().getNom());
-        ps.setString(2, e.getSport().getCategorie());
+        ps.setString(1, e.getNom());
+        ps.setString(2, e.getGenre());
         ps.setInt(3, e.getSport().getNbJoueur());
         ResultSet r = ps.executeQuery();
         while(r.next()){
@@ -208,9 +216,9 @@ public class RequeteJDBC {
         }
     }
     public void effacerEpreuve(String nomE, String nomS) throws SQLException{
-        PreparedStatement ps = this.laConnexion.prepareStatement("delete from EPREUVE NATURAL JOIN SPORT where nomE = ? and nomS = ?");
+        PreparedStatement ps = this.laConnexion.prepareStatement("DELETE FROM EPREUVE WHERE nomEp = ? AND EXISTS (SELECT 1 FROM SPORT WHERE SPORT.nomS = ? AND SPORT.idS = EPREUVE.idS)");
         ps.setString(1, nomE);
-	ps.setString(1, nomS);
+	    ps.setString(2, nomS);
         ps.execute();
     }
 

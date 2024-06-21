@@ -30,15 +30,16 @@ public class ControleurAjouteEquipe implements EventHandler<ActionEvent> {
             else if((choixPaysR == 5 || choixPaysR == 6)){pays = new Pays("Allemagne", 0,0,0);}
             else if((choixPaysR == 7 || choixPaysR == 8)){pays = new Pays("Japon", 0,0,0);}
             else if((choixPaysR == 9 || choixPaysR == 10)){pays = new Pays("Corée", 0,0,0);}
+            boolean paysc = requetes.cherchePays(pays.getNom());
+            if(paysc == false){requetes.ajoutPays(pays);}
             
             Equipe eq = new Equipe(nom, pays);
-
             requetes.ajoutEquipe(eq, pays);
 
             ObservableList<Equipe> currentList = appli.getTableEquipe().getItems();
 
             if (currentList.contains(eq)) {
-                throw new IllegalArgumentException("L'équipe est déjà présente dans la liste.");
+                appli.setErreurMessage("Le pays est déjà présent dans le tableau");
             } else {
                 currentList.add(eq); // Ajoute le nouveau pays à la liste existante
             }

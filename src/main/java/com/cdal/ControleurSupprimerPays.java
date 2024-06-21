@@ -23,12 +23,10 @@ public class ControleurSupprimerPays implements EventHandler<ActionEvent> {
         String nom = appli.getTextPaysAjoute();
             
         Pays pays = new Pays(nom, 0,0,0);
-
         try {
             requetes.effacerPays(pays);
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            System.err.println("Le pays n'est pas dans la BD");
         }
 
             // Récupérer la liste actuelle des pays
@@ -48,6 +46,7 @@ public class ControleurSupprimerPays implements EventHandler<ActionEvent> {
             currentList.remove(paysASupprimer);
             // Rafraîchir le TableView pour refléter les modifications
             appli.getTablePays().refresh();
+            appli.pagePaysAdministrateur();
         } else {
             System.err.println("Le pays avec le nom " + nom + " n'a pas été trouvé.");
         }

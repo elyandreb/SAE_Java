@@ -12,7 +12,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
     private ConnexionBD connexionBD;
     private RequeteJDBC requetes;
     
-    public ControleurSupprimeAthlete(AppIUTO appli){
+    public ControleurSupprimeAthlete(AppIUTO appli, ConnexionBD connexionBD, RequeteJDBC requetes){
         this.appli = appli;
         this.connexionBD = connexionBD;
         this.requetes = requetes;
@@ -26,8 +26,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
             try {
                 requetes.effacerAthlete(nom, prenom);
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+                System.err.println("L'athlète n'est pas dans la BD");
             }
 
             // Récupérer la liste actuelle des pays
@@ -36,7 +35,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
             // Trouver le pays avec le nom donné
             Athlete athleteASupprimer = null;
             for (Athlete a : currentList) {
-                if (a.obtenirNom().equals(nom)&&a.getPrenom().equals(prenom)) {
+                if (a.getNom().equals(nom)&&a.getPrenom().equals(prenom)) {
                     athleteASupprimer = a;
                     break;
                 }
@@ -47,6 +46,7 @@ public class ControleurSupprimeAthlete implements EventHandler<ActionEvent> {
                 currentList.remove(athleteASupprimer);
                 // Rafraîchir le TableView pour refléter les modifications
                 appli.getTableAthlete().refresh();
+                appli.pageAthleteAdministrateur();
             } else {
                 System.err.println("L'athlète " + prenom + nom + " n'a pas été trouvé.");
             }

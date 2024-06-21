@@ -25,8 +25,7 @@ public class ControleurSupprimerEquipe implements EventHandler<ActionEvent> {
         try {
             requetes.effacerEquipe(nom);
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            System.err.println("L'équipe n'est pas dans la BD");
         }
 
             // Récupérer la liste actuelle des equipes
@@ -35,7 +34,7 @@ public class ControleurSupprimerEquipe implements EventHandler<ActionEvent> {
         // Trouver l'équipe avec le nom donné
        Equipe equipeASupprimer = null;
         for (Equipe equipe : currentList) {
-            if (equipe.obtenirNom().equals(nom)) {
+            if (equipe.getNom().equals(nom)) {
                 equipeASupprimer = equipe;
                 break;
             }
@@ -46,6 +45,7 @@ public class ControleurSupprimerEquipe implements EventHandler<ActionEvent> {
             currentList.remove(equipeASupprimer);
             // Rafraîchir le TableView pour refléter les modifications
             appli.getTableEquipe().refresh();
+            appli.pageEquipeAdministrateur();
         } else {
             System.err.println("L'équipe avec le nom " + nom + " n'a pas été trouvé.");
         }

@@ -73,6 +73,14 @@ public class Athlete implements Participant, Comparable<Athlete> {
      * Méthode pour obtenir le prénom de l'athlète
      * @return Le prénom de l'athlète
      */
+    public String getNom() {
+        return this.nom;
+    }
+
+    /**
+     * Méthode pour obtenir le prénom de l'athlète
+     * @return Le prénom de l'athlète
+     */
     public String getPrenom() {
         return this.prenom;
     }
@@ -86,6 +94,13 @@ public class Athlete implements Participant, Comparable<Athlete> {
         return this.sexe;
     }
 
+    /**
+     * Méthode pour obtenir le prénom de l'athlète
+     * @return Le prénom de l'athlète
+     */
+    public String getSexe() {
+        return this.sexe;
+    }
     /**
      * Méthode pour obtenir la force de l'athlète
      * @return La force de l'athlète

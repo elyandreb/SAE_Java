@@ -67,7 +67,7 @@ public class GestionDonnees {
    
 
     public Epreuve createEpreuve(String nom, List<Athlete> athletes, Sport sport){
-        String genre = athletes.get(0).obtenirSexe();
+        String genre = athletes.get(0).getSexe();
         Epreuve e = new Epreuve(nom, genre, sport);
         for(Athlete a : athletes){e.ajouteParticipantEpreuve(a);;}
         epreuves.add(e);
@@ -115,7 +115,7 @@ public class GestionDonnees {
             if(p.getNom().equals(pays)){
                 athletepays = p.getAthletes();
                 for(Athlete a:athletepays){
-                    if(a.getPrenom().equals(prenom) && a.obtenirNom().equals(nom)){
+                    if(a.getPrenom().equals(prenom) && a.getNom().equals(nom)){
                         return a;
                     }
                 }

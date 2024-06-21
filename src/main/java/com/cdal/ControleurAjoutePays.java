@@ -27,8 +27,11 @@ public class ControleurAjoutePays implements EventHandler<ActionEvent> {
             int nbBronze = appli.getBronzeSpinner();
             
             Pays pays = new Pays(nom, nbOr, nbArgent, nbBronze);
-
-            requetes.ajoutPays(pays);
+            try{
+            requetes.ajoutPays(pays);}
+            catch(SQLException e1){
+                System.err.println("Le pays est déjà présent dans la BD");
+            }
 
             ObservableList<Pays> currentList = appli.getTablePays().getItems();
 
@@ -40,8 +43,6 @@ public class ControleurAjoutePays implements EventHandler<ActionEvent> {
 
             appli.getTablePays().refresh();
             appli.pagePaysAdministrateur();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
         } catch (IllegalArgumentException e2) {
             System.err.println(e2.getMessage());
         }
